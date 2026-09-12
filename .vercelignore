@@ -1,0 +1,8 @@
+.vercel-cli/
+dist/
+.astro/
+.git/
+.openai/
+node_modules/
+npm-debug.log*
+

@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tcog-nigeria-home.ifexls.chatgpt.site',
+  site: 'https://tcog-homepage.vercel.app',
   vite: { plugins: [tailwindcss()] },
 });
