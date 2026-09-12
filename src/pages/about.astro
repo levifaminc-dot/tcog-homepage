@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, BookOpenCheck, Church, Flame, Globe2, HeartHandshake, Quote, ShieldCheck } from '@lucide/astro';
+import { ArrowRight, ArrowUpRight, BookOpenCheck, CalendarDays, Church, Flame, HeartHandshake, MapPin, Quote, ShieldCheck } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
@@ -58,9 +58,12 @@ const leaders = [
   </section>
 
   <section id="story" class="section-space bg-white">
-    <div class="container-site grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-      <div class="relative min-h-[28rem] overflow-hidden rounded-3xl bg-mist p-8 sm:p-12"><div class="absolute -right-20 -top-20 size-80 rounded-full border-[4rem] border-gold/20"></div><Globe2 class="relative text-indigo" size={45} stroke-width={1.3} /><p class="relative mt-24 max-w-md font-display text-4xl leading-tight tracking-[-.035em] text-indigo">A Nigerian story still being gathered.</p><p class="relative leading-8 text-slate-600">This space is ready for verified milestones, early leaders, branch histories, and photographs from Ekiti, Lagos, and Ondo.</p></div>
-      <div><SectionHeading eyebrow="Our story in Nigeria" title="Honouring the past. Building for tomorrow." copy="The national history presented here should come from the people who lived it. Until that material is supplied and verified, the design keeps this section honest and ready for the real story." /><div class="mt-8 rounded-xl border border-slate-200 p-5 text-sm leading-7 text-slate-600"><strong class="text-indigo">Content needed:</strong> founding date, pioneer names, key milestones, national office history, and approved archival photographs.</div></div>
+    <div class="container-site">
+      <div class="grid items-end gap-8 lg:grid-cols-[1.05fr_.95fr]"><SectionHeading eyebrow="Our story in Nigeria" title="Established in faith. Growing in service." /><p class="m-0 max-w-xl text-[1.08rem] leading-8 text-slate-600 lg:justify-self-end">The Church of God was officially established in Nigeria in 1992. From that beginning, the work has continued through local congregations, faithful leadership, and a shared commitment to the whole Bible, rightly divided.</p></div>
+      <div class="mt-14 grid overflow-hidden rounded-3xl border border-slate-200 lg:grid-cols-2">
+        <article class="relative min-h-[24rem] overflow-hidden bg-indigo p-8 text-white sm:p-12"><div class="absolute -right-20 -top-20 size-80 rounded-full border-[4rem] border-gold/15"></div><CalendarDays class="relative text-gold-light" size={42} stroke-width={1.4} /><p class="relative mb-0 mt-16 text-[.68rem] font-black uppercase tracking-[.16em] text-gold-light">A defining year</p><p class="relative mb-0 mt-3 font-display text-[clamp(4.5rem,10vw,8rem)] leading-none tracking-[-.06em]">1992</p><p class="relative mb-0 mt-6 max-w-md leading-8 text-white/70">The year The Church of God was officially established in Nigeria.</p></article>
+        <article class="flex min-h-[24rem] flex-col bg-cream p-8 sm:p-12"><MapPin class="text-coral" size={42} stroke-width={1.4} /><p class="eyebrow mt-16">National office</p><h3 class="mb-0 mt-3 font-display text-[clamp(2rem,4vw,3.4rem)] font-normal leading-[1.05] tracking-[-.04em] text-indigo">Omuo Ekiti,<br />Ekiti State.</h3><address class="mb-8 mt-5 max-w-md not-italic leading-8 text-slate-600">Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.</address><a class="text-link mt-auto" href="https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9" target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={16} /></a></article>
+      </div>
     </div>
   </section>
 
