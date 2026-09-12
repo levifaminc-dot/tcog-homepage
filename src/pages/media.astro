@@ -5,14 +5,15 @@ import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 
-const youtubeUrl = 'https://www.youtube.com/@TCOG';
-const spotifyUrl = 'https://open.spotify.com/show/6J4awHuptbweIxE8nMcLbT';
+const youtubeUrl = 'https://www.youtube.com/@TCOGNG';
+const youtubeMusicUrl = 'https://music.youtube.com/playlist?list=PL5Z7JlunMnE6JJ5M_3wU9MwVFLFKblFDH';
+const spotifyUrl = 'https://open.spotify.com/show/4VhUIGffgIffcn9fHXNFrl';
 
 const platforms = [
   { icon: Video, name: 'YouTube', format: 'Messages and worship', href: youtubeUrl, cta: 'Visit channel' },
+  { icon: Music2, name: 'YouTube Music', format: 'Message playlist', href: youtubeMusicUrl, cta: 'Play the playlist' },
   { icon: Headphones, name: 'Spotify', format: 'Listen on the go', href: spotifyUrl, cta: 'Open in Spotify' },
-  { icon: Music2, name: 'Audiomack', format: 'Audio messages', cta: 'Profile coming soon' },
-  { icon: Radio, name: 'More channels', format: 'Additional platforms', cta: 'More links coming soon' },
+  { icon: Radio, name: 'Audiomack', format: 'Audio messages', cta: 'Profile coming soon' },
 ];
 ---
 <BaseLayout title="Media | The Church of God Nigeria" description="Watch and listen to messages, teaching, and worship from The Church of God Nigeria on YouTube and Spotify.">
@@ -53,7 +54,7 @@ const platforms = [
         </a>
       </div>
       <div class="overflow-hidden rounded-3xl bg-[#121212] p-3 shadow-[0_22px_60px_rgba(18,56,139,.15)] sm:p-5">
-        <iframe src="https://open.spotify.com/embed/show/6J4awHuptbweIxE8nMcLbT?utm_source=generator" title="The Church of God Nigeria on Spotify" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy" class="block rounded-2xl"></iframe>
+        <iframe src="https://open.spotify.com/embed/show/4VhUIGffgIffcn9fHXNFrl?utm_source=generator&si=1bcb8e9ec6784e06" title="The Church of God Nigeria on Spotify" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy" class="block rounded-2xl"></iframe>
       </div>
     </div>
   </section>
