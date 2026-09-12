@@ -1,0 +1,17 @@
+---
+interface Props { light?: boolean }
+const { light = false } = Astro.props;
+---
+<a class:list={["brand", { light }]} href="/" aria-label="The Church of God Nigeria home">
+  <span class="mark" aria-hidden="true"><span>†</span></span>
+  <span class="wordmark"><strong>The Church of God</strong><small>Nigeria</small></span>
+</a>
+<style>
+  .brand { display:inline-flex; align-items:center; gap:.75rem; color:#172554; text-decoration:none; }
+  .brand.light { color:#fff; }
+  .mark { display:grid; width:2.55rem; height:2.55rem; place-items:center; border:1px solid currentColor; border-radius:50%; }
+  .mark span { color:#d8a93d; font-family:Georgia,serif; font-size:1.65rem; line-height:1; transform:translateY(-1px); }
+  .wordmark { display:grid; gap:.08rem; line-height:1; }
+  strong { font-family:Georgia,serif; font-size:1.04rem; font-weight:600; letter-spacing:-.02em; white-space:nowrap; }
+  small { font-size:.62rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; }
+</style>

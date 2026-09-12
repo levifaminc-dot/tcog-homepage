@@ -1,0 +1,40 @@
+---
+import { ArrowRight, MapPin, Play } from '@lucide/astro';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <img src="/images/nigeria-worship-hero.webp" alt="A multigenerational Nigerian congregation worshipping together" width="1792" height="896" fetchpriority="high" />
+  <div class="veil"></div>
+  <div class="container-site hero-inner">
+    <div class="hero-copy">
+      <p class="kicker">The Church of God · Nigeria</p>
+      <h1 id="hero-title">There is a place<br />for you <em>here.</em></h1>
+      <p class="intro">Rooted in the whole Bible. Growing in truth and love. Serving communities across Nigeria with the hope of Jesus Christ.</p>
+      <div class="actions"><a class="btn btn-primary" href="#find-a-church"><MapPin size={17} /> Find a church</a><a class="btn btn-outline-light" href="#new-here">Plan your visit <ArrowRight size={17} /></a></div>
+    </div>
+    <a class="watch" href="#media" aria-label="Watch the welcome message"><span><Play size={18} fill="currentColor" /></span><span><small>Welcome to the family</small><strong>Watch our story</strong></span></a>
+  </div>
+  <div class="hero-note"><span></span><p>Worship. Belong. Serve.</p></div>
+</section>
+<style>
+  .hero { position:relative; min-height:clamp(38rem, 78vh, 52rem); isolation:isolate; overflow:hidden; background:#101827; color:#fff; }
+  .hero > img { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; object-position:65% center; }
+  .veil { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg, rgb(8 15 31 / .93) 0%, rgb(10 20 40 / .7) 42%, rgb(7 15 30 / .12) 78%), linear-gradient(0deg, rgb(4 11 24 / .58), transparent 45%); }
+  .hero-inner { min-height:inherit; display:flex; flex-direction:column; justify-content:center; padding-top:4rem; padding-bottom:6rem; }
+  .hero-copy { width:min(100%, 49rem); }
+  .kicker { display:flex; align-items:center; gap:.7rem; margin:0 0 1.25rem; color:#f1d58b; font-size:.74rem; font-weight:900; letter-spacing:.18em; text-transform:uppercase; }
+  .kicker::before { width:2.2rem; height:2px; background:#d8a93d; content:""; }
+  h1 { margin:0; font-family:Georgia,serif; font-size:clamp(3.4rem, 7.2vw, 7rem); font-weight:400; letter-spacing:-.055em; line-height:.88; text-wrap:balance; }
+  h1 em { color:#f1d58b; font-weight:400; }
+  .intro { max-width:39rem; margin:1.65rem 0 0; color:rgb(255 255 255 / .86); font-size:clamp(1rem, 1.8vw, 1.22rem); line-height:1.65; text-wrap:pretty; }
+  .actions { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:2rem; }
+  .watch { position:absolute; right:var(--page-pad); bottom:2rem; display:none; align-items:center; gap:.8rem; color:#fff; text-decoration:none; }
+  .watch > span:first-child { display:grid; width:3.25rem; height:3.25rem; place-items:center; border:1px solid rgb(255 255 255 / .5); border-radius:50%; backdrop-filter:blur(8px); }
+  .watch > span:last-child { display:grid; line-height:1.25; }
+  .watch small { color:rgb(255 255 255 / .62); font-size:.68rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  .watch strong { margin-top:.25rem; font-family:Georgia,serif; font-size:1.08rem; font-weight:400; }
+  .hero-note { position:absolute; bottom:0; left:0; display:flex; align-items:center; gap:1rem; background:#fff; color:#172554; padding:.9rem var(--page-pad); }
+  .hero-note span { width:2rem; height:2px; background:#d7654c; }
+  .hero-note p { margin:0; font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+  @media (min-width: 48rem) { .watch { display:flex; } }
+  @media (max-width: 40rem) { .veil { background:linear-gradient(90deg, rgb(8 15 31 / .93), rgb(9 18 37 / .64)), linear-gradient(0deg, rgb(4 11 24 / .7), transparent); } .hero > img { object-position:60% center; } .actions .btn { width:100%; } }
+</style>

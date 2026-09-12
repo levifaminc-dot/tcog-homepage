@@ -1,0 +1,43 @@
+---
+import { ArrowUpRight, Camera, Mail, MapPin, MessageCircle, Video } from '@lucide/astro';
+import Brand from './Brand.astro';
+const groups = [
+  { title: 'Explore', links: ['About us', 'What we believe', 'Leadership', 'Our story'] },
+  { title: 'Get involved', links: ['Find a church', 'Ministries', 'Events', 'Serve'] },
+  { title: 'Stay connected', links: ['Messages', 'News & stories', 'Prayer request', 'Give'] },
+];
+---
+<footer>
+  <div class="container-site footer-grid">
+    <div class="intro">
+      <Brand light />
+      <p>A welcoming church family growing in truth, sharing Christ’s love, and serving communities across Nigeria.</p>
+      <div class="social" aria-label="Social media links">
+        <a href="#" aria-label="Facebook"><MessageCircle size={18} /></a><a href="#" aria-label="Instagram"><Camera size={18} /></a><a href="#" aria-label="YouTube"><Video size={19} /></a>
+      </div>
+    </div>
+    {groups.map((group) => <nav aria-label={group.title}><h2>{group.title}</h2>{group.links.map((link) => <a href="#">{link}</a>)}</nav>)}
+    <div class="contact"><h2>National office</h2><p><MapPin size={16} /> Nigeria office details<br />to be confirmed</p><a href="#"><Mail size={16} /> Contact the national office</a><a href="https://www.thechurchofgod.org/" target="_blank" rel="noreferrer">International Offices <ArrowUpRight size={15} /></a></div>
+  </div>
+  <div class="container-site legal"><p>© {new Date().getFullYear()} The Church of God Nigeria. All rights reserved.</p><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>
+</footer>
+<style>
+  footer { background:#0c1735; color:#fff; padding-top:clamp(4rem, 8vw, 7rem); }
+  .footer-grid { display:grid; grid-template-columns:1fr; gap:2.5rem; padding-bottom:4rem; }
+  .intro { max-width:22rem; }
+  .intro p { margin:1.4rem 0; color:rgb(255 255 255 / .62); font-size:.92rem; line-height:1.7; }
+  .social { display:flex; gap:.55rem; }
+  .social a { display:grid; width:2.55rem; height:2.55rem; place-items:center; border:1px solid rgb(255 255 255 / .2); border-radius:50%; color:#fff; }
+  h2 { margin:0 0 1rem; color:#f1d58b; font-size:.7rem; font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
+  nav, .contact { display:flex; flex-direction:column; align-items:flex-start; }
+  nav a, .contact a { margin:.25rem 0; color:rgb(255 255 255 / .72); font-size:.86rem; text-decoration:none; }
+  nav a:hover, .contact a:hover { color:#fff; }
+  .contact p, .contact a { display:flex; align-items:flex-start; gap:.55rem; }
+  .contact p { margin:.2rem 0 .7rem; color:rgb(255 255 255 / .58); font-size:.86rem; line-height:1.5; }
+  .legal { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; border-top:1px solid rgb(255 255 255 / .11); padding-block:1.25rem; color:rgb(255 255 255 / .42); font-size:.7rem; }
+  .legal p { margin:0; }
+  .legal div { display:flex; gap:1rem; }
+  .legal a { color:inherit; text-decoration:none; }
+  @media (min-width:48rem) { .footer-grid { grid-template-columns:2fr repeat(2,1fr); } .contact { grid-column:3; } }
+  @media (min-width:70rem) { .footer-grid { grid-template-columns:2.1fr repeat(3,1fr) 1.5fr; } .contact { grid-column:auto; } }
+</style>
