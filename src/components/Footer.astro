@@ -4,7 +4,7 @@ import Brand from './Brand.astro';
 const groups = [
   { title: 'Explore', links: [{ label:'About us', href:'/about/' }, { label:'What we believe', href:'/basic-bible-beliefs/' }, { label:'Leadership', href:'/about/#leadership' }, { label:'Our story', href:'/about/#story' }] },
   { title: 'Get involved', links: [{ label:'Find a church', href:'/#find-a-church' }, { label:'Ministries', href:'/ministries/' }, { label:'Events', href:'/#events' }, { label:'Serve', href:'/ministries/#serve' }] },
-  { title: 'Stay connected', links: [{ label:'Messages', href:'/media/' }, { label:'News & stories', href:'/news/' }, { label:'Prayer request', href:'/#prayer' }, { label:'Give', href:'/#giving' }] },
+  { title: 'Stay connected', links: [{ label:'Messages', href:'/media/' }, { label:'News & stories', href:'/news/' }, { label:'Prayer request', href:'/#prayer', prayer:true }, { label:'Give', href:'https://www.thechurchofgod.org/give/', external:true }] },
 ];
 ---
 <footer>
@@ -16,7 +16,7 @@ const groups = [
         <a href="https://www.youtube.com/@TCOGNG" target="_blank" rel="noreferrer" aria-label="The Church of God Nigeria on YouTube"><Video size={19} /></a><a href="https://open.spotify.com/show/4VhUIGffgIffcn9fHXNFrl" target="_blank" rel="noreferrer" aria-label="The Church of God Nigeria on Spotify"><Headphones size={18} /></a><a href="https://music.youtube.com/playlist?list=PL5Z7JlunMnE6JJ5M_3wU9MwVFLFKblFDH" target="_blank" rel="noreferrer" aria-label="The Church of God Nigeria on YouTube Music"><Music2 size={18} /></a>
       </div>
     </div>
-    {groups.map((group) => <nav aria-label={group.title}><h2>{group.title}</h2>{group.links.map((link) => <a href={link.href}>{link.label}</a>)}</nav>)}
+    {groups.map((group) => <nav aria-label={group.title}><h2>{group.title}</h2>{group.links.map((link) => <a href={link.href} data-prayer-open={link.prayer ? '' : undefined} target={link.external ? '_blank' : undefined} rel={link.external ? 'noreferrer' : undefined}>{link.label}{link.external && <span aria-hidden="true"> ↗</span>}</a>)}</nav>)}
     <div class="contact"><h2>National office</h2><a href="https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9" target="_blank" rel="noreferrer"><MapPin size={16} /><span>The Church of God, Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.</span></a><a href="tel:+2348063035886"><Phone size={16} /> +234 806 303 5886</a><a href="mailto:Info@tcog.org.ng"><Mail size={16} /> Info@tcog.org.ng</a><a href="https://www.thechurchofgod.org/" target="_blank" rel="noreferrer">International Offices <ArrowUpRight size={15} /></a></div>
   </div>
   <div class="container-site legal"><p>© {new Date().getFullYear()} The Church of God Nigeria. All rights reserved.</p><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>

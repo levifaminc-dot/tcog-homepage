@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
     <div class="container-site utility-inner">
       <p>United by truth &amp; love across Nigeria</p>
       <div>
-        <a href="/#prayer"><Heart size={13} stroke-width={2} /> Prayer request</a>
+        <a href="/#prayer" data-prayer-open><Heart size={13} stroke-width={2} /> Prayer request</a>
         <a href="https://www.thechurchofgod.org/" target="_blank" rel="noreferrer">International Offices <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -35,7 +35,7 @@ const currentPath = Astro.url.pathname;
   <div id="mobile-menu" class="mobile-menu" hidden>
     <nav aria-label="Mobile navigation">
       {nav.map((item) => <a href={item.href}>{item.label}<span aria-hidden="true">→</span></a>)}
-      <a href="/#giving">Give <span aria-hidden="true">→</span></a>
+      <a href="https://www.thechurchofgod.org/give/" target="_blank" rel="noreferrer">Give <span aria-hidden="true">↗</span></a>
       <a class="mobile-finder" href="/#find-a-church"><MapPin size={18} /> Find a church near you</a>
     </nav>
   </div>
