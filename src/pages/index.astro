@@ -10,9 +10,9 @@ import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 
 const pathways = [
-  { icon: Sparkles, step: '01', title: 'Meet Jesus', copy: 'Discover the hope, peace, and new life found in Jesus Christ.', link: 'Begin here' },
-  { icon: Church, step: '02', title: 'New to church?', copy: 'Know what to expect and feel at home before your first Sunday.', link: 'Plan a visit' },
-  { icon: BookOpenCheck, step: '03', title: 'What we believe', copy: 'Explore a faith grounded in the whole Bible, rightly divided.', link: 'Our beliefs' },
+  { icon: Sparkles, step: '01', title: 'Meet Jesus', copy: 'Discover the hope, peace, and new life found in Jesus Christ.', link: 'Begin here', href: '/basic-bible-beliefs/' },
+  { icon: Church, step: '02', title: 'New to church?', copy: 'Know what to expect and feel at home before your first Sunday.', link: 'Find a church', href: '/#find-a-church' },
+  { icon: BookOpenCheck, step: '03', title: 'What we believe', copy: 'Explore a faith grounded in the whole Bible, rightly divided.', link: 'Our beliefs', href: '/basic-bible-beliefs/' },
 ];
 
 const ministries = [
@@ -46,12 +46,12 @@ const updates = [
         <p class="m-0 max-w-xl text-[1.05rem] leading-8 text-slate-600 lg:justify-self-end">Whether you are exploring faith, returning to church, or looking for a community to call home, we would be honoured to walk with you.</p>
       </div>
       <div class="mt-12 grid border-y border-slate-200 md:grid-cols-3">
-        {pathways.map(({ icon: Icon, step, title, copy, link }, index) => (
+        {pathways.map(({ icon: Icon, step, title, copy, link, href }, index) => (
           <article class:list={['group relative px-0 py-9 md:px-8 md:py-12 lg:px-12', { 'border-t border-slate-200 md:border-l md:border-t-0': index > 0 }]}>
             <div class="mb-10 flex items-center justify-between"><span class="grid size-12 place-items-center rounded-full bg-indigo text-gold-light"><Icon size={22} stroke-width={1.7} /></span><span class="font-display text-sm italic text-slate-400">{step}</span></div>
             <h3 class="m-0 font-display text-[1.7rem] font-normal tracking-[-.03em] text-indigo">{title}</h3>
             <p class="mb-7 mt-3 max-w-xs leading-7 text-slate-600">{copy}</p>
-            <a class="text-link" href="#">{link} <ArrowRight size={15} /></a>
+            <a class="text-link" href={href}>{link} <ArrowRight size={15} /></a>
           </article>
         ))}
       </div>

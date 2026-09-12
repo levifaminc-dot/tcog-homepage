@@ -1,0 +1,76 @@
+---
+import { ArrowRight, BookOpenCheck, ChevronDown, ExternalLink } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const beliefs = [
+  { group: 'New life in Christ', title: 'Repentance', summary: 'Turning away from sin and turning wholeheartedly toward God.', refs: 'Mark 1:15 · Luke 13:3 · Acts 3:19' },
+  { group: 'New life in Christ', title: 'Justification', summary: 'God forgives the sins of the person who repents and brings that person into peace with Him.', refs: 'Romans 5:1–9 · Titus 3:7' },
+  { group: 'New life in Christ', title: 'Regeneration', summary: 'God gives new spiritual life in the heart of the person He has justified.', refs: 'Matthew 19:28 · Titus 3:5' },
+  { group: 'New life in Christ', title: 'Born Again', summary: 'Through repentance, justification, and regeneration, a person becomes a new creation and a child of God.', refs: 'John 3:3 · 1 Peter 1:23 · 1 John 3:9' },
+  { group: 'New life in Christ', title: 'Sanctification', summary: 'A definite work of grace following justification, cleansing the believer and enabling a holy life.', refs: 'Romans 5:2 · 1 Thessalonians 4:3 · Hebrews 13:12' },
+  { group: 'New life in Christ', title: 'Holiness', summary: 'God calls His people to live holy lives through the grace He provides.', refs: 'Luke 1:74–75 · 1 Thessalonians 4:7 · Hebrews 12:14' },
+  { group: 'Spirit-filled life', title: 'Water Baptism', summary: 'Believers are immersed in water in obedience to Christ, representing His death, burial, and resurrection.', refs: 'Matthew 28:19 · Acts 8:36–38 · Romans 6:4' },
+  { group: 'Spirit-filled life', title: 'Baptism with the Holy Ghost', summary: 'The Holy Ghost empowers sanctified believers for service and witness.', refs: 'Matthew 3:11 · Luke 24:49 · Acts 1:4–8' },
+  { group: 'Spirit-filled life', title: 'Speaking in Tongues', summary: 'Speaking as the Spirit gives utterance is the initial physical evidence of the baptism of the Holy Ghost.', refs: 'Acts 2:4 · Acts 10:44–46 · Acts 19:6' },
+  { group: 'Spirit-filled life', title: 'Gifts Restored to the Church', summary: 'The Holy Spirit gives and operates spiritual gifts within the Church according to God’s will.', refs: '1 Corinthians 12:1–11 · 1 Corinthians 14:1' },
+  { group: 'Spirit-filled life', title: 'Signs Following Believers', summary: 'God confirms the Gospel through signs that accompany faithful Christian witness.', refs: 'Mark 16:17–20 · Romans 15:18–19 · Hebrews 2:4' },
+  { group: 'Spirit-filled life', title: 'Fruit of the Spirit', summary: 'A Spirit-filled life displays love, joy, peace, patience, gentleness, goodness, faith, meekness, and self-control.', refs: 'Galatians 5:22–23 · Ephesians 5:9' },
+  { group: 'Spirit-filled life', title: 'Divine Healing', summary: 'The Church believes God heals and encourages believers to seek Him in the prayer of faith.', refs: 'Psalm 103:3 · Isaiah 53:4–5 · James 5:14–16' },
+  { group: 'Ordinances and stewardship', title: 'The Lord’s Supper', summary: 'The Church observes this sacred ordinance in remembrance of Christ and His death.', refs: 'Luke 22:17–20 · 1 Corinthians 11:23–33' },
+  { group: 'Ordinances and stewardship', title: 'Washing the Saints’ Feet', summary: 'Following Jesus’ example, the Church observes feet washing as a New Testament ordinance of humble service.', refs: 'John 13:4–17 · 1 Timothy 5:10' },
+  { group: 'Ordinances and stewardship', title: 'Tithing and Giving', summary: 'Tithing and generous giving support the work and mission of the Church.', refs: 'Malachi 3:10 · Matthew 23:23 · 2 Corinthians 9:6–9' },
+  { group: 'Ordinances and stewardship', title: 'Restitution Where Possible', summary: 'True repentance seeks to restore what was wrongfully taken and make right the harm done wherever possible.', refs: 'Matthew 3:8 · Luke 19:8–9 · Romans 13:8' },
+  { group: 'Our future hope', title: 'Pre-Millennial Second Coming of Jesus', summary: 'Jesus will return for His saints and will reign upon the earth.', refs: '1 Corinthians 15:51–52 · 1 Thessalonians 4:15–17 · Revelation 20:4–6' },
+  { group: 'Our future hope', title: 'Resurrection', summary: 'All the dead will be raised: the righteous at Christ’s appearing and the wicked afterward.', refs: 'Daniel 12:2 · John 5:28–29 · Acts 24:15' },
+  { group: 'Our future hope', title: 'Eternal Life for the Righteous', summary: 'Those who belong to Christ receive the promised reward of eternal life.', refs: 'Matthew 25:46 · John 10:28 · Romans 6:22' },
+  { group: 'Our future hope', title: 'Eternal Punishment for the Wicked', summary: 'Scripture teaches final judgment and eternal punishment for the unrepentant.', refs: 'Matthew 25:41–46 · 2 Thessalonians 1:8–9 · Revelation 20:10–15' },
+  { group: 'Christian conduct', title: 'Abstinence from Liquor and Strong Drink', summary: 'The Church teaches total abstinence from intoxicating drink as part of holy Christian living.', refs: 'Proverbs 20:1 · Proverbs 23:29–32 · Galatians 5:21' },
+  { group: 'Christian conduct', title: 'Against Tobacco and Narcotics', summary: 'Christians are called to avoid practices that defile or enslave the body.', refs: '1 Corinthians 10:31–32 · 2 Corinthians 7:1 · James 1:21' },
+  { group: 'Christian conduct', title: 'On Meats and Drinks', summary: 'Apart from strong drink, the New Testament does not impose rigid dietary rules or permit judging one another over food.', refs: 'Romans 14:2–3, 17 · 1 Corinthians 8:8 · 1 Timothy 4:1–5' },
+  { group: 'Christian conduct', title: 'On the Sabbath', summary: 'The Church sets aside Sunday for worship while teaching that believers are called to holy living every day.', refs: 'Romans 14:5–6 · Colossians 2:16–17' },
+  { group: 'Christian conduct', title: 'Against Gold for Ornament', summary: 'The Church emphasizes inward spiritual beauty and modesty rather than adornment with precious metals.', refs: '1 Timothy 2:9 · 1 Peter 3:3–4 · 1 John 2:16' },
+  { group: 'Christian conduct', title: 'Against Belonging to Lodges', summary: 'Believers should not enter secret or unequal associations that conflict with open Christian faithfulness.', refs: 'Matthew 5:34 · John 18:20 · 2 Corinthians 6:14–17' },
+  { group: 'Christian conduct', title: 'Against Swearing', summary: 'A Christian’s truthful affirmation should be sufficient without taking an oath.', refs: 'Matthew 5:34–37 · James 5:12' },
+  { group: 'Christian conduct', title: 'Marriage, Divorce, and Remarriage', summary: 'Marriage is a sacred lifelong covenant, and the Church follows the New Testament teaching concerning divorce and remarriage.', refs: 'Matthew 19:3–12 · Mark 10:11–12 · Romans 7:2–3 · 1 Corinthians 7:10–11' },
+];
+---
+<BaseLayout title="Basic Bible Beliefs | The Church of God Nigeria" description="Explore the basic Bible beliefs held by The Church of God, grounded in the whole Bible rightly divided.">
+  <PageHero eyebrow="We hold these truths" title="Basic Bible Beliefs" copy="These prominent teachings express how The Church of God understands and lives the New Testament faith—accepting the whole Bible, rightly divided." label="Explore the beliefs" />
+
+  <section id="page-content" class="section-space bg-white">
+    <div class="container-site grid items-start gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+      <div class="lg:sticky lg:top-10">
+        <p class="eyebrow">Our foundation</p>
+        <h2 class="section-title">The Word of God,<br /><em class="text-coral">believed and lived.</em></h2>
+        <p class="mt-6 leading-8 text-slate-600">The Church accepts the Bible as God’s Word and the New Testament as its rule of faith, practice, government, and discipline.</p>
+        <a class="btn btn-outline-dark mt-7" href="https://www.thechurchofgod.org/resource/basic-bible-beliefs/" target="_blank" rel="noreferrer">International resource <ExternalLink size={16} /></a>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Twenty-nine teachings" title="Explore the beliefs." copy="Open each teaching for a concise introduction and key Scripture references. For the complete approved wording, use the linked international resource." />
+        <div class="mt-10 grid gap-3">
+          {beliefs.map((belief, index) => (
+            <details class="group overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <summary class="flex min-h-20 cursor-pointer list-none items-center gap-4 px-5 py-4 sm:px-7">
+                <span class="grid size-9 shrink-0 place-items-center rounded-full bg-mist text-xs font-black text-indigo">{String(index + 1).padStart(2, '0')}</span>
+                <span class="flex-1"><small class="block text-[.62rem] font-black uppercase tracking-[.13em] text-coral">{belief.group}</small><strong class="mt-1 block font-display text-[1.25rem] font-normal text-indigo">{belief.title}</strong></span>
+                <ChevronDown class="shrink-0 text-indigo transition-transform group-open:rotate-180" size={20} />
+              </summary>
+              <div class="border-t border-slate-100 px-5 pb-6 pt-5 sm:pl-20 sm:pr-7"><p class="m-0 leading-7 text-slate-600">{belief.summary}</p><p class="mb-0 mt-4 text-xs font-bold leading-6 text-indigo">{belief.refs}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo py-[clamp(4rem,8vw,6.5rem)] text-white">
+    <div class="container-site grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+      <div><BookOpenCheck class="text-gold-light" size={38} stroke-width={1.4} /><h2 class="mb-0 mt-7 font-display text-[clamp(2.5rem,5vw,4.8rem)] font-normal leading-[1] tracking-[-.045em]">Questions are welcome.</h2><p class="mb-0 mt-5 max-w-2xl leading-8 text-white/70">A local pastor can help you explore these teachings carefully through Scripture and prayer.</p></div>
+      <a class="btn btn-light" href="/#find-a-church">Find a church <ArrowRight size={16} /></a>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
