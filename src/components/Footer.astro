@@ -2,9 +2,9 @@
 import { ArrowUpRight, Camera, Mail, MapPin, MessageCircle, Video } from '@lucide/astro';
 import Brand from './Brand.astro';
 const groups = [
-  { title: 'Explore', links: ['About us', 'What we believe', 'Leadership', 'Our story'] },
-  { title: 'Get involved', links: ['Find a church', 'Ministries', 'Events', 'Serve'] },
-  { title: 'Stay connected', links: ['Messages', 'News & stories', 'Prayer request', 'Give'] },
+  { title: 'Explore', links: [{ label:'About us', href:'/about/' }, { label:'What we believe', href:'/about/#beliefs' }, { label:'Leadership', href:'/about/#leadership' }, { label:'Our story', href:'/about/#story' }] },
+  { title: 'Get involved', links: [{ label:'Find a church', href:'/#find-a-church' }, { label:'Ministries', href:'/ministries/' }, { label:'Events', href:'/#events' }, { label:'Serve', href:'/ministries/#serve' }] },
+  { title: 'Stay connected', links: [{ label:'Messages', href:'/media/' }, { label:'News & stories', href:'/news/' }, { label:'Prayer request', href:'/#prayer' }, { label:'Give', href:'/#giving' }] },
 ];
 ---
 <footer>
@@ -13,10 +13,10 @@ const groups = [
       <Brand light />
       <p>A welcoming church family growing in truth, sharing Christ’s love, and serving communities across Nigeria.</p>
       <div class="social" aria-label="Social media links">
-        <a href="#" aria-label="Facebook"><MessageCircle size={18} /></a><a href="#" aria-label="Instagram"><Camera size={18} /></a><a href="#" aria-label="YouTube"><Video size={19} /></a>
+        <a href="/media/#platforms" aria-label="Our social channels"><MessageCircle size={18} /></a><a href="/media/#platforms" aria-label="Our photo channels"><Camera size={18} /></a><a href="/media/#platforms" aria-label="Our video channels"><Video size={19} /></a>
       </div>
     </div>
-    {groups.map((group) => <nav aria-label={group.title}><h2>{group.title}</h2>{group.links.map((link) => <a href="#">{link}</a>)}</nav>)}
+    {groups.map((group) => <nav aria-label={group.title}><h2>{group.title}</h2>{group.links.map((link) => <a href={link.href}>{link.label}</a>)}</nav>)}
     <div class="contact"><h2>National office</h2><p><MapPin size={16} /> Nigeria office details<br />to be confirmed</p><a href="#"><Mail size={16} /> Contact the national office</a><a href="https://www.thechurchofgod.org/" target="_blank" rel="noreferrer">International Offices <ArrowUpRight size={15} /></a></div>
   </div>
   <div class="container-site legal"><p>© {new Date().getFullYear()} The Church of God Nigeria. All rights reserved.</p><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>

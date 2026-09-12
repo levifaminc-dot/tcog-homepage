@@ -1,0 +1,40 @@
+---
+import { ArrowRight, BookOpen, Church, HeartHandshake, Mail, Megaphone, Users } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const stories = [
+  { icon: HeartHandshake, category: 'From the field', title: 'Faith in action: serving our neighbours with practical love', copy: 'Reserved for a verified outreach story from a local church in Ekiti, Lagos, or Ondo.', tone: 'bg-leaf' },
+  { icon: Users, category: 'Church life', title: 'Growing disciples across every generation', copy: 'A future story space for children, youth, families, and ministry leaders growing together.', tone: 'bg-coral' },
+  { icon: BookOpen, category: 'Discipleship', title: 'Opening the Word together in our local churches', copy: 'Reserved for Bible teaching initiatives, Sunday School updates, and discipleship testimonies.', tone: 'bg-indigo-light' },
+  { icon: Megaphone, category: 'National update', title: 'News and announcements from the national office', copy: 'Approved national notices, appointments, gatherings, and official statements will appear here.', tone: 'bg-[#79613a]' },
+  { icon: Church, category: 'Local churches', title: 'Stories from Ekiti, Lagos, and Ondo', copy: 'A dedicated space to celebrate verified milestones and testimonies from each branch state.', tone: 'bg-[#4e5c74]' },
+  { icon: HeartHandshake, category: 'Missions', title: 'Sharing Christ’s hope beyond our walls', copy: 'Future reports from evangelism, compassionate service, and mission activity throughout Nigeria.', tone: 'bg-[#5f4b68]' },
+];
+---
+<BaseLayout title="News | The Church of God Nigeria" description="Read news, stories, testimonies and national updates from The Church of God Nigeria.">
+  <PageHero eyebrow="News & stories" title="See what God is doing among us." copy="Stories of faith, service, discipleship, and church life from Ekiti, Lagos, Ondo, and the wider Church family." label="Read the latest" />
+
+  <section id="page-content" class="section-space bg-white">
+    <div class="container-site">
+      <article class="grid overflow-hidden rounded-3xl bg-cream lg:grid-cols-[1.05fr_.95fr]">
+        <div class="relative min-h-[28rem] overflow-hidden"><img src="/images/nigeria-worship-hero.webp" alt="Members of a Nigerian congregation worshipping" width="1792" height="896" class="absolute inset-0 h-full w-full object-cover object-[65%_center]" /><div class="absolute inset-0 bg-gradient-to-t from-indigo/65 to-transparent"></div><span class="absolute bottom-6 left-6 rounded-full bg-white px-4 py-2 text-[.66rem] font-black uppercase tracking-[.12em] text-coral">Featured story · Preview</span></div>
+        <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><p class="mb-0 text-[.68rem] font-black uppercase tracking-[.14em] text-leaf">The mission in motion</p><h2 class="mb-0 mt-5 font-display text-[clamp(2.4rem,4vw,4.2rem)] font-normal leading-[1.02] tracking-[-.04em] text-indigo">Faith in action across our communities.</h2><p class="mb-0 mt-6 leading-8 text-slate-600">This featured area is ready for the latest verified testimony or national story, supported by approved photographs and contributor details.</p><span class="btn btn-outline-dark mt-8 w-fit">Story coming soon <ArrowRight size={16} /></span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-space bg-mist">
+    <div class="container-site">
+      <div class="flex flex-wrap items-end justify-between gap-8"><SectionHeading eyebrow="Latest updates" title="Stories from the Church." copy="The layout below is ready for Sanity CMS content. Every item is intentionally labelled as a placeholder until real stories are approved." /><nav class="flex flex-wrap gap-2" aria-label="News categories"><a class="rounded-full bg-indigo px-4 py-2 text-xs font-bold text-white no-underline" href="#stories">All</a><a class="rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo no-underline" href="#stories">National</a><a class="rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo no-underline" href="#stories">Local churches</a><a class="rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo no-underline" href="#stories">Missions</a></nav></div>
+      <div id="stories" class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {stories.map(({ icon: Icon, category, title, copy, tone }) => <article class="flex min-h-[25rem] flex-col rounded-2xl bg-white p-8"><div class:list={['grid size-14 place-items-center rounded-full text-white', tone]}><Icon size={24} stroke-width={1.5} /></div><div class="mt-auto pt-12"><p class="m-0 text-[.66rem] font-black uppercase tracking-[.14em] text-coral">{category}</p><h2 class="mb-0 mt-3 font-display text-[1.65rem] font-normal leading-[1.12] tracking-[-.025em] text-indigo">{title}</h2><p class="mb-0 mt-4 text-sm leading-7 text-slate-600">{copy}</p></div></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo py-[clamp(4rem,8vw,6.5rem)] text-white"><div class="container-site grid items-center gap-10 lg:grid-cols-[1fr_.8fr]"><div><p class="eyebrow !text-gold-light">Stay connected</p><h2 class="mb-0 mt-4 font-display text-[clamp(2.5rem,5vw,4.8rem)] font-normal leading-[1] tracking-[-.045em]">News worth sharing.</h2><p class="mb-0 mt-5 max-w-2xl leading-8 text-white/68">Receive national updates, event announcements, and new messages. Newsletter delivery can be connected when the mailing platform is selected.</p></div><form class="rounded-2xl bg-white p-4 text-ink sm:flex sm:gap-3" action="#" method="post"><label class="sr-only" for="news-email">Email address</label><input id="news-email" class="min-h-14 w-full rounded-xl border border-slate-200 px-4" type="email" name="email" placeholder="Your email address" required /><button class="btn btn-primary mt-3 w-full border-0 sm:mt-0 sm:w-auto" type="submit"><Mail size={16} /> Subscribe</button></form></div></section>
+  <Footer />
+</BaseLayout>

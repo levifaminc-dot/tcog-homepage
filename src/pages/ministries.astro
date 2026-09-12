@@ -1,0 +1,41 @@
+---
+import { ArrowRight, BookOpen, Church, Globe2, GraduationCap, HandHeart, HeartHandshake, Users, Waypoints } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const ministries = [
+  { icon: BookOpen, title: 'Sunday School', audience: 'Learning for every age', copy: 'Developing souls through faithful Bible teaching that connects truth with everyday life.', color: 'bg-[#edf3ee]' },
+  { icon: Users, title: 'Victory Leaders Band', audience: 'Children, youth & young adults', copy: 'Discipling and evangelising young people to become faithful, Spirit-filled adults.', color: 'bg-[#f8eee9]' },
+  { icon: HeartHandshake, title: 'Women’s Missionary Band', audience: 'Women in mission', copy: 'Challenging and equipping women to minister faithfully at home, in church, and beyond.', color: 'bg-[#f5f0e4]' },
+  { icon: Globe2, title: 'World Mission Department', audience: 'Mission near and far', copy: 'Coordinating evangelism and service so the message of Jesus reaches every community and culture.', color: 'bg-[#eaf0f6]' },
+  { icon: GraduationCap, title: 'Bible Training Institute', audience: 'Leaders & ministry workers', copy: 'Empowering students with biblical knowledge and practical skills for effective service.', color: 'bg-[#f3ecf5]' },
+  { icon: Waypoints, title: 'Evangelism', audience: 'The Gospel for everyone', copy: 'Going with the message of redemption and grace to reach every community and soul.', color: 'bg-[#eef3ee]' },
+];
+---
+<BaseLayout title="Ministries | The Church of God Nigeria" description="Explore the ministries of The Church of God Nigeria for discipleship, youth, women, leadership, evangelism and missions.">
+  <PageHero eyebrow="Our ministries" title="Growing people. Serving communities." copy="Every ministry exists to help people know God’s Word, find their place in the Church, and carry the love of Jesus into everyday life." label="Explore ministries" />
+
+  <section id="page-content" class="section-space bg-white">
+    <div class="container-site">
+      <div class="grid items-end gap-8 lg:grid-cols-[1.1fr_.9fr]"><SectionHeading eyebrow="How we serve" title="A place for every gift and generation." /><p class="m-0 max-w-xl text-[1.08rem] leading-8 text-slate-600 lg:justify-self-end">Our ministries work through local churches. Find the ministry that fits your season, then connect with a congregation in Ekiti, Lagos, or Ondo.</p></div>
+      <div class="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {ministries.map(({ icon: Icon, title, audience, copy, color }, index) => (
+          <article id={`ministry-${index + 1}`} class:list={['group flex min-h-[25rem] flex-col rounded-3xl p-8 sm:p-10', color]}>
+            <div class="flex items-start justify-between"><span class="grid size-14 place-items-center rounded-full bg-indigo text-gold-light"><Icon size={25} stroke-width={1.45} /></span><span class="text-[.66rem] font-black uppercase tracking-[.14em] text-coral">{String(index + 1).padStart(2, '0')}</span></div>
+            <div class="mt-auto pt-16"><p class="m-0 text-[.67rem] font-black uppercase tracking-[.14em] text-leaf">{audience}</p><h2 class="mb-0 mt-3 font-display text-[2rem] font-normal leading-[1.05] tracking-[-.03em] text-indigo">{title}</h2><p class="mb-7 mt-4 leading-7 text-slate-600">{copy}</p><a class="text-link" href="/#find-a-church">Connect locally <ArrowRight size={15} /></a></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-cream">
+    <div class="container-site grid items-center gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+      <div class="rounded-3xl bg-indigo p-9 text-white sm:p-12"><Church class="text-gold-light" size={40} stroke-width={1.4} /><h2 class="mb-0 mt-12 font-display text-[clamp(2.4rem,4vw,4rem)] font-normal leading-[1] tracking-[-.04em]">Ministry begins in the local church.</h2><p class="mb-0 mt-6 leading-8 text-white/70">These national ministry areas come alive through people who teach, welcome, pray, organise, give, and serve.</p></div>
+      <div id="serve"><SectionHeading eyebrow="Use your gifts" title="There is work for willing hands." copy="You do not need a title to make a difference. Speak with a local church leader about serving in the area where your gifts, experience, and compassion can grow." /><div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="/#find-a-church">Find a church <ArrowRight size={16} /></a><a class="btn btn-outline-dark" href="/#prayer"><HandHeart size={17} /> Ask for guidance</a></div></div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

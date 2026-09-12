@@ -87,10 +87,10 @@ const updates = [
       <form class="rounded-3xl bg-white p-5 text-ink shadow-2xl shadow-black/20 sm:p-8" action="#" method="get">
         <div class="grid gap-4 sm:grid-cols-2">
           <label class="grid gap-2 text-xs font-extrabold uppercase tracking-[.09em] text-indigo">State
-            <select class="min-h-14 rounded-xl border border-slate-200 bg-white px-4 text-base font-normal normal-case tracking-normal text-slate-700" name="state"><option value="">Choose a state</option><option>Lagos</option><option>Abuja (FCT)</option><option>Rivers</option><option>Oyo</option><option>Other state</option></select>
+            <select class="min-h-14 rounded-xl border border-slate-200 bg-white px-4 text-base font-normal normal-case tracking-normal text-slate-700" name="state"><option value="">Choose a state</option><option>Ekiti</option><option>Lagos</option><option>Ondo</option></select>
           </label>
           <label class="grid gap-2 text-xs font-extrabold uppercase tracking-[.09em] text-indigo">Town or city
-            <input class="min-h-14 rounded-xl border border-slate-200 px-4 text-base font-normal normal-case tracking-normal placeholder:text-slate-400" type="search" name="city" placeholder="e.g. Ibadan" />
+            <input class="min-h-14 rounded-xl border border-slate-200 px-4 text-base font-normal normal-case tracking-normal placeholder:text-slate-400" type="search" name="city" placeholder="e.g. Ado-Ekiti" />
           </label>
         </div>
         <button class="btn btn-primary mt-5 w-full border-0" type="submit"><MapPin size={17} /> Search churches</button>
@@ -103,7 +103,7 @@ const updates = [
     <div class="container-site">
       <div class="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
         <SectionHeading eyebrow="How we serve" title="Faith for every season of life." copy="Ministries that help children, young people, women, families, leaders, and local churches grow and serve together." />
-        <a class="btn btn-outline-dark w-fit" href="#">View all ministries <ArrowRight size={16} /></a>
+        <a class="btn btn-outline-dark w-fit" href="/ministries/">View all ministries <ArrowRight size={16} /></a>
       </div>
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ministries.map(({ icon: Icon, title, copy, tone }) => (
@@ -111,7 +111,7 @@ const updates = [
             <Icon class="text-indigo" size={32} stroke-width={1.4} />
             <h3 class="mb-0 mt-10 font-display text-[1.6rem] font-normal tracking-[-.025em] text-indigo">{title}</h3>
             <p class="mb-7 mt-3 leading-7 text-slate-600">{copy}</p>
-            <a class="text-link" href="#" aria-label={`Learn more about ${title}`}>Learn more <ArrowRight size={15} /></a>
+            <a class="text-link" href="/ministries/" aria-label={`Learn more about ${title}`}>Learn more <ArrowRight size={15} /></a>
           </article>
         ))}
       </div>
@@ -132,7 +132,7 @@ const updates = [
           <p class="mb-0 flex items-center gap-2 text-xs font-black uppercase tracking-[.12em] text-gold-light"><Mic2 size={15} /> Sunday message</p>
           <h3 class="mb-0 mt-5 font-display text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.03] tracking-[-.04em]">A faith that stands.</h3>
           <p class="mt-5 leading-8 text-white/68">A sample message feature showing how sermons will be presented once verified media is supplied.</p>
-          <div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="#"><Play size={16} /> Watch now</a><a class="btn btn-outline-light" href="#"><Video size={17} /> Media library</a></div>
+          <div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="/media/"><Play size={16} /> Watch now</a><a class="btn btn-outline-light" href="/media/"><Video size={17} /> Media library</a></div>
         </div>
       </div>
     </div>
@@ -157,7 +157,7 @@ const updates = [
     <div class="container-site grid gap-14 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
       <div>
         <SectionHeading eyebrow="The mission in motion" title="Good news from across the Church." copy="Share verified stories of changed lives, faithful service, and churches making Christ known in their communities." />
-        <a class="btn btn-outline-dark mt-8" href="#">More news &amp; stories</a>
+        <a class="btn btn-outline-dark mt-8" href="/news/">More news &amp; stories</a>
       </div>
       <div class="grid gap-5 sm:grid-cols-2">
         {updates.map((update, index) => (
@@ -166,7 +166,7 @@ const updates = [
             <p class="mb-0 text-[.68rem] font-black uppercase tracking-[.14em] text-coral">{update.tag}</p>
             <h3 class="mb-0 mt-3 font-display text-[1.75rem] font-normal leading-[1.12] tracking-[-.025em] text-indigo">{update.title}</h3>
             <p class="mb-6 mt-4 text-sm leading-7 text-slate-600">{update.copy}</p>
-            <a class="text-link" href="#">Read story <ArrowRight size={15} /></a>
+            <a class="text-link" href="/news/">Read story <ArrowRight size={15} /></a>
           </article>
         ))}
       </div>

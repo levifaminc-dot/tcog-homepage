@@ -1,0 +1,65 @@
+---
+import { ArrowRight, BookOpenCheck, Church, Flame, Globe2, HeartHandshake, Quote, ShieldCheck, Sparkles } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const values = [
+  { icon: Church, title: 'Jesus-centred', copy: 'Jesus Christ is the foundation of our faith, our message, and our life together.' },
+  { icon: BookOpenCheck, title: 'Bible-grounded', copy: 'We accept the whole Bible, rightly divided, with the New Testament as our rule of faith and practice.' },
+  { icon: Flame, title: 'Spirit-led', copy: 'We depend on the Holy Spirit to shape holy lives and empower faithful service.' },
+  { icon: HeartHandshake, title: 'Mission-minded', copy: 'We make disciples, strengthen families, and share the Gospel in word and action.' },
+];
+
+const beliefs = [
+  'The authority and inspiration of Holy Scripture',
+  'Salvation through Jesus Christ',
+  'A life of holiness and faithful discipleship',
+  'The present work and gifts of the Holy Spirit',
+  'The unity, mission, and fellowship of the Church',
+  'The return of Jesus Christ and the hope of resurrection',
+];
+---
+<BaseLayout title="About | The Church of God Nigeria" description="Learn who we are, what we believe, and how The Church of God Nigeria follows Jesus in truth and love.">
+  <PageHero eyebrow="About the Church" title="One faith. One family. One mission." copy="We are part of a global, growing church family united by God’s Word and called to make the hope of Jesus known throughout Nigeria." />
+
+  <section id="page-content" class="section-space bg-white">
+    <div class="container-site grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+      <div><p class="eyebrow">Who we are</p><h2 class="section-title">Following Jesus.<br /><em class="text-coral">Together.</em></h2></div>
+      <div class="max-w-3xl text-[1.08rem] leading-8 text-slate-600">
+        <p class="mt-0">The Church of God is a global Body of Christ with members united in a covenant to walk in the light of God’s Word. In Nigeria, this means building welcoming local churches where people can worship, learn, belong, and serve.</p>
+        <p>Our mission begins in the communities around us and reaches outward: sharing the full Gospel, making disciples, developing leaders, and laying a faithful foundation for the next generation.</p>
+        <a class="text-link mt-4" href="/#find-a-church">Meet a local church <ArrowRight size={15} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-cream">
+    <div class="container-site">
+      <SectionHeading eyebrow="Our character" title="What shapes our life together." copy="These convictions guide the way we worship, teach, care for people, and serve our communities." />
+      <div class="mt-12 grid gap-px overflow-hidden rounded-2xl bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map(({ icon: Icon, title, copy }) => <article class="bg-white p-8 sm:p-9"><span class="grid size-12 place-items-center rounded-full bg-indigo text-gold-light"><Icon size={22} stroke-width={1.6} /></span><h3 class="mb-0 mt-9 font-display text-2xl font-normal text-indigo">{title}</h3><p class="mb-0 mt-3 text-sm leading-7 text-slate-600">{copy}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="beliefs" class="section-space bg-indigo text-white">
+    <div class="container-site grid gap-14 lg:grid-cols-[.85fr_1.15fr] lg:gap-24">
+      <div><Quote class="text-gold" size={36} stroke-width={1.4} /><p class="mt-10 font-display text-[clamp(2.5rem,5vw,4.8rem)] leading-[1.02] tracking-[-.045em]">The whole Bible,<br /><em class="text-gold-light">rightly divided.</em></p><p class="max-w-md leading-8 text-white/65">Our full statement of faith will be published here after national leadership review.</p></div>
+      <div><p class="eyebrow !text-gold-light">What we believe</p><h2 class="mt-4 font-display text-[clamp(2.2rem,4vw,3.8rem)] font-normal leading-[1.05] tracking-[-.04em]">A faith to know,<br />live, and share.</h2><div class="mt-9 grid gap-3">{beliefs.map((belief) => <div class="flex items-start gap-4 border-b border-white/12 py-4"><ShieldCheck class="mt-1 shrink-0 text-gold" size={20} /><span class="text-white/78">{belief}</span></div>)}</div></div>
+    </div>
+  </section>
+
+  <section id="story" class="section-space bg-white">
+    <div class="container-site grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      <div class="relative min-h-[28rem] overflow-hidden rounded-3xl bg-mist p-8 sm:p-12"><div class="absolute -right-20 -top-20 size-80 rounded-full border-[4rem] border-gold/20"></div><Globe2 class="relative text-indigo" size={45} stroke-width={1.3} /><p class="relative mt-24 max-w-md font-display text-4xl leading-tight tracking-[-.035em] text-indigo">A Nigerian story still being gathered.</p><p class="relative leading-8 text-slate-600">This space is ready for verified milestones, early leaders, branch histories, and photographs from Ekiti, Lagos, and Ondo.</p></div>
+      <div><SectionHeading eyebrow="Our story in Nigeria" title="Honouring the past. Building for tomorrow." copy="The national history presented here should come from the people who lived it. Until that material is supplied and verified, the design keeps this section honest and ready for the real story." /><div class="mt-8 rounded-xl border border-slate-200 p-5 text-sm leading-7 text-slate-600"><strong class="text-indigo">Content needed:</strong> founding date, pioneer names, key milestones, national office history, and approved archival photographs.</div></div>
+    </div>
+  </section>
+
+  <section id="leadership" class="section-space bg-cream">
+    <div class="container-site text-center"><SectionHeading align="center" eyebrow="National leadership" title="Serving with faithfulness." copy="Approved profiles and photographs of Nigeria’s national leadership will appear here once supplied." /><div class="mx-auto mt-10 max-w-3xl rounded-2xl border border-dashed border-indigo/25 bg-white p-9"><Sparkles class="mx-auto text-gold" size={30} /><p class="mb-0 mt-4 text-slate-600">Leadership content awaiting confirmation from the national office.</p></div></div>
+  </section>
+  <Footer />
+</BaseLayout>
