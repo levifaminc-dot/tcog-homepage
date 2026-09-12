@@ -1,60 +1,95 @@
 ---
-import { ArrowRight, Headphones, ListVideo, Mic2, Music2, Play, Radio, Video } from '@lucide/astro';
+import { ArrowUpRight, Headphones, Music2, Play, Radio, Video } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 
-const messages = [
-  { type: 'Sunday message', title: 'A faith that stands', speaker: 'Speaker details to be confirmed', duration: 'Video placeholder' },
-  { type: 'Bible teaching', title: 'Walking in truth and love', speaker: 'Speaker details to be confirmed', duration: 'Audio placeholder' },
-  { type: 'Youth message', title: 'Called for this generation', speaker: 'Speaker details to be confirmed', duration: 'Video placeholder' },
-];
+const youtubeUrl = 'https://www.youtube.com/@TCOG';
+const spotifyUrl = 'https://open.spotify.com/show/6J4awHuptbweIxE8nMcLbT';
 
 const platforms = [
-  { icon: Video, name: 'YouTube', format: 'Messages & worship', note: 'Channel link needed' },
-  { icon: Headphones, name: 'Spotify', format: 'Audio messages', note: 'Show link needed' },
-  { icon: Music2, name: 'Audiomack', format: 'Audio messages', note: 'Profile link needed' },
-  { icon: Radio, name: 'More channels', format: 'Additional platforms', note: 'Details needed' },
+  { icon: Video, name: 'YouTube', format: 'Messages and worship', href: youtubeUrl, cta: 'Visit channel' },
+  { icon: Headphones, name: 'Spotify', format: 'Listen on the go', href: spotifyUrl, cta: 'Open in Spotify' },
+  { icon: Music2, name: 'Audiomack', format: 'Audio messages', cta: 'Profile coming soon' },
+  { icon: Radio, name: 'More channels', format: 'Additional platforms', cta: 'More links coming soon' },
 ];
 ---
-<BaseLayout title="Media | The Church of God Nigeria" description="Watch and listen to messages, teaching and worship from The Church of God Nigeria.">
-  <PageHero eyebrow="Media" title="The message, wherever you are." copy="Watch messages, listen on the go, revisit a teaching series, and stay connected to the life of the Church throughout the week." label="Browse media" />
+<BaseLayout title="Media | The Church of God Nigeria" description="Watch and listen to messages, teaching, and worship from The Church of God Nigeria on YouTube and Spotify.">
+  <PageHero eyebrow="Media" title="The message, wherever you are." copy="Watch messages, listen on the go, revisit a teaching, and stay connected to the life of the Church throughout the week." label="Watch and listen" />
 
   <section id="page-content" class="section-space bg-white">
     <div class="container-site">
-      <div class="flex flex-wrap items-end justify-between gap-8"><SectionHeading eyebrow="Featured message" title="A place for the living Word." copy="The featured slot is ready for the latest approved national message, complete with speaker, date, scripture, and channel link." /><span class="rounded-full bg-cream px-4 py-2 text-[.68rem] font-black uppercase tracking-[.12em] text-coral">CMS-ready preview</span></div>
-      <article class="mt-12 grid overflow-hidden rounded-3xl bg-indigo text-white lg:grid-cols-[1.2fr_.8fr]">
-        <div class="relative min-h-[26rem] overflow-hidden sm:min-h-[34rem]"><img src="/images/nigeria-worship-hero.webp" alt="Nigerian church members worshipping together" width="1792" height="896" class="absolute inset-0 h-full w-full object-cover" /><div class="absolute inset-0 bg-gradient-to-t from-indigo via-indigo/10 to-transparent"></div><button class="absolute inset-0 grid w-full place-items-center border-0 bg-transparent text-indigo" type="button" aria-label="Play featured message preview"><span class="grid size-20 place-items-center rounded-full bg-white shadow-2xl"><Play size={28} fill="currentColor" /></span></button></div>
-        <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><p class="mb-0 flex items-center gap-2 text-[.68rem] font-black uppercase tracking-[.14em] text-gold-light"><Mic2 size={15} /> Sunday message</p><h2 class="mb-0 mt-6 font-display text-[clamp(2.5rem,5vw,4.8rem)] font-normal leading-[.98] tracking-[-.045em]">A faith<br />that stands.</h2><p class="mb-0 mt-5 leading-8 text-white/68">Sample presentation for the most recent sermon. Replace with approved title, speaker, date, and media link.</p><div class="mt-8 flex flex-wrap gap-3"><span class="btn btn-primary"><Play size={16} /> Video coming soon</span><span class="btn btn-outline-light"><Headphones size={17} /> Audio coming soon</span></div></div>
-      </article>
+      <div class="flex flex-wrap items-end justify-between gap-8">
+        <SectionHeading eyebrow="Watch on YouTube" title="Messages for everyday faith." copy="Visit our YouTube channel for messages, worship, and ministry from The Church of God Nigeria." />
+        <a class="btn btn-primary" href={youtubeUrl} target="_blank" rel="noreferrer">
+          <Play size={17} /> Visit YouTube <ArrowUpRight size={16} />
+        </a>
+      </div>
+      <a href={youtubeUrl} target="_blank" rel="noreferrer" class="group relative mt-12 grid min-h-[27rem] overflow-hidden rounded-3xl bg-indigo text-white no-underline sm:min-h-[35rem]" aria-label="Watch The Church of God Nigeria on YouTube">
+        <img src="/images/nigeria-worship-hero.webp" alt="Nigerian church members worshipping together" width="1792" height="896" class="absolute inset-0 h-full w-full object-cover opacity-75 transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-indigo via-indigo/20 to-transparent"></div>
+        <div class="relative z-10 flex items-end justify-between gap-6 self-end p-7 sm:p-11">
+          <div>
+            <p class="mb-0 text-[.68rem] font-black uppercase tracking-[.14em] text-gold-light">The Church of God Nigeria</p>
+            <h2 class="mb-0 mt-3 font-display text-[clamp(2.3rem,5vw,4.8rem)] font-normal leading-none tracking-[-.045em]">Watch our messages.</h2>
+          </div>
+          <span class="grid size-16 shrink-0 place-items-center rounded-full bg-white text-indigo shadow-2xl sm:size-20">
+            <Play size={26} fill="currentColor" />
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="spotify-listen" class="section-space bg-mist">
+    <div class="container-site grid items-center gap-10 lg:grid-cols-[.42fr_.58fr] lg:gap-16">
+      <div>
+        <p class="eyebrow">Listen on Spotify</p>
+        <h2 class="section-title">Press play.<br /><em class="text-coral">Grow anywhere.</em></h2>
+        <p class="mt-6 max-w-xl text-[1.05rem] leading-8 text-slate-600">Listen to messages without leaving the page. The Spotify player gives you direct access to the Church's available audio wherever you are.</p>
+        <a class="text-link mt-7" href={spotifyUrl} target="_blank" rel="noreferrer">
+          Open the full show on Spotify <ArrowUpRight size={15} />
+        </a>
+      </div>
+      <div class="overflow-hidden rounded-3xl bg-[#121212] p-3 shadow-[0_22px_60px_rgba(18,56,139,.15)] sm:p-5">
+        <iframe src="https://open.spotify.com/embed/show/6J4awHuptbweIxE8nMcLbT?utm_source=generator" title="The Church of God Nigeria on Spotify" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy" class="block rounded-2xl"></iframe>
+      </div>
     </div>
   </section>
 
   <section id="platforms" class="section-space bg-white">
     <div class="container-site">
-      <div class="grid items-end gap-8 lg:grid-cols-[1fr_.8fr]"><SectionHeading eyebrow="Listen your way" title="Find us on your favourite platform." /><p class="m-0 max-w-xl text-[1.05rem] leading-8 text-slate-600 lg:justify-self-end">The Church already publishes across video and audio channels. Add the approved channel URLs and these cards become direct links.</p></div>
+      <div class="grid items-end gap-8 lg:grid-cols-[1fr_.8fr]">
+        <SectionHeading eyebrow="Listen your way" title="Find us on your favourite platform." />
+        <p class="m-0 max-w-xl text-[1.05rem] leading-8 text-slate-600 lg:justify-self-end">Choose video on YouTube or listen immediately with the Spotify player. Audiomack and other official profiles will be linked as soon as their URLs are confirmed.</p>
+      </div>
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {platforms.map(({ icon: Icon, name, format, note }) => <article class="rounded-2xl border border-slate-200 p-7"><span class="grid size-12 place-items-center rounded-full bg-indigo text-gold-light"><Icon size={22} stroke-width={1.5} /></span><h2 class="mb-0 mt-8 font-display text-2xl font-normal text-indigo">{name}</h2><p class="mb-0 mt-2 text-sm text-slate-600">{format}</p><p class="mb-0 mt-6 text-[.66rem] font-black uppercase tracking-[.12em] text-coral">{note}</p></article>)}
+        {platforms.map(({ icon: Icon, name, format, href, cta }) => (
+          <article class="flex min-h-64 flex-col rounded-2xl border border-slate-200 p-7">
+            <span class="grid size-12 place-items-center rounded-full bg-indigo text-gold-light"><Icon size={22} stroke-width={1.5} /></span>
+            <h2 class="mb-0 mt-8 font-display text-2xl font-normal text-indigo">{name}</h2>
+            <p class="mb-6 mt-2 text-sm text-slate-600">{format}</p>
+            {href
+              ? <a class="text-link mt-auto" href={href} target="_blank" rel="noreferrer">{cta} <ArrowUpRight size={15} /></a>
+              : <p class="mb-0 mt-auto text-[.66rem] font-black uppercase tracking-[.12em] text-coral">{cta}</p>}
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="section-space bg-mist">
-    <div class="container-site">
-      <div class="flex flex-wrap items-end justify-between gap-8"><SectionHeading eyebrow="Latest messages" title="Watch. Listen. Grow." copy="A searchable library can be connected here once the YouTube and audio feeds are supplied." /><nav class="flex flex-wrap gap-2" aria-label="Media categories"><a class="rounded-full bg-indigo px-4 py-2 text-xs font-bold text-white no-underline" href="#messages">All</a><a class="rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo no-underline" href="#messages">Teaching</a><a class="rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo no-underline" href="#messages">Youth</a><a class="rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo no-underline" href="#messages">Worship</a></nav></div>
-      <div id="messages" class="mt-12 grid gap-5 md:grid-cols-3">
-        {messages.map((message, index) => <article class="overflow-hidden rounded-2xl bg-white"><div class:list={['relative grid aspect-video place-items-center', index === 0 ? 'bg-indigo' : index === 1 ? 'bg-leaf' : 'bg-coral']}><div class="absolute inset-0 opacity-15 [background-image:radial-gradient(circle_at_center,#fff_0_1px,transparent_2px)] [background-size:18px_18px]"></div><span class="relative grid size-14 place-items-center rounded-full bg-white text-indigo"><Play size={20} fill="currentColor" /></span></div><div class="p-7"><p class="m-0 text-[.65rem] font-black uppercase tracking-[.14em] text-coral">{message.type}</p><h2 class="mb-0 mt-3 font-display text-[1.6rem] font-normal leading-tight tracking-[-.025em] text-indigo">{message.title}</h2><p class="mb-0 mt-4 text-sm leading-6 text-slate-500">{message.speaker}<br />{message.duration}</p></div></article>)}
+  <section class="bg-gold-light py-[clamp(4rem,8vw,6rem)] text-indigo">
+    <div class="container-site flex flex-wrap items-center justify-between gap-8">
+      <div>
+        <p class="eyebrow !text-coral">Watch and share</p>
+        <h2 class="mb-0 mt-4 font-display text-[clamp(2.3rem,4vw,4rem)] font-normal tracking-[-.04em]">Take the message with you.</h2>
+        <p class="mb-0 mt-4 max-w-2xl text-indigo/70">Subscribe on YouTube and share a message with someone who needs encouragement this week.</p>
       </div>
+      <a class="btn bg-indigo text-white" href={youtubeUrl} target="_blank" rel="noreferrer">
+        <Video size={17} /> Visit YouTube <ArrowUpRight size={16} />
+      </a>
     </div>
   </section>
-
-  <section id="platforms" class="section-space bg-white">
-    <div class="container-site"><SectionHeading eyebrow="Follow & listen" title="Find us on your favourite platform." copy="The Church already publishes across video and audio services. Add the official URLs below and every channel will become a direct link." />
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{platforms.map(({ icon: Icon, name, format, note }) => <article class="rounded-2xl border border-slate-200 p-7"><span class="grid size-12 place-items-center rounded-full bg-indigo text-gold-light"><Icon size={22} /></span><h2 class="mb-0 mt-8 font-display text-2xl font-normal text-indigo">{name}</h2><p class="mb-0 mt-2 text-sm text-slate-600">{format}</p><p class="mb-0 mt-5 text-[.66rem] font-black uppercase tracking-[.12em] text-coral">{note}</p></article>)}</div>
-    </div>
-  </section>
-
-  <section class="bg-gold-light py-[clamp(4rem,8vw,6rem)] text-indigo"><div class="container-site flex flex-wrap items-center justify-between gap-8"><div><p class="eyebrow !text-coral">Live broadcast</p><h2 class="mb-0 mt-4 font-display text-[clamp(2.3rem,4vw,4rem)] font-normal tracking-[-.04em]">Watch national services live.</h2><p class="mb-0 mt-4 max-w-2xl text-indigo/70">When a live-stream URL and schedule are supplied, this area will show the next broadcast and take visitors directly to it.</p></div><span class="btn bg-indigo text-white"><ListVideo size={17} /> Stream schedule coming soon</span></div></section>
   <Footer />
 </BaseLayout>

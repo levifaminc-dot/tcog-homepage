@@ -1,8 +1,7 @@
 ---
 import {
-  ArrowRight, ArrowUpRight, BookOpenCheck, BookOpen, Church, Globe2, GraduationCap,
-  HandHeart, HeartHandshake, MapPin, Mic2, Play, Quote, Sparkles, Users,
-  Video, Waves, Waypoints
+  ArrowRight, ArrowUpRight, BookOpenCheck, Church, HandHeart, MapPin, Mic2,
+  Play, Quote, Sparkles, Video, Waves
 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
@@ -16,12 +15,12 @@ const pathways = [
 ];
 
 const ministries = [
-  { icon: BookOpen, title: 'Sunday School', copy: 'Helping every generation grow through faithful, practical teaching of God’s Word.', tone: 'bg-[#edf3ee]', url: 'https://www.thechurchofgod.org/ss/' },
-  { icon: Users, title: 'Victory Leaders Band', copy: 'Discipling young people to become faithful, Spirit-filled followers of Christ.', tone: 'bg-[#f8eee9]', url: 'https://www.thechurchofgod.org/vlb/' },
-  { icon: HeartHandshake, title: 'Womens Missionary Band', copy: 'Equipping women to serve with compassion, courage, and a heart for missions.', tone: 'bg-[#f5f0e4]', url: 'https://www.thechurchofgod.org/wmb/' },
-  { icon: Globe2, title: 'World Mission', copy: 'Carrying the message of Jesus from our communities to people everywhere.', tone: 'bg-[#eaf0f6]', url: 'https://www.thechurchofgod.org/worldmission/' },
-  { icon: GraduationCap, title: 'Bible Training Institute', copy: 'Preparing people with biblical knowledge and practical tools for ministry.', tone: 'bg-[#f3ecf5]', url: 'https://www.thechurchofgod.org/bti/' },
-  { icon: Waypoints, title: 'Evangelism', copy: 'Sharing redemption and grace with every culture, community, and soul.', tone: 'bg-[#eef3ee]', url: 'https://www.thechurchofgod.org/evangelism/' },
+  { image: '/images/ministries/sundayschool.jpg', title: 'Sunday School', copy: 'Helping every generation grow through faithful, practical teaching of God’s Word.', tone: 'bg-[#edf3ee]', url: 'https://www.thechurchofgod.org/ss/' },
+  { image: '/images/ministries/vlb.jpg', title: 'Victory Leaders Band', copy: 'Discipling young people to become faithful, Spirit-filled followers of Christ.', tone: 'bg-[#f8eee9]', url: 'https://www.thechurchofgod.org/vlb/' },
+  { image: '/images/ministries/wmb.jpg', title: 'Womens Missionary Band', copy: 'Equipping women to serve with compassion, courage, and a heart for missions.', tone: 'bg-[#f5f0e4]', url: 'https://www.thechurchofgod.org/wmb/' },
+  { image: '/images/ministries/worldmission.jpg', title: 'World Mission', copy: 'Carrying the message of Jesus from our communities to people everywhere.', tone: 'bg-[#eaf0f6]', url: 'https://www.thechurchofgod.org/worldmission/' },
+  { image: '/images/ministries/bti.jpg', title: 'Bible Training Institute', copy: 'Preparing people with biblical knowledge and practical tools for ministry.', tone: 'bg-[#f3ecf5]', url: 'https://www.thechurchofgod.org/bti/' },
+  { image: '/images/ministries/evangelism.jpg', title: 'Evangelism', copy: 'Sharing redemption and grace with every culture, community, and soul.', tone: 'bg-[#eef3ee]', url: 'https://www.thechurchofgod.org/evangelism/' },
 ];
 
 const events = [
@@ -105,12 +104,12 @@ const updates = [
         <a class="btn btn-outline-dark w-fit" href="/ministries/">View all ministries <ArrowRight size={16} /></a>
       </div>
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {ministries.map(({ icon: Icon, title, copy, tone, url }) => (
-          <article class:list={['group rounded-2xl p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-9', tone]}>
-            <Icon class="text-indigo" size={32} stroke-width={1.4} />
-            <h3 class="mb-0 mt-10 font-display text-[1.6rem] font-normal tracking-[-.025em] text-indigo">{title}</h3>
+        {ministries.map(({ image, title, copy, tone, url }) => (
+          <article class:list={['group flex flex-col rounded-2xl p-5 transition-transform duration-300 hover:-translate-y-1 sm:p-6', tone]}>
+            <div class="overflow-hidden rounded-xl bg-white shadow-sm"><img src={image} alt={`${title} official ministry branding`} loading="lazy" width="400" height="300" class="aspect-[4/3] w-full object-cover" /></div>
+            <h3 class="mb-0 mt-7 font-display text-[1.6rem] font-normal tracking-[-.025em] text-indigo">{title}</h3>
             <p class="mb-7 mt-3 leading-7 text-slate-600">{copy}</p>
-            <a class="text-link" href={url} target="_blank" rel="noreferrer" aria-label={`Visit the international ${title} page`}>Learn more <ArrowUpRight size={15} /></a>
+            <a class="text-link mt-auto" href={url} target="_blank" rel="noreferrer" aria-label={`Visit the international ${title} page`}>Learn more <ArrowUpRight size={15} /></a>
           </article>
         ))}
       </div>
@@ -124,14 +123,14 @@ const updates = [
         <div class="media-visual relative min-h-[24rem] overflow-hidden sm:min-h-[31rem]">
           <img src="/images/nigeria-worship-hero.webp" alt="Nigerian church members worshipping during a service" loading="lazy" width="1792" height="896" class="absolute inset-0 h-full w-full object-cover object-center opacity-80" />
           <div class="absolute inset-0 bg-gradient-to-t from-indigo via-transparent to-transparent"></div>
-          <a href="#" class="absolute inset-0 grid place-items-center" aria-label="Play featured message"><span class="grid size-20 place-items-center rounded-full bg-white text-indigo shadow-xl transition-transform hover:scale-105"><Play size={26} fill="currentColor" /></span></a>
-          <span class="absolute bottom-6 left-6 rounded-full bg-white/15 px-4 py-2 text-[.68rem] font-black uppercase tracking-[.12em] backdrop-blur-md">Featured message · Preview</span>
+          <a href="https://www.youtube.com/@TCOG" target="_blank" rel="noreferrer" class="absolute inset-0 grid place-items-center" aria-label="Watch messages on The Church of God Nigeria YouTube channel"><span class="grid size-20 place-items-center rounded-full bg-white text-indigo shadow-xl transition-transform hover:scale-105"><Play size={26} fill="currentColor" /></span></a>
+          <span class="absolute bottom-6 left-6 rounded-full bg-white/15 px-4 py-2 text-[.68rem] font-black uppercase tracking-[.12em] backdrop-blur-md">Messages on YouTube</span>
         </div>
         <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
           <p class="mb-0 flex items-center gap-2 text-xs font-black uppercase tracking-[.12em] text-gold-light"><Mic2 size={15} /> Sunday message</p>
-          <h3 class="mb-0 mt-5 font-display text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.03] tracking-[-.04em]">A faith that stands.</h3>
-          <p class="mt-5 leading-8 text-white/68">A sample message feature showing how sermons will be presented once verified media is supplied.</p>
-          <div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="/media/"><Play size={16} /> Watch now</a><a class="btn btn-outline-light" href="/media/"><Video size={17} /> Media library</a></div>
+          <h3 class="mb-0 mt-5 font-display text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.03] tracking-[-.04em]">Messages for everyday faith.</h3>
+          <p class="mt-5 leading-8 text-white/68">Watch sermons and teaching from The Church of God Nigeria, or continue to the media page to listen on Spotify.</p>
+          <div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="https://www.youtube.com/@TCOG" target="_blank" rel="noreferrer"><Play size={16} /> Watch now</a><a class="btn btn-outline-light" href="/media/"><Video size={17} /> Media library</a></div>
         </div>
       </div>
     </div>
