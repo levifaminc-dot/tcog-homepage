@@ -1,9 +1,13 @@
 ---
 import { ArrowRight, ArrowUpRight, BookOpenCheck, CalendarDays, Church, Flame, HeartHandshake, MapPin, Quote, ShieldCheck } from '@lucide/astro';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import bishopOgunmola from '../assets/leadership/bishop-ogunmola.png';
+import toyinBakare from '../assets/leadership/toyin-bakare.jpg';
+import abeAdeGabriel from '../assets/leadership/abe-ade-gabriel.jpg';
 
 const values = [
   { icon: Church, title: 'Jesus-centred', copy: 'Jesus Christ is the foundation of our faith, our message, and our life together.' },
@@ -22,9 +26,9 @@ const beliefs = [
 ];
 
 const leaders = [
-  { initials: 'OM', role: 'National Overseer', name: 'Bishop Ogunmola Matthew', tone: 'bg-indigo' },
-  { initials: 'TB', role: 'National Secretary', name: 'Sis. Toyin Bakare', tone: 'bg-coral' },
-  { initials: 'AG', role: 'Field Secretary', name: 'Bro. (Dr.) Abe Ade Gabriel', tone: 'bg-gold' },
+  { image: bishopOgunmola, role: 'National Overseer', name: 'Bishop Ogunmola Matthew', position: 'object-center' },
+  { image: toyinBakare, role: 'National Secretary', name: 'Sis. Toyin Bakare', position: 'object-center' },
+  { image: abeAdeGabriel, role: 'Field Secretary', name: 'Bro. (Dr.) Abe Ade Gabriel', position: 'object-center' },
 ];
 ---
 <BaseLayout title="About | The Church of God Nigeria" description="Learn who we are, what we believe, and how The Church of God Nigeria follows Jesus in truth and love.">
@@ -68,7 +72,7 @@ const leaders = [
   </section>
 
   <section id="leadership" class="section-space bg-cream">
-    <div class="container-site"><SectionHeading align="center" eyebrow="National leadership" title="Serving with faithfulness." copy="Meet the leaders entrusted with serving and supporting The Church of God across Nigeria." /><div class="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">{leaders.map((leader) => <article class="overflow-hidden rounded-2xl bg-white text-center shadow-sm"><div class:list={['grid min-h-56 place-items-center', leader.tone]}><span class="grid size-24 place-items-center rounded-full border border-white/35 bg-white/10 font-display text-3xl text-white">{leader.initials}</span></div><div class="p-7"><p class="m-0 text-[.66rem] font-black uppercase tracking-[.14em] text-coral">{leader.role}</p><h3 class="mb-0 mt-3 font-display text-[1.55rem] font-normal leading-tight tracking-[-.025em] text-indigo">{leader.name}</h3></div></article>)}</div></div>
+    <div class="container-site"><SectionHeading align="center" eyebrow="National leadership" title="Serving with faithfulness." copy="Meet the leaders entrusted with serving and supporting The Church of God across Nigeria." /><div class="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">{leaders.map((leader) => <article class="overflow-hidden rounded-2xl bg-white text-center shadow-sm"><div class="overflow-hidden bg-indigo"><Image src={leader.image} alt={leader.name} width={720} format="webp" quality={78} loading="lazy" class:list={['h-72 w-full object-cover', leader.position]} /></div><div class="p-7"><p class="m-0 text-[.66rem] font-black uppercase tracking-[.14em] text-coral">{leader.role}</p><h3 class="mb-0 mt-3 font-display text-[1.55rem] font-normal leading-tight tracking-[-.025em] text-indigo">{leader.name}</h3></div></article>)}</div></div>
   </section>
   <Footer />
 </BaseLayout>

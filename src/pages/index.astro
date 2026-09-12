@@ -1,7 +1,7 @@
 ---
 import {
-  ArrowRight, ArrowUpRight, BookOpenCheck, Church, HandHeart, MapPin, Mic2,
-  Play, Quote, Sparkles, Video, Waves
+  ArrowRight, ArrowUpRight, BookOpenCheck, Church, HandHeart, Mail, MapPin,
+  Mic2, Phone, Play, Quote, Sparkles, Video, Waves
 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
@@ -26,6 +26,12 @@ const ministries = [
 const events = [
   { id: 'national-convention', month: '2026', day: 'TBA', type: 'National gathering', title: 'The Church of God Nigeria National Convention', dateLabel: 'Date to be announced', place: 'Venue to be announced', description: 'The national convention will bring the Church together for worship, fellowship, ministry, and the Word. The confirmed date, venue, and programme will be published here when available.' },
   { id: 'womens-seminar', month: 'OCT', day: '03', type: 'Women in ministry', title: 'Women Missionary Fellowship Seminar', dateLabel: 'Saturday, 3 October 2026', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'A dedicated seminar for women to grow in the Word, strengthen fellowship, and be equipped for faithful Christian service and mission.' },
+];
+
+const branches = [
+  { state: 'Ekiti', city: 'Omuo Ekiti', name: 'The Church of God — National Office', address: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9' },
+  { state: 'Ondo', city: 'Oyin Akoko', name: 'The Church of God — Oyin Akoko', address: 'Oyin Akoko, Ondo State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/pTBfyfQp9VhvBuqM6' },
+  { state: 'Lagos', city: 'Lagos', name: 'The Church of God — Lagos', address: 'Branch address to be confirmed.' },
 ];
 
 const updates = [
@@ -82,19 +88,33 @@ const updates = [
         <h2 id="finder-title" class="mt-4 font-display text-[clamp(2.6rem,5vw,5rem)] font-normal leading-[.98] tracking-[-.045em]">A community<br />closer than you think.</h2>
         <p class="mb-0 mt-6 max-w-lg text-lg leading-8 text-white/70">Search for a Church of God congregation near you and find service details, directions, and a warm welcome.</p>
       </div>
-      <form class="rounded-3xl bg-white p-5 text-ink shadow-2xl shadow-black/20 sm:p-8" action="#" method="get">
+      <form id="branch-finder-form" class="rounded-3xl bg-white p-5 text-ink shadow-2xl shadow-black/20 sm:p-8">
         <div class="grid gap-4 sm:grid-cols-2">
           <label class="grid gap-2 text-xs font-extrabold uppercase tracking-[.09em] text-indigo">State
             <select class="min-h-14 rounded-xl border border-slate-200 bg-white px-4 text-base font-normal normal-case tracking-normal text-slate-700" name="state"><option value="">Choose a state</option><option>Ekiti</option><option>Lagos</option><option>Ondo</option></select>
           </label>
           <label class="grid gap-2 text-xs font-extrabold uppercase tracking-[.09em] text-indigo">Town or city
-            <input class="min-h-14 rounded-xl border border-slate-200 px-4 text-base font-normal normal-case tracking-normal placeholder:text-slate-400" type="search" name="city" placeholder="e.g. Ado-Ekiti" />
+            <input class="min-h-14 rounded-xl border border-slate-200 px-4 text-base font-normal normal-case tracking-normal placeholder:text-slate-400" type="search" name="city" placeholder="e.g. Omuo Ekiti" />
           </label>
         </div>
         <button class="btn btn-primary mt-5 w-full border-0" type="submit"><MapPin size={17} /> Search churches</button>
-        <p class="mb-0 mt-4 text-center text-xs leading-5 text-slate-500">First-pass directory preview. Confirmed church records will be connected through the CMS.</p>
+        <p class="mb-0 mt-4 text-center text-xs leading-5 text-slate-500">Search by state or town, or leave both fields blank to view every branch.</p>
       </form>
     </div>
+    <dialog id="branch-results" class="m-auto max-h-[88vh] w-[min(94vw,58rem)] overflow-y-auto rounded-3xl border-0 bg-white p-0 text-ink shadow-2xl" aria-labelledby="branch-results-title">
+      <div class="sticky top-0 z-10 flex items-start justify-between gap-6 border-b border-slate-200 bg-white p-6 sm:p-8"><div><p class="mb-0 text-[.68rem] font-black uppercase tracking-[.14em] text-coral">Church directory</p><h2 id="branch-results-title" class="mb-0 mt-2 font-display text-[clamp(2rem,5vw,3.4rem)] font-normal leading-none tracking-[-.04em] text-indigo">Find your church family.</h2><p id="branch-results-summary" class="mb-0 mt-3 text-sm text-slate-500" aria-live="polite"></p><p class="mb-0 mt-1 text-xs leading-5 text-slate-400">National-office contact details are shown until branch-specific contacts are supplied.</p></div><button id="branch-results-close" class="grid size-10 shrink-0 place-items-center rounded-full border border-slate-200 bg-white text-xl leading-none text-indigo hover:bg-mist" type="button" aria-label="Close church directory">×</button></div>
+      <div class="grid gap-4 p-6 sm:p-8">
+        {branches.map((branch) => (
+          <article class="branch-card rounded-2xl border border-slate-200 p-5 sm:p-6" data-state={branch.state.toLowerCase()} data-search={`${branch.name} ${branch.city} ${branch.address}`.toLowerCase()}>
+            <div class="flex flex-wrap items-start justify-between gap-4"><div><p class="mb-0 text-[.65rem] font-black uppercase tracking-[.13em] text-leaf">{branch.state} State</p><h3 class="mb-0 mt-2 font-display text-2xl font-normal tracking-[-.025em] text-indigo">{branch.name}</h3></div><span class:list={['rounded-full px-3 py-1 text-[.62rem] font-black uppercase tracking-[.1em]', branch.mapUrl ? 'bg-[#edf3ee] text-leaf' : 'bg-cream text-coral']}>{branch.mapUrl ? 'Location confirmed' : 'Address pending'}</span></div>
+            <p class="mb-0 mt-4 flex items-start gap-2 text-sm leading-6 text-slate-600"><MapPin class="mt-1 shrink-0 text-coral" size={16} /> {branch.address}</p>
+            <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-slate-100 pt-5 text-sm"><a class="inline-flex items-center gap-2 text-indigo no-underline hover:text-coral" href="tel:+2348063035886"><Phone size={15} /> +234 806 303 5886</a><a class="inline-flex items-center gap-2 text-indigo no-underline hover:text-coral" href="mailto:Info@tcog.org.ng"><Mail size={15} /> Info@tcog.org.ng</a></div>
+            {branch.mapUrl ? <a class="btn btn-primary mt-6" href={branch.mapUrl} target="_blank" rel="noreferrer"><MapPin size={16} /> Get directions <ArrowUpRight size={15} /></a> : <a class="btn btn-outline-dark mt-6" href="mailto:Info@tcog.org.ng?subject=Lagos%20branch%20directions"><Mail size={16} /> Ask for directions</a>}
+          </article>
+        ))}
+        <div id="branch-no-results" class="rounded-2xl bg-cream p-8 text-center" hidden><h3 class="m-0 font-display text-2xl font-normal text-indigo">No matching branch found.</h3><p class="mb-0 mt-3 text-sm leading-6 text-slate-600">Try another town or contact the national office at <a class="text-indigo" href="mailto:Info@tcog.org.ng">Info@tcog.org.ng</a>.</p></div>
+      </div>
+    </dialog>
   </section>
 
   <section id="ministries" class="section-space bg-white" aria-labelledby="ministries-title">
@@ -225,4 +245,30 @@ const updates = [
     dialog.querySelector<HTMLButtonElement>('.event-close')?.addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
   });
+
+  const finderForm = document.querySelector<HTMLFormElement>('#branch-finder-form');
+  const branchDialog = document.querySelector<HTMLDialogElement>('#branch-results');
+  const branchSummary = document.querySelector<HTMLElement>('#branch-results-summary');
+  const noResults = document.querySelector<HTMLElement>('#branch-no-results');
+  const branchCards = [...document.querySelectorAll<HTMLElement>('.branch-card')];
+
+  finderForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(finderForm);
+    const state = String(data.get('state') ?? '').trim().toLowerCase();
+    const city = String(data.get('city') ?? '').trim().toLowerCase();
+    let matches = 0;
+    branchCards.forEach((card) => {
+      const matchesState = !state || card.dataset.state === state;
+      const matchesCity = !city || card.dataset.search?.includes(city);
+      const visible = matchesState && Boolean(matchesCity);
+      card.hidden = !visible;
+      if (visible) matches += 1;
+    });
+    if (branchSummary) branchSummary.textContent = matches === 1 ? 'Showing 1 matching branch.' : `Showing ${matches} matching branches.`;
+    if (noResults) noResults.hidden = matches > 0;
+    branchDialog?.showModal();
+  });
+  document.querySelector<HTMLButtonElement>('#branch-results-close')?.addEventListener('click', () => branchDialog?.close());
+  branchDialog?.addEventListener('click', (event) => { if (event.target === branchDialog) branchDialog.close(); });
 </script>
