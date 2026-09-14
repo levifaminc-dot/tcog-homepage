@@ -1,4 +1,4 @@
-import { BellIcon } from '@sanity/icons';
+import { BellIcon } from '@sanity/icons/Bell';
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
