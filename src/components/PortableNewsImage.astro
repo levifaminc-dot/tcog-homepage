@@ -1,0 +1,15 @@
+---
+import type { TypedObjectProps } from 'astro-portabletext/types';
+import { newsImageUrl, type SanityImage } from '../lib/sanity';
+
+type NewsImageNode = SanityImage & { caption?: string };
+const { node } = Astro.props as TypedObjectProps;
+const image = node as unknown as NewsImageNode;
+const src = newsImageUrl(image, 1400, 900);
+---
+{src && (
+  <figure>
+    <img src={src} alt={image.alt ?? ''} width="1400" height="900" loading="lazy" />
+    {image.caption && <figcaption>{image.caption}</figcaption>}
+  </figure>
+)}

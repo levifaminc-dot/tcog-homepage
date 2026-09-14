@@ -1,0 +1,63 @@
+---
+import { ArrowLeft, CalendarDays } from '@lucide/astro';
+import { PortableText } from 'astro-portabletext';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import PortableNewsImage from '../../components/PortableNewsImage.astro';
+import PortableNewsLink from '../../components/PortableNewsLink.astro';
+import { getNewsPostBySlug, getNewsSlugs, newsImageUrl } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  const entries = await getNewsSlugs();
+  return entries.map(({ slug }) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug;
+const post = slug ? await getNewsPostBySlug(slug) : null;
+if (!post) return Astro.redirect('/news/');
+
+const image = newsImageUrl(post.featuredImage, 1800, 1050);
+const publishedDate = new Intl.DateTimeFormat('en-NG', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(post.publishedAt));
+const components = { type: { image: PortableNewsImage }, mark: { link: PortableNewsLink } };
+---
+<BaseLayout title={post.title + ' | The Church of God Nigeria'} description={post.excerpt ?? 'News from The Church of God Nigeria.'}>
+  <article>
+    <header class="bg-cream pb-16 pt-20 sm:pb-24 sm:pt-28">
+      <div class="container-site">
+        <a class="inline-flex items-center gap-2 text-sm font-bold text-indigo no-underline" href="/news/"><ArrowLeft size={16} /> All news</a>
+        <div class="mt-12 max-w-5xl">
+          <p class="eyebrow">{post.category ?? 'News & stories'}</p>
+          <h1 class="display-title !max-w-5xl">{post.title}</h1>
+          {post.excerpt && <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-600">{post.excerpt}</p>}
+          <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-slate-500">
+            <span class="inline-flex items-center gap-2"><CalendarDays size={16} /> {publishedDate}</span>
+            <span>{post.authorName ?? 'The Church of God Nigeria'}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {image && <div class="container-site -mt-8 sm:-mt-12"><img src={image} alt={post.featuredImage?.alt ?? ''} width="1800" height="1050" class="aspect-[12/7] w-full rounded-3xl object-cover shadow-xl" /></div>}
+
+    <div class="section-space">
+      <div class="story-body mx-auto max-w-3xl px-5 sm:px-8">
+        {post.body?.length ? <PortableText value={post.body as never[]} components={components} /> : <p>This story is being prepared. Please check back soon.</p>}
+      </div>
+    </div>
+  </article>
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  .story-body { color: #334155; font-size: 1.075rem; line-height: 1.9; }
+  .story-body p { margin: 0 0 1.5rem; }
+  .story-body h2, .story-body h3 { margin: 3rem 0 1rem; color: var(--color-indigo); font-family: var(--font-display); font-weight: 400; letter-spacing: -.025em; line-height: 1.12; }
+  .story-body h2 { font-size: clamp(2rem, 4vw, 3rem); }
+  .story-body h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  .story-body blockquote { margin: 2.5rem 0; border-left: .3rem solid var(--color-coral); padding: .5rem 0 .5rem 1.5rem; color: var(--color-indigo); font-family: var(--font-display); font-size: 1.5rem; line-height: 1.45; }
+  .story-body a { color: var(--color-indigo); font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+  .story-body ul, .story-body ol { margin: 0 0 1.5rem; padding-left: 1.5rem; }
+  .story-body figure { margin: 3rem 0; }
+  .story-body figure img { width: 100%; border-radius: 1.25rem; }
+  .story-body figcaption { margin-top: .75rem; color: #64748b; font-size: .875rem; line-height: 1.5; text-align: center; }
+</style>

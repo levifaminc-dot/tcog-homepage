@@ -7,6 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import { getNewsPosts } from '../lib/sanity';
 
 const pathways = [
   { icon: Sparkles, step: '01', title: 'Meet Jesus', copy: 'Discover the hope, peace, and new life found in Jesus Christ.', link: 'Begin here', href: '/basic-bible-beliefs/' },
@@ -34,9 +35,15 @@ const branches = [
   { state: 'Lagos', city: 'Iyana Ipaja', name: 'The Church of God — Lagos', address: '49, Olajide Street, Opposite NNPC Road, Iyana Ipaja, Lagos State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/9LmyTUzsedpnThu9A' },
 ];
 
-const updates = [
-  { tag: 'From the field', title: 'Faith in action: serving our neighbours with practical love', copy: 'A sample story space for local churches to share community outreach, testimonies, and the people behind the mission.' },
-  { tag: 'Church life', title: 'A new season of discipleship for every generation', copy: 'Use this area for verified national updates, ministry announcements, and stories from churches across Nigeria.' },
+const cmsUpdates = (await getNewsPosts()).slice(0, 2).map((post) => ({
+  tag: post.category ?? 'News',
+  title: post.title,
+  copy: post.excerpt ?? 'Read the latest update from The Church of God Nigeria.',
+  href: '/news/' + post.slug + '/',
+}));
+const updates = cmsUpdates.length ? cmsUpdates : [
+  { tag: 'From the field', title: 'Faith in action: serving our neighbours with practical love', copy: 'A sample story space for local churches to share community outreach, testimonies, and the people behind the mission.', href: '/news/' },
+  { tag: 'Church life', title: 'A new season of discipleship for every generation', copy: 'Use this area for verified national updates, ministry announcements, and stories from churches across Nigeria.', href: '/news/' },
 ];
 ---
 
@@ -195,7 +202,7 @@ const updates = [
             <p class="mb-0 text-[.68rem] font-black uppercase tracking-[.14em] text-coral">{update.tag}</p>
             <h3 class="mb-0 mt-3 font-display text-[1.75rem] font-normal leading-[1.12] tracking-[-.025em] text-indigo">{update.title}</h3>
             <p class="mb-6 mt-4 text-sm leading-7 text-slate-600">{update.copy}</p>
-            <a class="text-link" href="/news/">Read story <ArrowRight size={15} /></a>
+            <a class="text-link" href={update.href}>Read story <ArrowRight size={15} /></a>
           </article>
         ))}
       </div>

@@ -9,12 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "studio:dev": "npm --prefix studio run dev",
+    "studio:build": "npm --prefix studio run build",
+    "studio:deploy": "npm --prefix studio run deploy"
   },
   "dependencies": {
     "@lucide/astro": "^1.45.0",
+    "@sanity/client": "^8.6.1",
+    "@sanity/image-url": "^2.1.1",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.2",
+    "astro-portabletext": "^1.0.0",
+    "groq": "^6.13.2",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
