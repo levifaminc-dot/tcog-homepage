@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import PrayerRequestDialog from '../components/PrayerRequestDialog.astro';
 import AnnouncementDialog from '../components/AnnouncementDialog.astro';
 import { getActiveAnnouncement } from '../lib/sanity';
+import SpeedInsights from '@vercel/speed-insights/astro';
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 const socialImage = new URL('/og.png', Astro.site);
@@ -30,5 +31,5 @@ const announcement = await getActiveAnnouncement();
     <meta name="twitter:image" content={socialImage} />
     <title>{title}</title>
   </head>
-  <body><Header /><main id="main-content"><slot /></main><PrayerRequestDialog />{announcement && <AnnouncementDialog announcement={announcement} />}</body>
+  <body><Header /><main id="main-content"><slot /></main><PrayerRequestDialog />{announcement && <AnnouncementDialog announcement={announcement} />}<SpeedInsights /></body>
 </html>
