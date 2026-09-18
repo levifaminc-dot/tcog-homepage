@@ -1,0 +1,96 @@
+---
+import { ArrowUpRight, Mail } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from './Footer.astro';
+import PageHero from './PageHero.astro';
+
+interface SectionLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heroTitle: string;
+  heroCopy: string;
+  updated: string;
+  sections: SectionLink[];
+  showInternationalPolicy?: boolean;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  heroTitle,
+  heroCopy,
+  updated,
+  sections,
+  showInternationalPolicy = false,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow={eyebrow} title={heroTitle} copy={heroCopy} label="Read this page" />
+
+  <section id="page-content" class="policy-section">
+    <div class="container-site policy-grid">
+      <aside class="policy-nav" aria-label="On this page">
+        <p class="policy-nav-title">On this page</p>
+        <nav>
+          {sections.map((section) => <a href={section.href}>{section.label}</a>)}
+        </nav>
+        <div class="policy-meta">
+          <span>Last updated</span>
+          <strong>{updated}</strong>
+        </div>
+      </aside>
+
+      <article class="policy-copy">
+        <slot />
+
+        <section class="policy-contact" aria-labelledby="policy-contact-title">
+          <p class="eyebrow">Questions or requests</p>
+          <h2 id="policy-contact-title">Contact the national office.</h2>
+          <p>For questions about this page or requests relating to your information, email The Church of God Nigeria at <a href="mailto:Info@tcog.org.ng">Info@tcog.org.ng</a>.</p>
+          <a class="btn btn-light" href="mailto:Info@tcog.org.ng"><Mail size={16} /> Email the national office</a>
+          {showInternationalPolicy && <a class="international-link" href="https://www.thechurchofgod.org/policies/" target="_blank" rel="noreferrer">View the International Offices policies <ArrowUpRight size={15} /></a>}
+        </section>
+      </article>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .policy-section { padding-block:clamp(4.5rem, 9vw, 8rem); background:#fff; }
+  .policy-grid { display:grid; gap:3rem; }
+  .policy-nav { align-self:start; border:1px solid #dfe6f2; border-radius:1.25rem; padding:1.5rem; background:#faf7fb; }
+  .policy-nav-title { margin:0 0 1rem; color:#a22b8c; font-size:.68rem; font-weight:900; letter-spacing:.15em; text-transform:uppercase; }
+  .policy-nav nav { display:grid; }
+  .policy-nav nav a { border-top:1px solid #e2e8f0; padding:.8rem 0; color:#12388b; font-size:.88rem; font-weight:700; text-decoration:none; }
+  .policy-nav nav a:hover { color:#a22b8c; }
+  .policy-meta { display:grid; gap:.15rem; margin-top:1.2rem; border-radius:.8rem; background:#12388b; padding:1rem; color:#fff; }
+  .policy-meta span { color:rgb(255 255 255 / .62); font-size:.65rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  .policy-meta strong { font-size:.86rem; }
+  .policy-copy { min-width:0; }
+  .policy-copy :global(section:not(.policy-contact)) { scroll-margin-top:8rem; padding-bottom:2.3rem; }
+  .policy-copy :global(section + section:not(.policy-contact)) { border-top:1px solid #e2e8f0; padding-top:2.3rem; }
+  .policy-copy :global(h2) { margin:0; color:#12388b; font-family:Georgia, Cambria, "Times New Roman", serif; font-size:clamp(2rem, 4vw, 3rem); font-weight:400; letter-spacing:-.035em; line-height:1.08; }
+  .policy-copy :global(h3) { margin:1.8rem 0 .5rem; color:#12388b; font-size:1rem; }
+  .policy-copy :global(p), .policy-copy :global(li) { color:#526075; line-height:1.85; }
+  .policy-copy :global(p) { margin:1rem 0 0; }
+  .policy-copy :global(ul) { display:grid; gap:.55rem; margin:1rem 0 0; padding-left:1.3rem; }
+  .policy-copy :global(a:not(.btn):not(.international-link)) { color:#12388b; text-underline-offset:.2em; }
+  .policy-contact { margin-top:1rem; border-radius:1.5rem; background:#12388b; padding:clamp(2rem, 5vw, 3.5rem); color:#fff; }
+  .policy-contact .eyebrow { color:#f3c2e1; }
+  .policy-contact h2 { margin:.8rem 0 0; color:#fff; }
+  .policy-contact > p:not(.eyebrow) { max-width:43rem; color:rgb(255 255 255 / .72); }
+  .policy-contact > p a { color:#fff !important; }
+  .policy-contact .btn { margin-top:1.4rem; }
+  .international-link { display:inline-flex; align-items:center; gap:.35rem; margin:1.4rem 0 0 1rem; color:#fff; font-size:.78rem; font-weight:800; text-decoration:none; }
+  @media (min-width:64rem) { .policy-grid { grid-template-columns:17rem minmax(0, 48rem); justify-content:center; gap:clamp(4rem, 8vw, 8rem); } .policy-nav { position:sticky; top:8rem; } }
+  @media (max-width:36rem) { .international-link { display:flex; margin-left:0; } }
+</style>

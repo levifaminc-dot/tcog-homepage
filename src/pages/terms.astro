@@ -1,0 +1,70 @@
+---
+import PolicyPage from '../components/PolicyPage.astro';
+
+const sections = [
+  { href: '#acceptance', label: 'Using this website' },
+  { href: '#content', label: 'Content and permitted use' },
+  { href: '#submissions', label: 'Information you submit' },
+  { href: '#international', label: 'International and external links' },
+  { href: '#accuracy', label: 'Accuracy and availability' },
+  { href: '#responsibility', label: 'Responsibility' },
+  { href: '#law', label: 'Applicable law and changes' },
+];
+---
+
+<PolicyPage
+  title="Website Terms | The Church of God Nigeria"
+  description="Terms for using The Church of God Nigeria website and its online resources."
+  eyebrow="Website terms"
+  heroTitle="Use this website with care."
+  heroCopy="These terms set out the basic conditions for using the Nigeria website, its content, forms, and links to other services."
+  updated="18 September 2026"
+  sections={sections}
+  showInternationalPolicy
+>
+  <section id="acceptance">
+    <h2>Using this website</h2>
+    <p>By using this website, you agree to these terms. If you do not agree, please stop using the website. You may use it for lawful personal, church, educational, and ministry purposes that do not interfere with the website or the rights of others.</p>
+    <p>You must not attempt to gain unauthorised access, introduce malicious code, overload the website, misuse forms, impersonate another person, or use website content in a deceptive or unlawful way.</p>
+  </section>
+
+  <section id="content">
+    <h2>Content and permitted use</h2>
+    <p>Unless otherwise stated, the text, design, photographs, recordings, logos, flag, ministry marks, and other materials on this website belong to or are used with permission by The Church of God. Copyright, trade mark, and other applicable rights remain with their respective owners.</p>
+    <p>You may link to public pages and print or save reasonable extracts for personal church or non-commercial use, provided the source remains clear and the material is not altered in a misleading way. Commercial use, republication, redistribution, modification of official branding, or any use suggesting unauthorised endorsement requires prior written permission.</p>
+  </section>
+
+  <section id="submissions">
+    <h2>Information you submit</h2>
+    <p>You are responsible for the accuracy and lawfulness of information you submit. Do not send confidential information you are not authorised to share or material that is threatening, abusive, unlawful, or infringes another person’s rights.</p>
+    <p>A prayer request is used to support prayer and appropriate pastoral follow-up; it is not a substitute for emergency, medical, legal, or mental-health assistance. If someone is in immediate danger, contact the relevant emergency service or qualified professional.</p>
+  </section>
+
+  <section id="international">
+    <h2>Why some links go to the International Offices</h2>
+    <p>The Nigeria website provides local information for Nigerian leadership, branches, events, news, media, and contact points. Some resources remain linked directly to the International Offices because they are shared, authoritative church-wide services or materials maintained centrally.</p>
+    <ul>
+      <li><strong>Giving:</strong> the international giving page is the established church-wide destination and maintains its own payment and compliance process.</li>
+      <li><strong>Ministry resources:</strong> official ministry descriptions, logos, themes, and approved resources are maintained by the relevant international departments.</li>
+      <li><strong>Doctrine and approved resources:</strong> the Nigeria site may provide a local introduction while linking to the International Offices for the complete approved wording.</li>
+      <li><strong>Branding and church-wide policies:</strong> ownership and permitted use of official marks are administered internationally.</li>
+    </ul>
+    <p>An external link does not make the other website part of tcog.org.ng. The linked service’s own terms, privacy practices, availability, and transaction rules apply. Where Nigeria-specific content or processing is introduced, we will provide a local page or notice.</p>
+  </section>
+
+  <section id="accuracy">
+    <h2>Accuracy and availability</h2>
+    <p>We aim to keep church details, dates, directions, and resources accurate, but information may change or contain an error. An event marked “TBA” is not confirmed until the national office publishes the details. Please verify time-sensitive information before travelling or making arrangements.</p>
+    <p>We may update, suspend, or remove website features without notice. We cannot guarantee uninterrupted access or that every external service will remain available.</p>
+  </section>
+
+  <section id="responsibility">
+    <h2>Responsibility</h2>
+    <p>The website is provided for general information and ministry support. To the extent permitted by law, The Church of God Nigeria is not responsible for indirect loss resulting from reliance on website information, temporary unavailability, or an external service outside our control. Nothing in these terms excludes a responsibility that cannot lawfully be excluded.</p>
+  </section>
+
+  <section id="law">
+    <h2>Applicable law and changes</h2>
+    <p>These terms are interpreted under applicable Nigerian law, while church-wide materials may also be subject to rights and policies administered by the International Offices. We may revise these terms when the website or applicable requirements change. Continued use after an update means the revised terms apply from the stated update date.</p>
+  </section>
+</PolicyPage>

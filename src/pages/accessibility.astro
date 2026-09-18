@@ -1,0 +1,58 @@
+---
+import PolicyPage from '../components/PolicyPage.astro';
+
+const sections = [
+  { href: '#commitment', label: 'Our commitment' },
+  { href: '#features', label: 'Accessibility features' },
+  { href: '#limitations', label: 'Known limitations' },
+  { href: '#feedback', label: 'Feedback and assistance' },
+  { href: '#review', label: 'Ongoing review' },
+];
+---
+
+<PolicyPage
+  title="Accessibility | The Church of God Nigeria"
+  description="The Church of God Nigeria website accessibility commitment and contact information."
+  eyebrow="Accessibility"
+  heroTitle="A welcome that includes everyone."
+  heroCopy="We want people of different abilities, devices, and connection speeds to be able to find information and participate online."
+  updated="18 September 2026"
+  sections={sections}
+>
+  <section id="commitment">
+    <h2>Our commitment</h2>
+    <p>The Church of God Nigeria is committed to improving access to its website for people with disabilities. Our goal is to follow recognised web accessibility practices, including the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA, as the website develops.</p>
+    <p>This statement describes our present approach and is not a claim that every page or external service already meets every success criterion.</p>
+  </section>
+
+  <section id="features">
+    <h2>Accessibility features</h2>
+    <p>The website has been designed with features that support accessible use, including:</p>
+    <ul>
+      <li>semantic headings, landmarks, labels, and meaningful link text;</li>
+      <li>keyboard access and visible focus indicators for interactive controls;</li>
+      <li>a skip link to move directly to the main content;</li>
+      <li>responsive layouts that work across phones, tablets, and larger screens;</li>
+      <li>text alternatives for meaningful images;</li>
+      <li>colour choices intended to maintain readable contrast; and</li>
+      <li>reduced animation when a visitor enables reduced-motion preferences.</li>
+    </ul>
+  </section>
+
+  <section id="limitations">
+    <h2>Known limitations</h2>
+    <p>Some content is provided by external platforms—such as Spotify, YouTube, Google Maps, and linked International Offices resources—and their accessibility is controlled by those providers. Older media may not yet include captions or transcripts. Internet speed, browser support, or assistive-technology combinations may also affect the experience.</p>
+    <p>If an embedded player is difficult to use, the media page also provides a direct link to open the content on its original platform. We will continue to improve captions, alternative text, document structure, and testing as content is added.</p>
+  </section>
+
+  <section id="feedback">
+    <h2>Feedback and assistance</h2>
+    <p>If you cannot access information, encounter a barrier, or need content in another reasonable format, please email <a href="mailto:Info@tcog.org.ng?subject=Website%20accessibility">Info@tcog.org.ng</a> or call <a href="tel:+2348063035886">+234 806 303 5886</a>.</p>
+    <p>Please include the page address, a short description of the problem, and—if you are comfortable sharing it—the browser or assistive technology you were using. We will acknowledge the request and work toward a practical response.</p>
+  </section>
+
+  <section id="review">
+    <h2>Ongoing review</h2>
+    <p>Accessibility is an ongoing responsibility. We will review important user journeys, address reported barriers, and consider accessibility when new pages, documents, media, and services are introduced.</p>
+  </section>
+</PolicyPage>

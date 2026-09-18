@@ -19,7 +19,7 @@ const groups = [
     {groups.map((group) => <nav aria-label={group.title}><h2>{group.title}</h2>{group.links.map((link) => <a href={link.href} data-prayer-open={link.prayer ? '' : undefined} target={link.external ? '_blank' : undefined} rel={link.external ? 'noreferrer' : undefined}>{link.label}{link.external && <span aria-hidden="true"> ↗</span>}</a>)}</nav>)}
     <div class="contact"><h2>National office</h2><a href="https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9" target="_blank" rel="noreferrer"><MapPin size={16} /><span>The Church of God, Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.</span></a><a href="tel:+2348063035886"><Phone size={16} /> +234 806 303 5886</a><a href="mailto:Info@tcog.org.ng"><Mail size={16} /> Info@tcog.org.ng</a><a href="https://www.thechurchofgod.org/" target="_blank" rel="noreferrer">International Offices <ArrowUpRight size={15} /></a></div>
   </div>
-  <div class="container-site legal"><p>© {new Date().getFullYear()} The Church of God Nigeria. All rights reserved.</p><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>
+  <div class="container-site legal"><p>© {new Date().getFullYear()} The Church of God Nigeria. All rights reserved.</p><div><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/accessibility/">Accessibility</a></div></div>
 </footer>
 <style>
   footer { background:#071c52; color:#fff; padding-top:clamp(4rem, 8vw, 7rem); }
