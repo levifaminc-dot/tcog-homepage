@@ -1,6 +1,6 @@
 ---
 import {
-  ArrowRight, ArrowUpRight, BookOpenCheck, Church, HandHeart, Mail, MapPin,
+  ArrowRight, ArrowUpRight, BookOpenCheck, Church, Clock, HandHeart, Mail, MapPin,
   Mic2, Phone, Play, Quote, Sparkles, Video, Waves
 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -25,6 +25,8 @@ const ministries = [
 ];
 
 const events = [
+  { id: 'monday-prayer-meeting', month: 'Weekly', day: 'MON', type: 'Prayer & fellowship', title: 'Monday Prayer Meeting', dateLabel: 'Every Monday at 5:00 pm', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'Join the church family each Monday evening for a dedicated time of prayer, encouragement, and seeking God together.' },
+  { id: 'wednesday-bible-study', month: 'Weekly', day: 'WED', type: 'Bible teaching', title: 'Wednesday Bible Study', dateLabel: 'Every Wednesday at 5:00 pm', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'Gather with us each Wednesday evening to study God’s Word, ask questions, and grow together in faithful Christian living.' },
   { id: 'national-convention', month: '2026', day: 'TBA', type: 'National gathering', title: 'The Church of God Nigeria National Convention', dateLabel: 'Date to be announced', place: 'Venue to be announced', description: 'The national convention will bring the Church together for worship, fellowship, ministry, and the Word. The confirmed date, venue, and programme will be published here when available.' },
   { id: 'womens-seminar', month: 'OCT', day: '03', type: 'Women in ministry', title: 'Women Missionary Fellowship Seminar', dateLabel: 'Saturday, 3 October 2026', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'A dedicated seminar for women to grow in the Word, strengthen fellowship, and be equipped for faithful Christian service and mission.' },
 ];
@@ -170,7 +172,7 @@ const updates = cmsUpdates.length ? cmsUpdates : [
         {events.map((event) => (
           <article class="grid gap-5 border-b border-slate-200 py-7 transition-colors hover:bg-cream sm:grid-cols-[7rem_1fr_auto] sm:items-center sm:px-5">
             <div class="flex items-center gap-3 sm:grid sm:gap-0"><strong class="font-display text-3xl font-normal text-coral">{event.day}</strong><span class="text-[.65rem] font-black uppercase tracking-[.15em] text-slate-400">{event.month}</span></div>
-            <div><p class="m-0 text-[.66rem] font-black uppercase tracking-[.13em] text-leaf">{event.type}</p><h3 class="mb-0 mt-1 font-display text-[1.45rem] font-normal tracking-[-.02em] text-indigo">{event.title}</h3><p class="mb-0 mt-1 flex items-center gap-2 text-sm text-slate-500"><MapPin size={14} /> {event.place}</p></div>
+            <div><p class="m-0 text-[.66rem] font-black uppercase tracking-[.13em] text-leaf">{event.type}</p><h3 class="mb-0 mt-1 font-display text-[1.45rem] font-normal tracking-[-.02em] text-indigo">{event.title}</h3><div class="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-slate-500"><p class="m-0 flex items-center gap-2"><Clock size={14} /> {event.dateLabel}</p><p class="m-0 flex items-center gap-2"><MapPin size={14} /> {event.place}</p></div></div>
             <button class="text-link w-fit border-0 bg-transparent p-0" type="button" data-event-id={event.id} aria-haspopup="dialog">Event details <ArrowRight size={15} /></button>
           </article>
         ))}
