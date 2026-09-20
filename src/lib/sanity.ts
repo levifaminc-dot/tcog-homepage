@@ -45,6 +45,15 @@ const activeAnnouncementQuery = defineQuery(`
   }
 `);
 
+const eventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current)]
+  | order(startDate asc, _updatedAt desc) {
+    _id, title, "slug": slug.current, category, summary, scheduleType,
+    startDate, endDate, recurrenceLabel, venue, address, mapUrl, cancelled,
+    featuredImage { asset, alt, crop, hotspot }
+  }
+`);
+
 export interface SanityImage {
   asset?: { _ref?: string; _type?: string };
   alt?: string;
@@ -76,6 +85,23 @@ export interface Announcement {
   callToAction?: { label?: string; url?: string; openInNewTab?: boolean; };
 }
 
+export interface ChurchEvent {
+  _id: string;
+  title: string;
+  slug: string;
+  category: string;
+  summary: string;
+  scheduleType: 'dated' | 'recurring' | 'tba';
+  startDate?: string;
+  endDate?: string;
+  recurrenceLabel?: string;
+  venue: string;
+  address?: string;
+  mapUrl?: string;
+  cancelled?: boolean;
+  featuredImage?: SanityImage;
+}
+
 async function safeFetch<T>(query: string, params: Record<string, string> = {}, fallback: T): Promise<T> {
   if (!sanityClient) return fallback;
   try {
@@ -90,8 +116,11 @@ export const getNewsPosts = () => safeFetch<NewsPostSummary[]>(newsPostsQuery, {
 export const getNewsPostBySlug = (slug: string) => safeFetch<NewsPost | null>(newsPostBySlugQuery, { slug }, null);
 export const getNewsSlugs = () => safeFetch<Array<{ slug: string }>>(newsSlugsQuery, {}, []);
 export const getActiveAnnouncement = () => safeFetch<Announcement | null>(activeAnnouncementQuery, {}, null);
+export const getEvents = () => safeFetch<ChurchEvent[]>(eventsQuery, {}, []);
 
-export function newsImageUrl(image: SanityImage | undefined, width = 1200, height = 750) {
+export function sanityImageUrl(image: SanityImage | undefined, width = 1200, height = 750) {
   if (!sanityClient || !image?.asset?._ref) return null;
   return imageUrlBuilder(sanityClient).image(image).width(width).height(height).fit('crop').auto('format').url();
 }
+
+export const newsImageUrl = sanityImageUrl;

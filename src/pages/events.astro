@@ -1,0 +1,138 @@
+---
+import { ArrowRight, ArrowUpRight, CalendarDays, Clock, MapPin, Repeat2 } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { eventDateBadge, eventDateLabel, isPastEvent, mergeEvents, sortUpcomingEvents } from '../data/events';
+import { getEvents, sanityImageUrl } from '../lib/sanity';
+
+const allEvents = mergeEvents(await getEvents());
+const upcomingEvents = sortUpcomingEvents(allEvents.filter((event) => !isPastEvent(event)));
+const pastEvents = allEvents
+  .filter((event) => isPastEvent(event))
+  .sort((a, b) => new Date(b.endDate ?? b.startDate ?? 0).getTime() - new Date(a.endDate ?? a.startDate ?? 0).getTime());
+const recurringCount = upcomingEvents.filter((event) => event.scheduleType === 'recurring').length;
+---
+
+<BaseLayout title="Events | The Church of God Nigeria" description="Find upcoming gatherings, weekly services, national events, and past events from The Church of God Nigeria.">
+  <PageHero eyebrow="Gather with us" title="Faith grows when we come together." copy="Explore weekly gatherings, national events, ministry seminars, and other opportunities to worship, learn, and share fellowship across The Church of God Nigeria." anchor="#upcoming-events" label="View upcoming events" />
+
+  <section class="border-b border-slate-200 bg-white py-7" aria-label="Events overview">
+      <div class="container-site grid gap-5 sm:grid-cols-3">
+        <div class="summary-item"><CalendarDays size={19} /><span><strong>{upcomingEvents.length}</strong> upcoming gatherings</span></div>
+        <div class="summary-item"><Repeat2 size={19} /><span><strong>{recurringCount}</strong> weekly gatherings</span></div>
+        <a class="summary-item summary-link" href="#past-events"><Clock size={19} /><span>Browse past events</span><ArrowRight size={16} /></a>
+      </div>
+  </section>
+
+  <section id="upcoming-events" class="section-space bg-cream" aria-label="Upcoming events">
+      <div class="container-site">
+        <div class="grid items-end gap-8 lg:grid-cols-[1fr_.7fr]">
+          <SectionHeading eyebrow="Plan your visit" title="Upcoming events." copy="Confirmed dates, recurring services, and events still awaiting final details are kept together here." />
+          <p class="m-0 max-w-lg text-sm leading-7 text-slate-600 lg:justify-self-end">Event information is updated by the national team. For questions, contact <a class="font-bold text-indigo" href="mailto:Info@tcog.org.ng">Info@tcog.org.ng</a>.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 lg:grid-cols-2">
+          {upcomingEvents.map((event, index) => {
+            const badge = eventDateBadge(event);
+            const image = sanityImageUrl(event.featuredImage, 900, 560);
+            return (
+              <article class:list={['event-card', { 'lg:col-span-2 lg:grid-cols-[.86fr_1.14fr]': image && index === 0 }]}>
+                {image && (
+                  <div class="event-image">
+                    <img src={image} alt={event.featuredImage?.alt ?? ''} width="900" height="560" loading={index === 0 ? 'eager' : 'lazy'} />
+                  </div>
+                )}
+                <div class="event-content">
+                  <div class="flex items-start justify-between gap-5">
+                    <div class="date-badge" aria-label={eventDateLabel(event)}><strong>{badge.primary}</strong><span>{badge.secondary}</span></div>
+                    <div class="flex flex-wrap justify-end gap-2">
+                      {event.scheduleType === 'recurring' && <span class="status bg-mist text-indigo"><Repeat2 size={12} /> Recurring</span>}
+                      {event.cancelled && <span class="status bg-red-50 text-red-700">Cancelled</span>}
+                    </div>
+                  </div>
+                  <p class="event-category">{event.category}</p>
+                  <h2>{event.title}</h2>
+                  <p class="event-summary">{event.summary}</p>
+                  <dl>
+                    <div><dt><Clock size={15} /> When</dt><dd>{eventDateLabel(event)}</dd></div>
+                    <div><dt><MapPin size={15} /> Where</dt><dd>{event.venue}{event.address && <span>{event.address}</span>}</dd></div>
+                  </dl>
+                  <div class="mt-7 flex flex-wrap gap-3">
+                    {event.mapUrl && <a class="btn btn-primary" href={event.mapUrl} target="_blank" rel="noreferrer"><MapPin size={16} /> Get directions <ArrowUpRight size={15} /></a>}
+                    <a class="btn btn-outline-dark" href={`mailto:Info@tcog.org.ng?subject=${encodeURIComponent(`Enquiry about ${event.title}`)}`}>Ask about this event</a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+  </section>
+
+  <section id="past-events" class="section-space bg-white" aria-label="Past events">
+      <div class="container-site">
+        <SectionHeading eyebrow="Looking back" title="Past events." copy="Completed events remain here as a record of worship, fellowship, training, and ministry across the Church." />
+        {pastEvents.length ? (
+          <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {pastEvents.map((event) => {
+              const image = sanityImageUrl(event.featuredImage, 720, 450);
+              return (
+                <article class="past-card">
+                  {image ? <img src={image} alt={event.featuredImage?.alt ?? ''} width="720" height="450" loading="lazy" /> : <div class="past-placeholder"><CalendarDays size={34} stroke-width={1.4} /></div>}
+                  <div class="p-6 sm:p-7">
+                    <p>{event.category}</p>
+                    <h2>{event.title}</h2>
+                    <p class="date"><Clock size={14} /> {eventDateLabel(event)}</p>
+                    <p class="summary">{event.summary}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div class="empty-state mt-12">
+            <div class="grid size-14 place-items-center rounded-full bg-white text-coral"><CalendarDays size={25} stroke-width={1.5} /></div>
+            <div><h2>No past events have been published yet.</h2><p>As confirmed events conclude, their dates and details will appear in this archive.</p></div>
+          </div>
+        )}
+      </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .summary-item { display:flex; min-height:3rem; align-items:center; gap:.75rem; color:#475569; font-size:.85rem; }
+  .summary-item svg { flex:none; color:#a22b8c; }
+  .summary-item strong { color:#12388b; }
+  .summary-link { color:#12388b; font-weight:800; text-decoration:none; }
+  .summary-link svg:last-child { margin-left:auto; }
+  .event-card { display:grid; overflow:hidden; border:1px solid #e2e8f0; border-radius:1.5rem; background:#fff; box-shadow:0 1rem 3rem rgb(18 56 139 / .05); }
+  .event-image { min-height:18rem; overflow:hidden; background:#eef3ff; }
+  .event-image img { width:100%; height:100%; object-fit:cover; }
+  .event-content { padding:clamp(1.5rem, 4vw, 2.5rem); }
+  .date-badge { display:grid; width:4.75rem; min-height:4.75rem; place-content:center; border-radius:1rem; background:#12388b; color:#fff; text-align:center; }
+  .date-badge strong { font-family:Georgia,serif; font-size:1.65rem; font-weight:400; line-height:1; }
+  .date-badge span { margin-top:.35rem; color:#f3c2e1; font-size:.61rem; font-weight:900; letter-spacing:.13em; text-transform:uppercase; }
+  .status { display:inline-flex; align-items:center; gap:.35rem; border-radius:999px; padding:.4rem .7rem; font-size:.62rem; font-weight:900; letter-spacing:.09em; text-transform:uppercase; }
+  .event-category, .past-card > div > p:first-child { margin:1.7rem 0 0; color:#a22b8c; font-size:.67rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+  .event-content h2 { margin:.55rem 0 0; color:#12388b; font-family:Georgia,serif; font-size:clamp(1.75rem, 3vw, 2.55rem); font-weight:400; letter-spacing:-.035em; line-height:1.08; }
+  .event-summary { margin:1rem 0 0; color:#475569; line-height:1.75; }
+  dl { display:grid; gap:1rem; margin:1.6rem 0 0; padding-top:1.4rem; border-top:1px solid #e2e8f0; }
+  dt { display:flex; align-items:center; gap:.45rem; color:#2857a7; font-size:.64rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+  dd { margin:.4rem 0 0; color:#12388b; font-size:.9rem; font-weight:700; line-height:1.55; }
+  dd span { display:block; margin-top:.2rem; color:#64748b; font-size:.8rem; font-weight:400; }
+  .past-card { overflow:hidden; border:1px solid #e2e8f0; border-radius:1.25rem; background:#fff; }
+  .past-card > img, .past-placeholder { width:100%; aspect-ratio:16/10; object-fit:cover; }
+  .past-placeholder { display:grid; place-items:center; background:#eef3ff; color:#12388b; }
+  .past-card h2 { margin:.5rem 0 0; color:#12388b; font-family:Georgia,serif; font-size:1.55rem; font-weight:400; line-height:1.15; }
+  .past-card .date { display:flex; align-items:center; gap:.4rem; margin:1rem 0 0; color:#64748b; font-size:.78rem; }
+  .past-card .summary { margin:1rem 0 0; color:#64748b; font-size:.88rem; line-height:1.65; }
+  .empty-state { display:flex; align-items:center; gap:1.25rem; border-radius:1.5rem; background:#faf7fb; padding:clamp(1.5rem, 4vw, 2.5rem); }
+  .empty-state h2 { margin:0; color:#12388b; font-family:Georgia,serif; font-size:1.5rem; font-weight:400; }
+  .empty-state p { margin:.35rem 0 0; color:#64748b; font-size:.9rem; line-height:1.6; }
+  @media (min-width:40rem) { dl { grid-template-columns:1fr 1fr; } }
+  @media (max-width:39.99rem) { .summary-item { border-bottom:1px solid #e2e8f0; padding-block:.45rem .8rem; } .empty-state { align-items:flex-start; } }
+</style>

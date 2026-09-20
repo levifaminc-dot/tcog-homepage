@@ -7,7 +7,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { getNewsPosts } from '../lib/sanity';
+import { eventDateBadge, eventDateLabel, isPastEvent, mergeEvents, sortUpcomingEvents } from '../data/events';
+import { getEvents, getNewsPosts } from '../lib/sanity';
 
 const pathways = [
   { icon: Sparkles, step: '01', title: 'Meet Jesus', copy: 'Discover the hope, peace, and new life found in Jesus Christ.', link: 'Begin here', href: '/basic-bible-beliefs/' },
@@ -24,18 +25,29 @@ const ministries = [
   { image: '/images/ministries/evangelism.jpg', title: 'Evangelism', copy: 'Sharing redemption and grace with every culture, community, and soul.', tone: 'bg-[#eef3ee]', url: 'https://www.thechurchofgod.org/evangelism/' },
 ];
 
-const events = [
-  { id: 'monday-prayer-meeting', month: 'Weekly', day: 'MON', type: 'Prayer & fellowship', title: 'Monday Prayer Meeting', dateLabel: 'Every Monday at 5:00 pm', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'Join the church family each Monday evening for a dedicated time of prayer, encouragement, and seeking God together.' },
-  { id: 'wednesday-bible-study', month: 'Weekly', day: 'WED', type: 'Bible teaching', title: 'Wednesday Bible Study', dateLabel: 'Every Wednesday at 5:00 pm', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'Gather with us each Wednesday evening to study God’s Word, ask questions, and grow together in faithful Christian living.' },
-  { id: 'national-convention', month: '2026', day: 'TBA', type: 'National gathering', title: 'The Church of God Nigeria National Convention', dateLabel: 'Date to be announced', place: 'Venue to be announced', description: 'The national convention will bring the Church together for worship, fellowship, ministry, and the Word. The confirmed date, venue, and programme will be published here when available.' },
-  { id: 'womens-seminar', month: 'OCT', day: '03', type: 'Women in ministry', title: 'Women Missionary Fellowship Seminar', dateLabel: 'Saturday, 3 October 2026', place: 'National Office, Omuo Ekiti', venue: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', description: 'A dedicated seminar for women to grow in the Word, strengthen fellowship, and be equipped for faithful Christian service and mission.' },
-];
-
 const branches = [
   { state: 'Ekiti', city: 'Omuo Ekiti', name: 'The Church of God — National Office', address: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9' },
   { state: 'Ondo', city: 'Oyin Akoko', name: 'The Church of God — Oyin Akoko', address: 'Oyin Akoko, Ondo State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/pTBfyfQp9VhvBuqM6' },
   { state: 'Lagos', city: 'Iyana Ipaja', name: 'The Church of God — Lagos', address: '49, Olajide Street, Opposite NNPC Road, Iyana Ipaja, Lagos State, Nigeria.', mapUrl: 'https://maps.app.goo.gl/9LmyTUzsedpnThu9A' },
 ];
+
+const events = sortUpcomingEvents(mergeEvents(await getEvents()).filter((event) => !isPastEvent(event)))
+  .slice(0, 4)
+  .map((event) => {
+    const badge = eventDateBadge(event);
+    return {
+      id: event.slug,
+      month: badge.secondary,
+      day: badge.primary,
+      type: event.category,
+      title: event.title,
+      dateLabel: eventDateLabel(event),
+      place: event.venue,
+      venue: event.address ?? event.venue,
+      mapUrl: event.mapUrl,
+      description: event.summary,
+    };
+  });
 
 const cmsUpdates = (await getNewsPosts()).slice(0, 2).map((post) => ({
   tag: post.category ?? 'News',
@@ -167,7 +179,7 @@ const updates = cmsUpdates.length ? cmsUpdates : [
 
   <section id="events" class="section-space bg-white" aria-labelledby="events-title">
     <div class="container-site">
-      <div class="flex flex-wrap items-end justify-between gap-8"><SectionHeading eyebrow="Come together" title="Upcoming gatherings." copy="Moments for worship, encouragement, learning, and fellowship with the wider church family." /><a class="text-link mb-2" href="#">See all events <ArrowRight size={15} /></a></div>
+      <div class="flex flex-wrap items-end justify-between gap-8"><SectionHeading eyebrow="Come together" title="Upcoming gatherings." copy="Moments for worship, encouragement, learning, and fellowship with the wider church family." /><a class="text-link mb-2" href="/events/">See all events <ArrowRight size={15} /></a></div>
       <div class="mt-12 border-t border-slate-200">
         {events.map((event) => (
           <article class="grid gap-5 border-b border-slate-200 py-7 transition-colors hover:bg-cream sm:grid-cols-[7rem_1fr_auto] sm:items-center sm:px-5">

@@ -4,7 +4,7 @@ import Brand from './Brand.astro';
 const nav = [
   { label: 'About', href: '/about/' },
   { label: 'Ministries', href: '/ministries/' },
-  { label: 'Events', href: '/#events' },
+  { label: 'Events', href: '/events/' },
   { label: 'Media', href: '/media/' },
   { label: 'News', href: '/news/' },
 ];
@@ -24,7 +24,7 @@ const currentPath = Astro.url.pathname;
   <nav class="nav" aria-label="Primary navigation">
     <div class="container-site nav-inner">
       <Brand />
-      <div class="desktop-links">{nav.map((item) => <a class:list={{ active: item.href !== '/#events' && currentPath.startsWith(item.href) }} aria-current={item.href !== '/#events' && currentPath.startsWith(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
+      <div class="desktop-links">{nav.map((item) => <a class:list={{ active: currentPath.startsWith(item.href) }} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
       <div class="nav-actions">
         <button class="search" type="button" aria-label="Search the site"><Search size={20} /></button>
         <a class="finder" href="/#find-a-church"><MapPin size={16} /> Find a church</a>
