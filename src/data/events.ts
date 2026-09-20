@@ -25,7 +25,7 @@ export const fallbackEvents: SiteEvent[] = [
   },
   {
     _id: 'fallback-womens-seminar', slug: 'womens-seminar', title: 'Women Missionary Fellowship Seminar',
-    category: 'Women in ministry', scheduleType: 'dated', startDate: '2026-10-03T10:00:00+01:00',
+    category: 'Women in ministry', scheduleType: 'dated', startDate: '2026-10-03T12:00:00+01:00', allDay: true,
     summary: 'A dedicated seminar for women to grow in the Word, strengthen fellowship, and be equipped for faithful Christian service and mission.',
     venue: 'National Office, Omuo Ekiti', address: 'Opposite Ammunu Comprehensive High School, Omuo Ekiti, Ekiti State, Nigeria.',
     mapUrl: 'https://maps.app.goo.gl/F3KpTRaDfWW6TmfL9', source: 'fallback',
@@ -49,8 +49,9 @@ export function eventDateLabel(event: SiteEvent) {
   if (event.scheduleType === 'recurring') return event.recurrenceLabel ?? 'Recurring gathering';
   if (event.scheduleType === 'tba' || !event.startDate) return 'Date to be announced';
   const start = new Date(event.startDate);
-  const date = new Intl.DateTimeFormat('en-NG', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(start);
-  const time = new Intl.DateTimeFormat('en-NG', { hour: 'numeric', minute: '2-digit' }).format(start);
+  const date = new Intl.DateTimeFormat('en-NG', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Africa/Lagos' }).format(start);
+  if (event.allDay) return date;
+  const time = new Intl.DateTimeFormat('en-NG', { hour: 'numeric', minute: '2-digit', timeZone: 'Africa/Lagos' }).format(start);
   return `${date} at ${time}`;
 }
 
@@ -62,8 +63,8 @@ export function eventDateBadge(event: SiteEvent) {
   if (event.scheduleType === 'tba' || !event.startDate) return { primary: 'TBA', secondary: 'Soon' };
   const date = new Date(event.startDate);
   return {
-    primary: String(date.getDate()).padStart(2, '0'),
-    secondary: new Intl.DateTimeFormat('en-NG', { month: 'short' }).format(date).toUpperCase(),
+    primary: new Intl.DateTimeFormat('en-NG', { day: '2-digit', timeZone: 'Africa/Lagos' }).format(date),
+    secondary: new Intl.DateTimeFormat('en-NG', { month: 'short', timeZone: 'Africa/Lagos' }).format(date).toUpperCase(),
   };
 }
 

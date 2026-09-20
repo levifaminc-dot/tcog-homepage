@@ -49,7 +49,7 @@ const eventsQuery = defineQuery(`
   *[_type == "event" && defined(slug.current)]
   | order(startDate asc, _updatedAt desc) {
     _id, title, "slug": slug.current, category, summary, scheduleType,
-    startDate, endDate, recurrenceLabel, venue, address, mapUrl, cancelled,
+    startDate, endDate, allDay, recurrenceLabel, venue, address, mapUrl, cancelled,
     featuredImage { asset, alt, crop, hotspot }
   }
 `);
@@ -94,6 +94,7 @@ export interface ChurchEvent {
   scheduleType: 'dated' | 'recurring' | 'tba';
   startDate?: string;
   endDate?: string;
+  allDay?: boolean;
   recurrenceLabel?: string;
   venue: string;
   address?: string;

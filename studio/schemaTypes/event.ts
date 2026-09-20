@@ -56,6 +56,12 @@ export default defineType({
       }),
     }),
     defineField({
+      name: 'allDay', title: 'Date only — no confirmed time', type: 'boolean',
+      description: 'Use this when the event date is known but its start time has not been confirmed.',
+      initialValue: false,
+      hidden: ({ document }) => document?.scheduleType !== 'dated',
+    }),
+    defineField({
       name: 'endDate', title: 'End date and time', type: 'datetime',
       description: 'Optional for a one-day event.',
       hidden: ({ document }) => document?.scheduleType !== 'dated',
@@ -108,10 +114,12 @@ export default defineType({
     { title: 'Recently updated', name: 'updatedDesc', by: [{ field: '_updatedAt', direction: 'desc' }] },
   ],
   preview: {
-    select: { title: 'title', scheduleType: 'scheduleType', startDate: 'startDate', recurrenceLabel: 'recurrenceLabel', media: 'featuredImage', cancelled: 'cancelled' },
-    prepare({ title, scheduleType, startDate, recurrenceLabel, media, cancelled }) {
+    select: { title: 'title', scheduleType: 'scheduleType', startDate: 'startDate', allDay: 'allDay', recurrenceLabel: 'recurrenceLabel', media: 'featuredImage', cancelled: 'cancelled' },
+    prepare({ title, scheduleType, startDate, allDay, recurrenceLabel, media, cancelled }) {
       const schedule = scheduleType === 'dated' && startDate
-        ? new Date(startDate).toLocaleString('en-NG', { dateStyle: 'medium', timeStyle: 'short' })
+        ? new Date(startDate).toLocaleString('en-NG', allDay
+          ? { dateStyle: 'medium', timeZone: 'Africa/Lagos' }
+          : { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Lagos' })
         : scheduleType === 'recurring' ? recurrenceLabel || 'Recurring gathering' : 'Date to be announced';
       return { title: cancelled ? `${title} — Cancelled` : title, subtitle: schedule, media };
     },
