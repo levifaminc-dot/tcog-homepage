@@ -2,6 +2,7 @@
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock, MapPin, Repeat2 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
+import EventEnquiryDialog from '../components/EventEnquiryDialog.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { eventDateBadge, eventDateLabel, isPastEvent, mergeEvents, sortUpcomingEvents } from '../data/events';
@@ -61,7 +62,14 @@ const recurringCount = upcomingEvents.filter((event) => event.scheduleType === '
                   </dl>
                   <div class="mt-7 flex flex-wrap gap-3">
                     {event.mapUrl && <a class="btn btn-primary" href={event.mapUrl} target="_blank" rel="noreferrer"><MapPin size={16} /> Get directions <ArrowUpRight size={15} /></a>}
-                    <a class="btn btn-outline-dark" href={`mailto:Info@tcog.org.ng?subject=${encodeURIComponent(`Enquiry about ${event.title}`)}`}>Ask about this event</a>
+                    <button
+                      class="btn btn-outline-dark cursor-pointer bg-transparent"
+                      type="button"
+                      aria-haspopup="dialog"
+                      data-event-enquiry-title={event.title}
+                      data-event-enquiry-date={eventDateLabel(event)}
+                      data-event-enquiry-venue={event.address ? `${event.venue} — ${event.address}` : event.venue}
+                    >Ask about this event</button>
                   </div>
                 </div>
               </article>
@@ -100,6 +108,7 @@ const recurringCount = upcomingEvents.filter((event) => event.scheduleType === '
       </div>
   </section>
 
+  <EventEnquiryDialog />
   <Footer />
 </BaseLayout>
 

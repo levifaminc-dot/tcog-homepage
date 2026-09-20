@@ -1,0 +1,151 @@
+---
+import { CalendarDays, Mail, Send } from '@lucide/astro';
+---
+
+<dialog id="event-enquiry-dialog" class="enquiry-dialog" aria-labelledby="event-enquiry-title">
+  <div class="enquiry-shell">
+    <div class="enquiry-intro">
+      <CalendarDays size={38} stroke-width={1.4} />
+      <p class="enquiry-eyebrow">Event enquiry</p>
+      <h2 id="event-enquiry-title">Ask us about this event.</h2>
+      <p>Send your question to The Church of God Nigeria without leaving the website. Our national office will reply using the contact details you provide.</p>
+    </div>
+
+    <form id="event-enquiry-form" class="enquiry-form" action="https://formsubmit.co/ajax/Info@tcog.org.ng" method="POST">
+      <button class="enquiry-close" type="button" aria-label="Close event enquiry form">×</button>
+      <input id="event-enquiry-subject" type="hidden" name="_subject" value="New event enquiry from tcog.org.ng" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input id="event-enquiry-name" type="hidden" name="Event" value="" />
+      <input id="event-enquiry-date" type="hidden" name="Event date" value="" />
+      <input id="event-enquiry-venue" type="hidden" name="Event venue" value="" />
+      <label class="enquiry-honey" aria-hidden="true">Leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
+
+      <div class="selected-event" aria-live="polite">
+        <span>Your selected event</span>
+        <strong id="event-enquiry-selected">Event enquiry</strong>
+      </div>
+
+      <div class="enquiry-fields">
+        <label>Full name
+          <input name="Name" type="text" autocomplete="name" required />
+        </label>
+        <label>Email address
+          <input name="Email" type="email" autocomplete="email" required />
+        </label>
+        <label>Phone number <span>(optional)</span>
+          <input name="Phone" type="tel" autocomplete="tel" />
+        </label>
+        <label>State or location <span>(optional)</span>
+          <input name="Location" type="text" autocomplete="address-level1" />
+        </label>
+        <label class="enquiry-message">Your question
+          <textarea name="Question" rows="5" required placeholder="What would you like to know about this event?"></textarea>
+        </label>
+      </div>
+
+      <label class="enquiry-consent"><input name="Consent" type="checkbox" value="Yes" required /><span>I consent to these details being emailed to The Church of God Nigeria national office so they can respond to my enquiry.</span></label>
+      <p id="event-enquiry-status" class="enquiry-status" role="status" aria-live="polite"></p>
+      <button class="btn btn-primary enquiry-submit" type="submit"><Send size={16} /> Send enquiry</button>
+      <a id="event-enquiry-fallback" class="enquiry-email-fallback" href="mailto:Info@tcog.org.ng?subject=Event%20enquiry" hidden><Mail size={15} /> Email the national office instead</a>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  const enquiryDialog = document.querySelector<HTMLDialogElement>('#event-enquiry-dialog');
+  const enquiryForm = document.querySelector<HTMLFormElement>('#event-enquiry-form');
+  const enquiryStatus = document.querySelector<HTMLElement>('#event-enquiry-status');
+  const enquirySelected = document.querySelector<HTMLElement>('#event-enquiry-selected');
+  const enquiryEventName = document.querySelector<HTMLInputElement>('#event-enquiry-name');
+  const enquiryEventDate = document.querySelector<HTMLInputElement>('#event-enquiry-date');
+  const enquiryEventVenue = document.querySelector<HTMLInputElement>('#event-enquiry-venue');
+  const enquirySubject = document.querySelector<HTMLInputElement>('#event-enquiry-subject');
+  const enquirySubmit = enquiryForm?.querySelector<HTMLButtonElement>('.enquiry-submit');
+  const enquiryFallback = document.querySelector<HTMLAnchorElement>('#event-enquiry-fallback');
+  let enquiryTrigger: HTMLElement | null = null;
+
+  document.querySelectorAll<HTMLElement>('[data-event-enquiry-title]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const title = trigger.dataset.eventEnquiryTitle ?? 'Event enquiry';
+      enquiryTrigger = trigger;
+      enquiryForm?.reset();
+      if (enquiryStatus) enquiryStatus.textContent = '';
+      if (enquiryFallback) enquiryFallback.hidden = true;
+      if (enquirySelected) enquirySelected.textContent = title;
+      if (enquiryEventName) enquiryEventName.value = title;
+      if (enquiryEventDate) enquiryEventDate.value = trigger.dataset.eventEnquiryDate ?? '';
+      if (enquiryEventVenue) enquiryEventVenue.value = trigger.dataset.eventEnquiryVenue ?? '';
+      if (enquirySubject) enquirySubject.value = `Enquiry about ${title} from tcog.org.ng`;
+      enquiryDialog?.showModal();
+    });
+  });
+
+  const closeEnquiry = () => enquiryDialog?.close();
+  enquiryDialog?.querySelector<HTMLButtonElement>('.enquiry-close')?.addEventListener('click', closeEnquiry);
+  enquiryDialog?.addEventListener('click', (event) => {
+    if (event.target === enquiryDialog) closeEnquiry();
+  });
+  enquiryDialog?.addEventListener('close', () => enquiryTrigger?.focus());
+
+  enquiryForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!enquiryForm.reportValidity()) return;
+    if (enquiryStatus) enquiryStatus.textContent = 'Sending your enquiry…';
+    if (enquirySubmit) enquirySubmit.disabled = true;
+
+    try {
+      const response = await fetch(enquiryForm.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(enquiryForm),
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      const selectedEvent = enquiryEventName?.value ?? 'the event';
+      enquiryForm.reset();
+      if (enquiryEventName) enquiryEventName.value = selectedEvent;
+      if (enquiryStatus) enquiryStatus.textContent = `Thank you. Your question about ${selectedEvent} has been sent to the national office.`;
+    } catch {
+      if (enquiryStatus) enquiryStatus.textContent = 'We could not send your enquiry just now. Please try again or use the email link below.';
+      if (enquiryFallback) enquiryFallback.hidden = false;
+    } finally {
+      if (enquirySubmit) enquirySubmit.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .enquiry-dialog { width:min(94vw, 62rem); max-height:92vh; margin:auto; overflow:auto; border:0; border-radius:1.5rem; padding:0; background:#fff; color:#13172d; box-shadow:0 2rem 5rem rgb(5 16 51 / .35); }
+  .enquiry-dialog::backdrop { background:rgb(5 16 51 / .78); backdrop-filter:blur(5px); }
+  .enquiry-dialog[open] { animation:enquiry-in .2s ease-out; }
+  .enquiry-shell { display:grid; }
+  .enquiry-intro { position:relative; overflow:hidden; background:#12388b; color:#fff; padding:2rem; }
+  .enquiry-intro::after { position:absolute; width:18rem; height:18rem; right:-8rem; bottom:-9rem; border:1px solid rgb(243 194 225 / .3); border-radius:50%; box-shadow:0 0 0 2.5rem rgb(243 194 225 / .08), 0 0 0 5rem rgb(243 194 225 / .04); content:""; }
+  .enquiry-intro > * { position:relative; z-index:1; }
+  .enquiry-intro > svg { color:#f3c2e1; }
+  .enquiry-eyebrow { margin:3rem 0 0; color:#f3c2e1; font-size:.72rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+  .enquiry-intro h2 { margin:.75rem 0 0; font-family:Georgia, Cambria, serif; font-size:clamp(2.25rem, 5vw, 4rem); font-weight:400; letter-spacing:-.04em; line-height:1; }
+  .enquiry-intro p:last-child { max-width:28rem; margin:1.25rem 0 0; color:rgb(255 255 255 / .72); line-height:1.75; }
+  .enquiry-form { position:relative; padding:2rem; }
+  .enquiry-close { position:absolute; top:1rem; right:1rem; display:grid; width:2.6rem; height:2.6rem; place-items:center; border:1px solid #dbe2ef; border-radius:50%; background:#fff; color:#12388b; font-size:1.4rem; line-height:1; cursor:pointer; }
+  .selected-event { display:grid; gap:.2rem; margin-top:2.6rem; border-left:3px solid #a22b8c; border-radius:0 .75rem .75rem 0; background:#faf7fb; padding:.8rem 1rem; }
+  .selected-event span { color:#a22b8c; font-size:.62rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+  .selected-event strong { color:#12388b; font-family:Georgia, Cambria, serif; font-size:1.1rem; font-weight:400; line-height:1.35; }
+  .enquiry-fields { display:grid; gap:1rem; margin-top:1.2rem; }
+  .enquiry-fields label { display:grid; gap:.45rem; color:#12388b; font-size:.75rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; }
+  .enquiry-fields label span { color:#718096; font-size:.68rem; font-weight:600; letter-spacing:0; text-transform:none; }
+  .enquiry-fields input, .enquiry-fields textarea { width:100%; box-sizing:border-box; border:1px solid #dbe2ef; border-radius:.8rem; background:#fff; color:#13172d; padding:.85rem 1rem; font:inherit; font-size:1rem; font-weight:400; letter-spacing:0; line-height:1.5; text-transform:none; }
+  .enquiry-fields textarea { min-height:8rem; resize:vertical; }
+  .enquiry-fields input:focus, .enquiry-fields textarea:focus { border-color:#12388b; outline:3px solid rgb(18 56 139 / .12); }
+  .enquiry-message { grid-column:1 / -1; }
+  .enquiry-consent { display:flex; align-items:flex-start; gap:.7rem; margin-top:1rem; color:#526075; font-size:.78rem; line-height:1.5; }
+  .enquiry-consent input { flex:0 0 auto; width:1rem; height:1rem; margin-top:.2rem; accent-color:#12388b; }
+  .enquiry-status { min-height:1.5rem; margin:.8rem 0 0; color:#2857a7; font-size:.82rem; font-weight:700; line-height:1.5; }
+  .enquiry-submit { width:100%; border:0; cursor:pointer; }
+  .enquiry-submit:disabled { opacity:.65; cursor:wait; transform:none; }
+  .enquiry-email-fallback { display:flex; align-items:center; justify-content:center; gap:.45rem; margin-top:1rem; color:#12388b; font-size:.75rem; font-weight:800; text-align:center; text-decoration:none; }
+  .enquiry-email-fallback[hidden] { display:none; }
+  .enquiry-honey { position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  @keyframes enquiry-in { from { opacity:0; transform:translateY(1rem) scale(.98); } to { opacity:1; transform:none; } }
+  @media (min-width:48rem) { .enquiry-shell { grid-template-columns:.8fr 1.2fr; } .enquiry-intro, .enquiry-form { padding:2.75rem; } .selected-event { margin-top:1.25rem; } .enquiry-fields { grid-template-columns:1fr 1fr; } }
+</style>
