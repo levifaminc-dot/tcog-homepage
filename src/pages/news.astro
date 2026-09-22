@@ -22,14 +22,14 @@ const featuredImage = newsImageUrl(featuredPost?.featuredImage, 1500, 950);
 const formatDate = (date: string) => new Intl.DateTimeFormat('en-NG', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(date));
 ---
 <BaseLayout title="News | The Church of God Nigeria" description="Read news, stories, testimonies and national updates from The Church of God Nigeria.">
-  <PageHero eyebrow="News & stories" title="See what God is doing among us." copy="Stories of faith, service, discipleship, and church life from Ekiti, Lagos, Ondo, and the wider Church family." label="Read the latest" />
+  <PageHero eyebrow="News & stories" title="See what God is doing among us." copy="Stories of faith, service, discipleship, and church life from Ekiti, Lagos, Ondo, and the wider Church family." label="Read the latest" image="/images/church-life/worship-wide-3.webp" imageAlt="Church members worshipping together" imagePosition="center 44%" />
 
   <section id="page-content" class="section-space bg-white">
     <div class="container-site">
       {featuredPost ? (
         <article class="grid overflow-hidden rounded-3xl bg-cream lg:grid-cols-[1.05fr_.95fr]">
           <div class="relative min-h-[28rem] overflow-hidden">
-            <img src={featuredImage ?? '/images/nigeria-worship-hero.webp'} alt={featuredPost.featuredImage?.alt ?? 'Members of The Church of God Nigeria'} width="1500" height="950" class="absolute inset-0 h-full w-full object-cover" />
+            <img src={featuredImage ?? '/images/church-life/worship-wide-1.webp'} alt={featuredPost.featuredImage?.alt ?? 'Members of The Church of God Nigeria'} width="1500" height="950" class="absolute inset-0 h-full w-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-indigo/65 to-transparent"></div>
             <span class="absolute bottom-6 left-6 rounded-full bg-white px-4 py-2 text-[.66rem] font-black uppercase tracking-[.12em] text-coral">Featured story</span>
           </div>
@@ -42,7 +42,7 @@ const formatDate = (date: string) => new Intl.DateTimeFormat('en-NG', { day: 'nu
         </article>
       ) : (
         <article class="grid overflow-hidden rounded-3xl bg-cream lg:grid-cols-[1.05fr_.95fr]">
-          <div class="relative min-h-[28rem] overflow-hidden"><img src="/images/nigeria-worship-hero.webp" alt="Members of a Nigerian congregation worshipping" width="1792" height="896" class="absolute inset-0 h-full w-full object-cover object-[65%_center]" /><div class="absolute inset-0 bg-gradient-to-t from-indigo/65 to-transparent"></div><span class="absolute bottom-6 left-6 rounded-full bg-white px-4 py-2 text-[.66rem] font-black uppercase tracking-[.12em] text-coral">Featured story · Preview</span></div>
+          <div class="relative min-h-[28rem] overflow-hidden"><img src="/images/church-life/worship-side-1.webp" alt="Members of a church congregation worshipping" width="1280" height="960" loading="lazy" class="absolute inset-0 h-full w-full object-cover object-center" /><div class="absolute inset-0 bg-gradient-to-t from-indigo/65 to-transparent"></div><span class="absolute bottom-6 left-6 rounded-full bg-white px-4 py-2 text-[.66rem] font-black uppercase tracking-[.12em] text-coral">Featured story · Preview</span></div>
           <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><p class="mb-0 text-[.68rem] font-black uppercase tracking-[.14em] text-leaf">The mission in motion</p><h2 class="mb-0 mt-5 font-display text-[clamp(2.4rem,4vw,4.2rem)] font-normal leading-[1.02] tracking-[-.04em] text-indigo">Faith in action across our communities.</h2><p class="mb-0 mt-6 leading-8 text-slate-600">This featured area is ready for the latest verified testimony or national story from the Sanity content studio.</p><span class="btn btn-outline-dark mt-8 w-fit">Story coming soon <ArrowRight size={16} /></span></div>
         </article>
       )}
@@ -58,7 +58,7 @@ const formatDate = (date: string) => new Intl.DateTimeFormat('en-NG', { day: 'nu
           return (
             <article class="group overflow-hidden rounded-2xl bg-white">
               <a class="block h-full text-inherit no-underline" href={'/news/' + post.slug + '/'}>
-                <div class="aspect-[3/2] overflow-hidden bg-indigo/10"><img src={image ?? '/images/nigeria-worship-hero.webp'} alt={post.featuredImage?.alt ?? ''} width="900" height="600" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div>
+                <div class="aspect-[3/2] overflow-hidden bg-indigo/10"><img src={image ?? '/images/church-life/worship-side-1.webp'} alt={post.featuredImage?.alt ?? ''} width="900" height="600" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div>
                 <div class="p-7"><p class="m-0 text-[.66rem] font-black uppercase tracking-[.14em] text-coral">{post.category ?? 'News'} · {formatDate(post.publishedAt)}</p><h2 class="mb-0 mt-3 font-display text-[1.65rem] font-normal leading-[1.12] tracking-[-.025em] text-indigo">{post.title}</h2><p class="mb-0 mt-4 text-sm leading-7 text-slate-600">{post.excerpt}</p><span class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo">Read story <ArrowRight size={15} /></span></div>
               </a>
             </article>
