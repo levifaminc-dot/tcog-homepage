@@ -1,0 +1,69 @@
+---
+import { BookOpen } from '@lucide/astro';
+---
+
+<dialog id="sunday-school-dialog" class="sunday-dialog" aria-labelledby="sunday-school-title" aria-describedby="sunday-school-verse">
+  <div class="dialog-inner">
+    <button id="sunday-school-close" class="dialog-close" type="button" aria-label="Close Sunday School lesson">×</button>
+    <span class="dialog-icon"><BookOpen size={25} stroke-width={1.5} /></span>
+    <p class="dialog-eyebrow">This Sunday’s lesson</p>
+    <p id="sunday-school-date" class="dialog-date"></p>
+    <h2 id="sunday-school-title">Sunday School</h2>
+    <div class="verse-card">
+      <p class="verse-label">Key verse</p>
+      <blockquote id="sunday-school-verse"></blockquote>
+      <p id="sunday-school-reference" class="verse-reference"></p>
+    </div>
+    <p class="source-note">From <cite>Life Lessons &amp; A Life of Service</cite> · One Fold Publishing, 2026. Scripture: King James Version.</p>
+  </div>
+</dialog>
+
+<script>
+  import { getSundaySchoolLesson } from '../data/sundaySchool';
+
+  const trigger = document.querySelector<HTMLButtonElement>('#sunday-lesson-trigger');
+  const dialog = document.querySelector<HTMLDialogElement>('#sunday-school-dialog');
+  const title = document.querySelector<HTMLElement>('#sunday-school-title');
+  const date = document.querySelector<HTMLElement>('#sunday-school-date');
+  const verse = document.querySelector<HTMLElement>('#sunday-school-verse');
+  const reference = document.querySelector<HTMLElement>('#sunday-school-reference');
+
+  function refreshLesson() {
+    const lesson = getSundaySchoolLesson();
+    if (trigger) trigger.hidden = !lesson;
+    if (!lesson) {
+      if (dialog?.open) dialog.close();
+      return;
+    }
+    if (title) title.textContent = lesson.title;
+    if (date) date.textContent = `Lesson ${lesson.number} of 26 · ${new Intl.DateTimeFormat('en-NG', { timeZone: 'Africa/Lagos', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${lesson.date}T12:00:00Z`))}`;
+    if (verse) verse.textContent = `“${lesson.verse}”`;
+    if (reference) reference.textContent = `${lesson.reference} · KJV`;
+  }
+
+  refreshLesson();
+  window.setInterval(refreshLesson, 60_000);
+  window.addEventListener('pageshow', refreshLesson);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshLesson(); });
+  trigger?.addEventListener('click', () => { refreshLesson(); if (trigger.hidden) return; dialog?.showModal(); });
+  document.querySelector<HTMLButtonElement>('#sunday-school-close')?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+</script>
+
+<style>
+  .sunday-dialog { width:min(92vw, 41rem); max-height:min(88vh, 48rem); margin:auto; overflow-y:auto; border:0; border-radius:1.5rem; padding:0; background:#fff; color:#13172d; box-shadow:0 2rem 5rem rgb(5 16 51 / .3); }
+  .sunday-dialog::backdrop { background:rgb(5 16 51 / .77); backdrop-filter:blur(5px); }
+  .dialog-inner { position:relative; padding:clamp(1.5rem, 5vw, 3rem); border-top:6px solid #d10a20; }
+  .dialog-close { position:absolute; top:1.1rem; right:1.1rem; display:grid; width:2.6rem; height:2.6rem; place-items:center; border:1px solid #dbe2f0; border-radius:50%; background:#fff; color:#12388b; font-size:1.6rem; line-height:1; cursor:pointer; }
+  .dialog-close:hover { background:#eef3ff; }
+  .dialog-icon { display:grid; width:3.5rem; height:3.5rem; place-items:center; border-radius:1rem; background:#eef3ff; color:#12388b; }
+  .dialog-eyebrow { margin:1.5rem 0 0; color:#a22b8c; font-size:.7rem; font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
+  .dialog-date { margin:.5rem 0 0; color:#59677f; font-size:.85rem; font-weight:700; }
+  h2 { margin:1rem 0 0; color:#12388b; font-family:Georgia,serif; font-size:clamp(2.2rem, 6vw, 3.5rem); font-weight:400; letter-spacing:-.045em; line-height:1.05; text-wrap:balance; }
+  .verse-card { margin-top:2rem; border-left:3px solid #d10a20; border-radius:0 1rem 1rem 0; padding:1.35rem 1.5rem; background:#faf7fb; }
+  .verse-label { margin:0; color:#a22b8c; font-size:.69rem; font-weight:900; letter-spacing:.13em; text-transform:uppercase; }
+  blockquote { margin:.8rem 0 0; color:#12388b; font-family:Georgia,serif; font-size:clamp(1.15rem, 2.6vw, 1.45rem); line-height:1.5; }
+  .verse-reference { margin:1rem 0 0; color:#12388b; font-size:.78rem; font-weight:900; letter-spacing:.07em; text-transform:uppercase; }
+  .source-note { margin:1.5rem 0 0; color:#667085; font-size:.76rem; line-height:1.6; }
+  @media (max-width:40rem) { .dialog-inner { padding:1.5rem; } .dialog-icon { width:3rem; height:3rem; } .verse-card { padding:1.15rem; } }
+</style>

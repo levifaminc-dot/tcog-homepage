@@ -1,5 +1,6 @@
 ---
-import { ArrowRight, MapPin, Play } from '@lucide/astro';
+import { ArrowRight, BookOpen, MapPin, Play } from '@lucide/astro';
+import SundaySchoolDialog from './SundaySchoolDialog.astro';
 ---
 <section class="hero" aria-labelledby="hero-title">
   <img src="/images/church-life/worship-wide-1.webp" srcset="/images/church-life/worship-wide-1-720.webp 720w, /images/church-life/worship-wide-1.webp 1280w" sizes="100vw" alt="Members of the church worshipping together" width="1280" height="960" fetchpriority="high" decoding="async" />
@@ -10,11 +11,17 @@ import { ArrowRight, MapPin, Play } from '@lucide/astro';
       <h1 id="hero-title">There is a place<br />for you <em>here.</em></h1>
       <p class="intro">Rooted in the whole Bible. Growing in truth and love. Serving communities across Nigeria with the hope of Jesus Christ.</p>
       <div class="actions"><a class="btn btn-primary" href="#find-a-church"><MapPin size={17} /> Find a church</a><a class="btn btn-outline-light" href="#new-here">Plan your visit <ArrowRight size={17} /></a></div>
+      <button id="sunday-lesson-trigger" class="lesson-trigger" type="button" aria-haspopup="dialog" aria-controls="sunday-school-dialog" hidden>
+        <span class="lesson-icon"><BookOpen size={20} stroke-width={1.7} /></span>
+        <span class="lesson-label"><small>Sunday School · Today</small><strong>View this week’s lesson</strong></span>
+        <ArrowRight class="lesson-arrow" size={17} />
+      </button>
     </div>
     <a class="watch" href="#media" aria-label="Watch the welcome message"><span><Play size={18} fill="currentColor" /></span><span><small>Welcome to the family</small><strong>Watch our story</strong></span></a>
   </div>
   <div class="hero-note"><span></span><p>Worship. Belong. Serve.</p></div>
 </section>
+<SundaySchoolDialog />
 <style>
   .hero { position:relative; min-height:clamp(38rem, 78vh, 52rem); isolation:isolate; overflow:hidden; background:#13172d; color:#fff; }
   .hero > img { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; object-position:65% center; }
@@ -27,6 +34,14 @@ import { ArrowRight, MapPin, Play } from '@lucide/astro';
   h1 em { color:#f3c2e1; font-weight:400; }
   .intro { max-width:39rem; margin:1.65rem 0 0; color:rgb(255 255 255 / .86); font-size:clamp(1rem, 1.8vw, 1.22rem); line-height:1.65; text-wrap:pretty; }
   .actions { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:2rem; }
+  .lesson-trigger { display:inline-flex; align-items:center; gap:.85rem; max-width:100%; margin-top:1.1rem; padding:.65rem 1rem .65rem .7rem; border:1px solid rgb(255 255 255 / .48); border-radius:1rem; background:rgb(9 28 69 / .66); color:#fff; font:inherit; text-align:left; cursor:pointer; backdrop-filter:blur(10px); transition:background .2s ease, border-color .2s ease, transform .2s ease; }
+  .lesson-trigger[hidden] { display:none; }
+  .lesson-trigger:hover { transform:translateY(-2px); border-color:#f3c2e1; background:rgb(18 56 139 / .9); }
+  .lesson-icon { display:grid; width:2.8rem; height:2.8rem; flex:none; place-items:center; border-radius:.7rem; background:#f3c2e1; color:#12388b; }
+  .lesson-label { display:grid; gap:.08rem; line-height:1.2; }
+  .lesson-label small { color:#f3c2e1; font-size:.66rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+  .lesson-label strong { font-size:.88rem; font-weight:800; }
+  .lesson-arrow { flex:none; margin-left:.35rem; }
   .watch { position:absolute; right:var(--page-pad); bottom:2rem; display:none; align-items:center; gap:.8rem; color:#fff; text-decoration:none; }
   .watch > span:first-child { display:grid; width:3.25rem; height:3.25rem; place-items:center; border:1px solid rgb(255 255 255 / .5); border-radius:50%; backdrop-filter:blur(8px); }
   .watch > span:last-child { display:grid; line-height:1.25; }
@@ -36,5 +51,5 @@ import { ArrowRight, MapPin, Play } from '@lucide/astro';
   .hero-note span { width:2rem; height:2px; background:#a22b8c; }
   .hero-note p { margin:0; font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
   @media (min-width: 48rem) { .watch { display:flex; } }
-  @media (max-width: 40rem) { .veil { background:linear-gradient(90deg, rgb(8 15 31 / .93), rgb(9 18 37 / .64)), linear-gradient(0deg, rgb(4 11 24 / .7), transparent); } .hero > img { object-position:60% center; } .actions .btn { width:100%; } }
+  @media (max-width: 40rem) { .veil { background:linear-gradient(90deg, rgb(8 15 31 / .93), rgb(9 18 37 / .64)), linear-gradient(0deg, rgb(4 11 24 / .7), transparent); } .hero > img { object-position:60% center; } .actions .btn, .lesson-trigger { width:100%; } }
 </style>
