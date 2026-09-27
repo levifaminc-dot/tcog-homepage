@@ -1,0 +1,938 @@
+{
+  "translation": "King James Version",
+  "source": "https://raw.githubusercontent.com/midvash/bible-data/d9fe1779447717bbfcb578e505b893125cad581c/versions/en/kjv/kjv.json",
+  "passages": {
+    "Mark 1:15": [
+      {
+        "number": "1:15",
+        "text": "And saying, The time is fulfilled, and the kingdom of God is at hand: repent ye, and believe the gospel."
+      }
+    ],
+    "Luke 13:3": [
+      {
+        "number": "13:3",
+        "text": "I tell you, Nay: but, except ye repent, ye shall all likewise perish."
+      }
+    ],
+    "Acts 3:19": [
+      {
+        "number": "3:19",
+        "text": "Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the presence of the Lord."
+      }
+    ],
+    "Romans 5:1–9": [
+      {
+        "number": "5:1",
+        "text": "Therefore being justified by faith, we have peace with God through our Lord Jesus Christ:"
+      },
+      {
+        "number": "5:2",
+        "text": "By whom also we have access by faith into this grace wherein we stand, and rejoice in hope of the glory of God."
+      },
+      {
+        "number": "5:3",
+        "text": "And not only so, but we glory in tribulations also: knowing that tribulation worketh patience;"
+      },
+      {
+        "number": "5:4",
+        "text": "And patience, experience; and experience, hope:"
+      },
+      {
+        "number": "5:5",
+        "text": "And hope maketh not ashamed; because the love of God is shed abroad in our hearts by the Holy Ghost which is given unto us."
+      },
+      {
+        "number": "5:6",
+        "text": "For when we were yet without strength, in due time Christ died for the ungodly."
+      },
+      {
+        "number": "5:7",
+        "text": "For scarcely for a righteous man will one die: yet peradventure for a good man some would even dare to die."
+      },
+      {
+        "number": "5:8",
+        "text": "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us."
+      },
+      {
+        "number": "5:9",
+        "text": "Much more then, being now justified by his blood, we shall be saved from wrath through him."
+      }
+    ],
+    "Titus 3:7": [
+      {
+        "number": "3:7",
+        "text": "That being justified by his grace, we should be made heirs according to the hope of eternal life."
+      }
+    ],
+    "Matthew 19:28": [
+      {
+        "number": "19:28",
+        "text": "And Jesus said unto them, Verily I say unto you, That ye which have followed me, in the regeneration when the Son of man shall sit in the throne of his glory, ye also shall sit upon twelve thrones, judging the twelve tribes of Israel."
+      }
+    ],
+    "Titus 3:5": [
+      {
+        "number": "3:5",
+        "text": "Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost;"
+      }
+    ],
+    "John 3:3": [
+      {
+        "number": "3:3",
+        "text": "Jesus answered and said unto him, Verily, verily, I say unto thee, Except a man be born again, he cannot see the kingdom of God."
+      }
+    ],
+    "1 Peter 1:23": [
+      {
+        "number": "1:23",
+        "text": "Being born again, not of corruptible seed, but of incorruptible, by the word of God, which liveth and abideth for ever."
+      }
+    ],
+    "1 John 3:9": [
+      {
+        "number": "3:9",
+        "text": "Whosoever is born of God doth not commit sin; for his seed remaineth in him: and he cannot sin, because he is born of God."
+      }
+    ],
+    "Romans 5:2": [
+      {
+        "number": "5:2",
+        "text": "By whom also we have access by faith into this grace wherein we stand, and rejoice in hope of the glory of God."
+      }
+    ],
+    "1 Thessalonians 4:3": [
+      {
+        "number": "4:3",
+        "text": "For this is the will of God, even your sanctification, that ye should abstain from fornication:"
+      }
+    ],
+    "Hebrews 13:12": [
+      {
+        "number": "13:12",
+        "text": "Wherefore Jesus also, that he might sanctify the people with his own blood, suffered without the gate."
+      }
+    ],
+    "Luke 1:74–75": [
+      {
+        "number": "1:74",
+        "text": "That he would grant unto us, that we being delivered out of the hand of our enemies might serve him without fear,"
+      },
+      {
+        "number": "1:75",
+        "text": "In holiness and righteousness before him, all the days of our life."
+      }
+    ],
+    "1 Thessalonians 4:7": [
+      {
+        "number": "4:7",
+        "text": "For God hath not called us unto uncleanness, but unto holiness."
+      }
+    ],
+    "Hebrews 12:14": [
+      {
+        "number": "12:14",
+        "text": "Follow peace with all men, and holiness, without which no man shall see the Lord:"
+      }
+    ],
+    "Matthew 28:19": [
+      {
+        "number": "28:19",
+        "text": "Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost:"
+      }
+    ],
+    "Acts 8:36–38": [
+      {
+        "number": "8:36",
+        "text": "And as they went on their way, they came unto a certain water: and the eunuch said, See, here is water; what doth hinder me to be baptized?"
+      },
+      {
+        "number": "8:37",
+        "text": "And Philip said, If thou believest with all thine heart, thou mayest. And he answered and said, I believe that Jesus Christ is the Son of God."
+      },
+      {
+        "number": "8:38",
+        "text": "And he commanded the chariot to stand still: and they went down both into the water, both Philip and the eunuch; and he baptized him."
+      }
+    ],
+    "Romans 6:4": [
+      {
+        "number": "6:4",
+        "text": "Therefore we are buried with him by baptism into death: that like as Christ was raised up from the dead by the glory of the Father, even so we also should walk in newness of life."
+      }
+    ],
+    "Matthew 3:11": [
+      {
+        "number": "3:11",
+        "text": "I indeed baptize you with water unto repentance. but he that cometh after me is mightier than I, whose shoes I am not worthy to bear: he shall baptize you with the Holy Ghost, and with fire:"
+      }
+    ],
+    "Luke 24:49": [
+      {
+        "number": "24:49",
+        "text": "And, behold, I send the promise of my Father upon you: but tarry ye in the city of Jerusalem, until ye be endued with power from on high."
+      }
+    ],
+    "Acts 1:4–8": [
+      {
+        "number": "1:4",
+        "text": "And, being assembled together with them, commanded them that they should not depart from Jerusalem, but wait for the promise of the Father, which, saith he, ye have heard of me."
+      },
+      {
+        "number": "1:5",
+        "text": "For John truly baptized with water; but ye shall be baptized with the Holy Ghost not many days hence."
+      },
+      {
+        "number": "1:6",
+        "text": "When they therefore were come together, they asked of him, saying, Lord, wilt thou at this time restore again the kingdom to Israel?"
+      },
+      {
+        "number": "1:7",
+        "text": "And he said unto them, It is not for you to know the times or the seasons, which the Father hath put in his own power."
+      },
+      {
+        "number": "1:8",
+        "text": "But ye shall receive power, after that the Holy Ghost is come upon you: and ye shall be witnesses unto me both in Jerusalem, and in all Judaea, and in Samaria, and unto the uttermost part of the earth."
+      }
+    ],
+    "Acts 2:4": [
+      {
+        "number": "2:4",
+        "text": "And they were all filled with the Holy Ghost, and began to speak with other tongues, as the Spirit gave them utterance."
+      }
+    ],
+    "Acts 10:44–46": [
+      {
+        "number": "10:44",
+        "text": "While Peter yet spake these words, the Holy Ghost fell on all them which heard the word."
+      },
+      {
+        "number": "10:45",
+        "text": "And they of the circumcision which believed were astonished, as many as came with Peter, because that on the Gentiles also was poured out the gift of the Holy Ghost."
+      },
+      {
+        "number": "10:46",
+        "text": "For they heard them speak with tongues, and magnify God. Then answered Peter,"
+      }
+    ],
+    "Acts 19:6": [
+      {
+        "number": "19:6",
+        "text": "And when Paul had laid his hands upon them, the Holy Ghost came on them; and they spake with tongues, and prophesied."
+      }
+    ],
+    "1 Corinthians 12:1–11": [
+      {
+        "number": "12:1",
+        "text": "Now concerning spiritual gifts, brethren, I would not have you ignorant."
+      },
+      {
+        "number": "12:2",
+        "text": "Ye know that ye were Gentiles, carried away unto these dumb idols, even as ye were led."
+      },
+      {
+        "number": "12:3",
+        "text": "Wherefore I give you to understand, that no man speaking by the Spirit of God calleth Jesus accursed: and that no man can say that Jesus is the Lord, but by the Holy Ghost."
+      },
+      {
+        "number": "12:4",
+        "text": "Now there are diversities of gifts, but the same Spirit."
+      },
+      {
+        "number": "12:5",
+        "text": "And there are differences of administrations, but the same Lord."
+      },
+      {
+        "number": "12:6",
+        "text": "And there are diversities of operations, but it is the same God which worketh all in all."
+      },
+      {
+        "number": "12:7",
+        "text": "But the manifestation of the Spirit is given to every man to profit withal."
+      },
+      {
+        "number": "12:8",
+        "text": "For to one is given by the Spirit the word of wisdom; to another the word of knowledge by the same Spirit;"
+      },
+      {
+        "number": "12:9",
+        "text": "To another faith by the same Spirit; to another the gifts of healing by the same Spirit;"
+      },
+      {
+        "number": "12:10",
+        "text": "To another the working of miracles; to another prophecy; to another discerning of spirits; to another divers kinds of tongues; to another the interpretation of tongues:"
+      },
+      {
+        "number": "12:11",
+        "text": "But all these worketh that one and the selfsame Spirit, dividing to every man severally as he will."
+      }
+    ],
+    "1 Corinthians 14:1": [
+      {
+        "number": "14:1",
+        "text": "Follow after charity, and desire spiritual gifts, but rather that ye may prophesy."
+      }
+    ],
+    "Mark 16:17–20": [
+      {
+        "number": "16:17",
+        "text": "And these signs shall follow them that believe; In my name shall they cast out devils; they shall speak with new tongues;"
+      },
+      {
+        "number": "16:18",
+        "text": "They shall take up serpents; and if they drink any deadly thing, it shall not hurt them; they shall lay hands on the sick, and they shall recover."
+      },
+      {
+        "number": "16:19",
+        "text": "So then after the Lord had spoken unto them, he was received up into heaven, and sat on the right hand of God."
+      },
+      {
+        "number": "16:20",
+        "text": "And they went forth, and preached every where, the Lord working with them, and confirming the word with signs following. Amen."
+      }
+    ],
+    "Romans 15:18–19": [
+      {
+        "number": "15:18",
+        "text": "For I will not dare to speak of any of those things which Christ hath not wrought by me, to make the Gentiles obedient, by word and deed,"
+      },
+      {
+        "number": "15:19",
+        "text": "Through mighty signs and wonders, by the power of the Spirit of God; so that from Jerusalem, and round about unto Illyricum, I have fully preached the gospel of Christ."
+      }
+    ],
+    "Hebrews 2:4": [
+      {
+        "number": "2:4",
+        "text": "God also bearing them witness, both with signs and wonders, and with divers miracles, and gifts of the Holy Ghost, according to his own will?"
+      }
+    ],
+    "Galatians 5:22–23": [
+      {
+        "number": "5:22",
+        "text": "But the fruit of the Spirit is love, joy, peace, longsuffering, gentleness, goodness, faith,"
+      },
+      {
+        "number": "5:23",
+        "text": "Meekness, temperance: against such there is no law."
+      }
+    ],
+    "Ephesians 5:9": [
+      {
+        "number": "5:9",
+        "text": "(For the fruit of the Spirit is in all goodness and righteousness and truth;)"
+      }
+    ],
+    "Psalm 103:3": [
+      {
+        "number": "103:3",
+        "text": "Who forgiveth all thine iniquities; who healeth all thy diseases;"
+      }
+    ],
+    "Isaiah 53:4–5": [
+      {
+        "number": "53:4",
+        "text": "Surely he hath borne our griefs, and carried our sorrows: yet we did esteem him stricken, smitten of God, and afflicted."
+      },
+      {
+        "number": "53:5",
+        "text": "But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed."
+      }
+    ],
+    "James 5:14–16": [
+      {
+        "number": "5:14",
+        "text": "Is any sick among you? let him call for the elders of the church; and let them pray over him, anointing him with oil in the name of the Lord:"
+      },
+      {
+        "number": "5:15",
+        "text": "And the prayer of faith shall save the sick, and the Lord shall raise him up; and if he have committed sins, they shall be forgiven him."
+      },
+      {
+        "number": "5:16",
+        "text": "Confess your faults one to another, and pray one for another, that ye may be healed. The effectual fervent prayer of a righteous man availeth much."
+      }
+    ],
+    "Luke 22:17–20": [
+      {
+        "number": "22:17",
+        "text": "And he took the cup, and gave thanks, and said, Take this, and divide it among yourselves:"
+      },
+      {
+        "number": "22:18",
+        "text": "For I say unto you, I will not drink of the fruit of the vine, until the kingdom of God shall come."
+      },
+      {
+        "number": "22:19",
+        "text": "And he took bread, and gave thanks, and brake it, and gave unto them, saying, This is my body which is given for you: this do in remembrance of me."
+      },
+      {
+        "number": "22:20",
+        "text": "Likewise also the cup after supper, saying, This cup is the new testament in my blood, which is shed for you."
+      }
+    ],
+    "1 Corinthians 11:23–33": [
+      {
+        "number": "11:23",
+        "text": "For I have received of the Lord that which also I delivered unto you, that the Lord Jesus the same night in which he was betrayed took bread:"
+      },
+      {
+        "number": "11:24",
+        "text": "And when he had given thanks, he brake it, and said, Take, eat: this is my body, which is broken for you: this do in remembrance of me."
+      },
+      {
+        "number": "11:25",
+        "text": "After the same manner also he took the cup, when he had supped, saying, this cup is the new testament in my blood: this do ye, as oft as ye drink it, in remembrance of me."
+      },
+      {
+        "number": "11:26",
+        "text": "For as often as ye eat this bread, and drink this cup, ye do shew the Lord's death till he come."
+      },
+      {
+        "number": "11:27",
+        "text": "Wherefore whosoever shall eat this bread, and drink this cup of the Lord, unworthily, shall be guilty of the body and blood of the Lord."
+      },
+      {
+        "number": "11:28",
+        "text": "But let a man examine himself, and so let him eat of that bread, and drink of that cup."
+      },
+      {
+        "number": "11:29",
+        "text": "For he that eateth and drinketh unworthily, eateth and drinketh damnation to himself, not discerning the Lord's body."
+      },
+      {
+        "number": "11:30",
+        "text": "For this cause many are weak and sickly among you, and many sleep."
+      },
+      {
+        "number": "11:31",
+        "text": "For if we would judge ourselves, we should not be judged."
+      },
+      {
+        "number": "11:32",
+        "text": "But when we are judged, we are chastened of the Lord, that we should not be condemned with the world."
+      },
+      {
+        "number": "11:33",
+        "text": "Wherefore, my brethren, when ye come together to eat, tarry one for another."
+      }
+    ],
+    "John 13:4–17": [
+      {
+        "number": "13:4",
+        "text": "He riseth from supper, and laid aside his garments; and took a towel, and girded himself."
+      },
+      {
+        "number": "13:5",
+        "text": "After that he poureth water into a bason, and began to wash the disciples' feet, and to wipe them with the towel wherewith he was girded."
+      },
+      {
+        "number": "13:6",
+        "text": "Then cometh he to Simon Peter: and Peter saith unto him, Lord, dost thou wash my feet?"
+      },
+      {
+        "number": "13:7",
+        "text": "Jesus answered and said unto him, What I do thou knowest not now; but thou shalt know hereafter."
+      },
+      {
+        "number": "13:8",
+        "text": "Peter saith unto him, Thou shalt never wash my feet. Jesus answered him, If I wash thee not, thou hast no part with me."
+      },
+      {
+        "number": "13:9",
+        "text": "Simon Peter saith unto him, Lord, not my feet only, but also my hands and my head."
+      },
+      {
+        "number": "13:10",
+        "text": "Jesus saith to him, He that is washed needeth not save to wash his feet, but is clean every whit: and ye are clean, but not all."
+      },
+      {
+        "number": "13:11",
+        "text": "For he knew who should betray him; therefore said he, Ye are not all clean."
+      },
+      {
+        "number": "13:12",
+        "text": "So after he had washed their feet, and had taken his garments, and was set down again, he said unto them, Know ye what I have done to you?"
+      },
+      {
+        "number": "13:13",
+        "text": "Ye call me Master and Lord: and ye say well; for so I am."
+      },
+      {
+        "number": "13:14",
+        "text": "If I then, your Lord and Master, have washed your feet; ye also ought to wash one another's feet."
+      },
+      {
+        "number": "13:15",
+        "text": "For I have given you an example, that ye should do as I have done to you."
+      },
+      {
+        "number": "13:16",
+        "text": "Verily, verily, I say unto you, The servant is not greater than his lord; neither he that is sent greater than he that sent him."
+      },
+      {
+        "number": "13:17",
+        "text": "If ye know these things, happy are ye if ye do them."
+      }
+    ],
+    "1 Timothy 5:10": [
+      {
+        "number": "5:10",
+        "text": "Well reported of for good works; if she have brought up children, if she have lodged strangers, if she have washed the saints' feet, if she have relieved the afflicted, if she have diligently followed every good work."
+      }
+    ],
+    "Malachi 3:10": [
+      {
+        "number": "3:10",
+        "text": "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the Lord of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it."
+      }
+    ],
+    "Matthew 23:23": [
+      {
+        "number": "23:23",
+        "text": "Woe unto you, scribes and Pharisees, hypocrites! for ye pay tithe of mint and anise and cummin, and have omitted the weightier matters of the law, judgment, mercy, and faith: these ought ye to have done, and not to leave the other undone."
+      }
+    ],
+    "2 Corinthians 9:6–9": [
+      {
+        "number": "9:6",
+        "text": "But this I say, He which soweth sparingly shall reap also sparingly; and he which soweth bountifully shall reap also bountifully."
+      },
+      {
+        "number": "9:7",
+        "text": "Every man according as he purposeth in his heart, so let him give; not grudgingly, or of necessity: for God loveth a cheerful giver."
+      },
+      {
+        "number": "9:8",
+        "text": "And God is able to make all grace abound toward you; that ye, always having all sufficiency in all things, may abound to every good work:"
+      },
+      {
+        "number": "9:9",
+        "text": "(As it is written, He hath dispersed abroad; he hath given to the poor: his righteousness remaineth for ever."
+      }
+    ],
+    "Matthew 3:8": [
+      {
+        "number": "3:8",
+        "text": "Bring forth therefore fruits meet for repentance:"
+      }
+    ],
+    "Luke 19:8–9": [
+      {
+        "number": "19:8",
+        "text": "And Zacchaeus stood, and said unto the Lord: Behold, Lord, the half of my goods I give to the poor; and if I have taken any thing from any man by false accusation, I restore him fourfold."
+      },
+      {
+        "number": "19:9",
+        "text": "And Jesus said unto him, This day is salvation come to this house, forsomuch as he also is a son of Abraham."
+      }
+    ],
+    "Romans 13:8": [
+      {
+        "number": "13:8",
+        "text": "Owe no man any thing, but to love one another: for he that loveth another hath fulfilled the law."
+      }
+    ],
+    "1 Corinthians 15:51–52": [
+      {
+        "number": "15:51",
+        "text": "Behold, I shew you a mystery; We shall not all sleep, but we shall all be changed,"
+      },
+      {
+        "number": "15:52",
+        "text": "In a moment, in the twinkling of an eye, at the last trump: for the trumpet shall sound, and the dead shall be raised incorruptible, and we shall be changed."
+      }
+    ],
+    "1 Thessalonians 4:15–17": [
+      {
+        "number": "4:15",
+        "text": "For this we say unto you by the word of the Lord, that we which are alive and remain unto the coming of the Lord shall not prevent them which are asleep."
+      },
+      {
+        "number": "4:16",
+        "text": "For the Lord himself shall descend from heaven with a shout, with the voice of the archangel, and with the trump of God: and the dead in Christ shall rise first:"
+      },
+      {
+        "number": "4:17",
+        "text": "Then we which are alive and remain shall be caught up together with them in the clouds, to meet the Lord in the air: and so shall we ever be with the Lord."
+      }
+    ],
+    "Revelation 20:4–6": [
+      {
+        "number": "20:4",
+        "text": "And I saw thrones, and they sat upon them, and judgment was given unto them: and I saw the souls of them that were beheaded for the witness of Jesus, and for the word of God, and which had not worshipped the beast, neither his image, neither had received his mark upon their foreheads, or in their hands; and they lived and reigned with Christ a thousand years."
+      },
+      {
+        "number": "20:5",
+        "text": "But the rest of the dead lived not again until the thousand years were finished. This is the first resurrection."
+      },
+      {
+        "number": "20:6",
+        "text": "Blessed and holy is he that hath part in the first resurrection: on such the second death hath no power, but they shall be priests of God and of Christ, and shall reign with him a thousand years."
+      }
+    ],
+    "Daniel 12:2": [
+      {
+        "number": "12:2",
+        "text": "And many of them that sleep in the dust of the earth shall awake, some to everlasting life, and some to shame and everlasting contempt."
+      }
+    ],
+    "John 5:28–29": [
+      {
+        "number": "5:28",
+        "text": "Marvel not at this: for the hour is coming, in the which all that are in the graves shall hear his voice,"
+      },
+      {
+        "number": "5:29",
+        "text": "And shall come forth; they that have done good, unto the resurrection of life; and they that have done evil, unto the resurrection of damnation."
+      }
+    ],
+    "Acts 24:15": [
+      {
+        "number": "24:15",
+        "text": "And have hope toward God, which they themselves also allow, that there shall be a resurrection of the dead, both of the just and unjust."
+      }
+    ],
+    "Matthew 25:46": [
+      {
+        "number": "25:46",
+        "text": "And these shall go away into everlasting punishment: but the righteous into life eternal."
+      }
+    ],
+    "John 10:28": [
+      {
+        "number": "10:28",
+        "text": "And I give unto them eternal life; and they shall never perish, neither shall any man pluck them out of my hand."
+      }
+    ],
+    "Romans 6:22": [
+      {
+        "number": "6:22",
+        "text": "But now being made free from sin, and become servants to God, ye have your fruit unto holiness, and the end everlasting life."
+      }
+    ],
+    "Matthew 25:41–46": [
+      {
+        "number": "25:41",
+        "text": "Then shall he say also unto them on the left hand, Depart from me, ye cursed, into everlasting fire, prepared for the devil and his angels:"
+      },
+      {
+        "number": "25:42",
+        "text": "For I was an hungred, and ye gave me no meat: I was thirsty, and ye gave me no drink:"
+      },
+      {
+        "number": "25:43",
+        "text": "I was a stranger, and ye took me not in: naked, and ye clothed me not: sick, and in prison, and ye visited me not."
+      },
+      {
+        "number": "25:44",
+        "text": "Then shall they also answer him, saying, Lord, when saw we thee an hungred, or athirst, or a stranger, or naked, or sick, or in prison, and did not minister unto thee?"
+      },
+      {
+        "number": "25:45",
+        "text": "Then shall he answer them, saying, Verily I say unto you, Inasmuch as ye did it not to one of the least of these, ye did it not to me."
+      },
+      {
+        "number": "25:46",
+        "text": "And these shall go away into everlasting punishment: but the righteous into life eternal."
+      }
+    ],
+    "2 Thessalonians 1:8–9": [
+      {
+        "number": "1:8",
+        "text": "In flaming fire taking vengeance on them that know not God, and that obey not the gospel of our Lord Jesus Christ:"
+      },
+      {
+        "number": "1:9",
+        "text": "Who shall be punished with everlasting destruction from the presence of the Lord, and from the glory of his power;"
+      }
+    ],
+    "Revelation 20:10–15": [
+      {
+        "number": "20:10",
+        "text": "And the devil that deceived them was cast into the lake of fire and brimstone, where the beast and the false prophet are, and shall be tormented day and night for ever and ever."
+      },
+      {
+        "number": "20:11",
+        "text": "And I saw a great white throne, and him that sat on it, from whose face the earth and the heaven fled away; and there was found no place for them."
+      },
+      {
+        "number": "20:12",
+        "text": "And I saw the dead, small and great, stand before God; and the books were opened: and another book was opened, which is the book of life: and the dead were judged out of those things which were written in the books, according to their works."
+      },
+      {
+        "number": "20:13",
+        "text": "And the sea gave up the dead which were in it; and death and hell delivered up the dead which were in them: and they were judged every man according to their works."
+      },
+      {
+        "number": "20:14",
+        "text": "And death and hell were cast into the lake of fire. This is the second death."
+      },
+      {
+        "number": "20:15",
+        "text": "And whosoever was not found written in the book of life was cast into the lake of fire."
+      }
+    ],
+    "Proverbs 20:1": [
+      {
+        "number": "20:1",
+        "text": "Wine is a mocker, strong drink is raging: and whosoever is deceived thereby is not wise."
+      }
+    ],
+    "Proverbs 23:29–32": [
+      {
+        "number": "23:29",
+        "text": "Who hath woe? who hath sorrow? who hath contentions? who hath babbling? who hath wounds without cause? who hath redness of eyes?"
+      },
+      {
+        "number": "23:30",
+        "text": "They that tarry long at the wine; they that go to seek mixed wine."
+      },
+      {
+        "number": "23:31",
+        "text": "Look not thou upon the wine when it is red, when it giveth his colour in the cup, when it moveth itself aright."
+      },
+      {
+        "number": "23:32",
+        "text": "At the last it biteth like a serpent, and stingeth like an adder."
+      }
+    ],
+    "Galatians 5:21": [
+      {
+        "number": "5:21",
+        "text": "Envyings, murders, drunkenness, revellings, and such like: of the which I tell you before, as I have also told you in time past, that they which do such things shall not inherit the kingdom of God."
+      }
+    ],
+    "1 Corinthians 10:31–32": [
+      {
+        "number": "10:31",
+        "text": "Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God."
+      },
+      {
+        "number": "10:32",
+        "text": "Give none offence, neither to the Jews, nor to the Gentiles, nor to the church of God:"
+      }
+    ],
+    "2 Corinthians 7:1": [
+      {
+        "number": "7:1",
+        "text": "Having therefore these promises, dearly beloved, let us cleanse ourselves from all filthiness of the flesh and spirit, perfecting holiness in the fear of God."
+      }
+    ],
+    "James 1:21": [
+      {
+        "number": "1:21",
+        "text": "Wherefore lay apart all filthiness and superfluity of naughtiness, and receive with meekness the engrafted word, which is able to save your souls."
+      }
+    ],
+    "Romans 14:2–3, 17": [
+      {
+        "number": "14:2",
+        "text": "For one believeth that he may eat all things: another, who is weak, eateth herbs."
+      },
+      {
+        "number": "14:3",
+        "text": "Let not him that eateth despise him that eateth not; and let not him which eateth not judge him that eateth: for God hath received him."
+      },
+      {
+        "number": "14:17",
+        "text": "For the kingdom of God is not meat and drink; but righteousness, and peace, and joy in the Holy Ghost."
+      }
+    ],
+    "1 Corinthians 8:8": [
+      {
+        "number": "8:8",
+        "text": "But meat commendeth us not to God: for neither, if we eat, are we the better; neither, if we eat not, are we the worse."
+      }
+    ],
+    "1 Timothy 4:1–5": [
+      {
+        "number": "4:1",
+        "text": "Now the Spirit speaketh expressly, that in the latter times some shall depart from the faith, giving heed to seducing spirits, and doctrines of devils;"
+      },
+      {
+        "number": "4:2",
+        "text": "Speaking lies in hypocrisy; having their conscience seared with a hot iron;"
+      },
+      {
+        "number": "4:3",
+        "text": "Forbidding to marry, and commanding to abstain from meats, which God hath created to be received with thanksgiving of them which believe and know the truth."
+      },
+      {
+        "number": "4:4",
+        "text": "For every creature of God is good, and nothing to be refused, if it be received with thanksgiving:"
+      },
+      {
+        "number": "4:5",
+        "text": "For it is sanctified by the word of God and prayer."
+      }
+    ],
+    "Romans 14:5–6": [
+      {
+        "number": "14:5",
+        "text": "One man esteemeth one day above another: another esteemeth every day alike. Let every man be fully persuaded in his own mind."
+      },
+      {
+        "number": "14:6",
+        "text": "He that regardeth the day, regardeth it unto the Lord; and he that regardeth not the day, to the Lord he doth not regard it. He that eateth, eateth to the Lord, for he giveth God thanks; and he that eateth not, to the Lord he eateth not, and giveth God thanks."
+      }
+    ],
+    "Colossians 2:16–17": [
+      {
+        "number": "2:16",
+        "text": "Let no man therefore judge you in meat, or in drink, or in respect of an holyday, or of the new moon, or of the sabbath days:"
+      },
+      {
+        "number": "2:17",
+        "text": "Which are a shadow of things to come; but the body is of Christ."
+      }
+    ],
+    "1 Timothy 2:9": [
+      {
+        "number": "2:9",
+        "text": "In like manner also, that women adorn themselves in modest apparel, with shamefacedness and sobriety; not with broided hair, or gold, or pearls, or costly array;"
+      }
+    ],
+    "1 Peter 3:3–4": [
+      {
+        "number": "3:3",
+        "text": "Whose adorning let it not be that outward adorning of plaiting the hair, and of wearing of gold, or of putting on of apparel;"
+      },
+      {
+        "number": "3:4",
+        "text": "But let it be the hidden man of the heart, in that which is not corruptible, even the ornament of a meek and quiet spirit, which is in the sight of God of great price."
+      }
+    ],
+    "1 John 2:16": [
+      {
+        "number": "2:16",
+        "text": "For all that is in the world, the lust of the flesh, and the lust of the eyes, and the pride of life, is not of the Father, but is of the world."
+      }
+    ],
+    "Matthew 5:34": [
+      {
+        "number": "5:34",
+        "text": "But I say unto you, Swear not at all; neither by heaven; for it is God's throne:"
+      }
+    ],
+    "John 18:20": [
+      {
+        "number": "18:20",
+        "text": "Jesus answered him, I spake openly to the world; I ever taught in the synagogue, and in the temple, whither the Jews always resort; and in secret have I said nothing."
+      }
+    ],
+    "2 Corinthians 6:14–17": [
+      {
+        "number": "6:14",
+        "text": "Be ye not unequally yoked together with unbelievers: for what fellowship hath righteousness with unrighteousness? and what communion hath light with darkness?"
+      },
+      {
+        "number": "6:15",
+        "text": "And what concord hath Christ with Belial? or what part hath he that believeth with an infidel?"
+      },
+      {
+        "number": "6:16",
+        "text": "And what agreement hath the temple of God with idols? for ye are the temple of the living God; as God hath said, I will dwell in them, and walk in them; and I will be their God, and they shall be my people."
+      },
+      {
+        "number": "6:17",
+        "text": "Wherefore come out from among them, and be ye separate, saith the Lord, and touch not the unclean thing; and I will receive you."
+      }
+    ],
+    "Matthew 5:34–37": [
+      {
+        "number": "5:34",
+        "text": "But I say unto you, Swear not at all; neither by heaven; for it is God's throne:"
+      },
+      {
+        "number": "5:35",
+        "text": "Nor by the earth; for it is his footstool: neither by Jerusalem; for it is the city of the great King."
+      },
+      {
+        "number": "5:36",
+        "text": "Neither shalt thou swear by thy head, because thou canst not make one hair white or black."
+      },
+      {
+        "number": "5:37",
+        "text": "But let your communication be, Yea, yea; Nay, nay: for whatsoever is more than these cometh of evil."
+      }
+    ],
+    "James 5:12": [
+      {
+        "number": "5:12",
+        "text": "But above all things, my brethren, swear not, neither by heaven, neither by the earth, neither by any other oath: but let your yea be yea; and your nay, nay; lest ye fall into condemnation."
+      }
+    ],
+    "Matthew 19:3–12": [
+      {
+        "number": "19:3",
+        "text": "The Pharisees also came unto him, tempting him, and saying unto him, Is it lawful for a man to put away his wife for every cause?"
+      },
+      {
+        "number": "19:4",
+        "text": "And he answered and said unto them, Have ye not read, that he which made them at the beginning made them male and female,"
+      },
+      {
+        "number": "19:5",
+        "text": "And said, For this cause shall a man leave father and mother, and shall cleave to his wife: and they twain shall be one flesh?"
+      },
+      {
+        "number": "19:6",
+        "text": "Wherefore they are no more twain, but one flesh. What therefore God hath joined together, let not man put asunder."
+      },
+      {
+        "number": "19:7",
+        "text": "They say unto him, Why did Moses then command to give a writing of divorcement, and to put her away?"
+      },
+      {
+        "number": "19:8",
+        "text": "He saith unto them, Moses because of the hardness of your hearts suffered you to put away your wives: but from the beginning it was not so."
+      },
+      {
+        "number": "19:9",
+        "text": "And I say unto you, Whosoever shall put away his wife, except it be for fornication, and shall marry another, committeth adultery: and whoso marrieth her which is put away doth commit adultery."
+      },
+      {
+        "number": "19:10",
+        "text": "His disciples say unto him, If the case of the man be so with his wife, it is not good to marry."
+      },
+      {
+        "number": "19:11",
+        "text": "But he said unto them, All men cannot receive this saying, save they to whom it is given."
+      },
+      {
+        "number": "19:12",
+        "text": "For there are some eunuchs, which were so born from their mother's womb: and there are some eunuchs, which were made eunuchs of men: and there be eunuchs, which have made themselves eunuchs for the kingdom of heaven's sake. He that is able to receive it, let him receive it."
+      }
+    ],
+    "Mark 10:11–12": [
+      {
+        "number": "10:11",
+        "text": "And he saith unto them, Whosoever shall put away his wife, and marry another, committeth adultery against her."
+      },
+      {
+        "number": "10:12",
+        "text": "And if a woman shall put away her husband, and be married to another, she committeth adultery."
+      }
+    ],
+    "Romans 7:2–3": [
+      {
+        "number": "7:2",
+        "text": "For the woman which hath an husband is bound by the law to her husband so long as he liveth; but if the husband be dead, she is loosed from the law of her husband."
+      },
+      {
+        "number": "7:3",
+        "text": "So then if, while her husband liveth, she be married to another man, she shall be called an adulteress: but if her husband be dead, she is free from that law; so that she is no adulteress, though she be married to another man."
+      }
+    ],
+    "1 Corinthians 7:10–11": [
+      {
+        "number": "7:10",
+        "text": "And unto the married I command, yet not I, but the Lord, Let not the wife depart from her husband:"
+      },
+      {
+        "number": "7:11",
+        "text": "But and if she depart, let her remain unmarried or be reconciled to her husband: and let not the husband put away his wife."
+      }
+    ]
+  }
+}

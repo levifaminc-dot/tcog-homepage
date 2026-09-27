@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "scriptures:generate": "node scripts/generate-belief-scriptures.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "studio:dev": "npm --prefix studio run dev",

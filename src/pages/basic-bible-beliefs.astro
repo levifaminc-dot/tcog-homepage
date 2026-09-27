@@ -49,7 +49,7 @@ const beliefs = [
         <a class="btn btn-outline-dark mt-7" href="https://www.thechurchofgod.org/resource/basic-bible-beliefs/" target="_blank" rel="noreferrer">International resource <ExternalLink size={16} /></a>
       </div>
       <div>
-        <SectionHeading eyebrow="Twenty-nine teachings" title="Explore the beliefs." copy="Open each teaching for a concise introduction and key Scripture references. For the complete approved wording, use the linked international resource." />
+        <SectionHeading eyebrow="Twenty-nine teachings" title="Explore the beliefs." copy="Open each teaching for a concise introduction, then tap a Scripture reference to read it in the King James Version. For the complete approved wording, use the linked international resource." />
         <div class="mt-10 grid gap-3">
           {beliefs.map((belief, index) => (
             <details class="group overflow-hidden rounded-xl border border-slate-200 bg-white">
@@ -58,7 +58,14 @@ const beliefs = [
                 <span class="flex-1"><small class="block text-[.62rem] font-black uppercase tracking-[.13em] text-coral">{belief.group}</small><strong class="mt-1 block font-display text-[1.25rem] font-normal text-indigo">{belief.title}</strong></span>
                 <ChevronDown class="shrink-0 text-indigo transition-transform group-open:rotate-180" size={20} />
               </summary>
-              <div class="border-t border-slate-100 px-5 pb-6 pt-5 sm:pl-20 sm:pr-7"><p class="m-0 leading-7 text-slate-600">{belief.summary}</p><p class="mb-0 mt-4 text-xs font-bold leading-6 text-indigo">{belief.refs}</p></div>
+              <div class="border-t border-slate-100 px-5 pb-6 pt-5 sm:pl-20 sm:pr-7">
+                <p class="m-0 leading-7 text-slate-600">{belief.summary}</p>
+                <div class="mt-5 flex flex-wrap gap-2" aria-label={`Scripture references for ${belief.title}`}>
+                  {belief.refs.split(' · ').map((ref) => (
+                    <button class="scripture-ref" type="button" data-scripture-ref={ref} aria-haspopup="dialog" aria-controls="scripture-dialog">{ref}</button>
+                  ))}
+                </div>
+              </div>
             </details>
           ))}
         </div>
@@ -72,5 +79,83 @@ const beliefs = [
       <a class="btn btn-light" href="/#find-a-church">Find a church <ArrowRight size={16} /></a>
     </div>
   </section>
+  <dialog id="scripture-dialog" class="scripture-dialog" aria-labelledby="scripture-dialog-title">
+    <div class="scripture-dialog-inner">
+      <button id="scripture-dialog-close" class="scripture-dialog-close" type="button" aria-label="Close Bible passage">×</button>
+      <p class="scripture-dialog-eyebrow">Read the Scripture</p>
+      <h2 id="scripture-dialog-title">Bible passage</h2>
+      <p class="scripture-dialog-version">King James Version (KJV)</p>
+      <div id="scripture-dialog-content" class="scripture-dialog-content" aria-live="polite"></div>
+    </div>
+  </dialog>
   <Footer />
 </BaseLayout>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#scripture-dialog');
+  const heading = document.querySelector<HTMLElement>('#scripture-dialog-title');
+  const content = document.querySelector<HTMLElement>('#scripture-dialog-content');
+  const closeButton = document.querySelector<HTMLButtonElement>('#scripture-dialog-close');
+  const loadScriptures = () => import('../data/beliefScriptures.json');
+  let scripturePromise: ReturnType<typeof loadScriptures> | undefined;
+  let activeTrigger: HTMLButtonElement | undefined;
+
+  document.addEventListener('click', async (event) => {
+    if (!(event.target instanceof Element)) return;
+    const trigger = event.target.closest<HTMLButtonElement>('[data-scripture-ref]');
+    if (!trigger || !dialog || !heading || !content) return;
+    const reference = trigger.dataset.scriptureRef;
+    if (!reference) return;
+    activeTrigger = trigger;
+    heading.textContent = reference;
+    content.textContent = 'Loading KJV passage…';
+    dialog.showModal();
+
+    try {
+      const { default: data } = await (scripturePromise ??= loadScriptures());
+      if (!dialog.open || heading.textContent !== reference) return;
+      const verses = data.passages[reference as keyof typeof data.passages];
+      if (!verses) throw new Error(`Missing KJV passage: ${reference}`);
+      const list = document.createElement('ol');
+      list.className = 'scripture-verses';
+      for (const verse of verses) {
+        const item = document.createElement('li');
+        const number = document.createElement('span');
+        const text = document.createElement('p');
+        number.className = 'scripture-verse-number';
+        number.textContent = verse.number;
+        text.textContent = verse.text;
+        item.append(number, text);
+        list.append(item);
+      }
+      content.replaceChildren(list);
+    } catch {
+      scripturePromise = undefined;
+      if (dialog.open && heading.textContent === reference) content.textContent = 'The passage could not be loaded. Please close this window and try again.';
+    }
+  });
+
+  closeButton?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  dialog?.addEventListener('close', () => activeTrigger?.focus());
+</script>
+
+<style>
+  .scripture-ref { border:1px solid #c8d4ec; border-radius:999px; padding:.42rem .82rem; background:#f4f7fc; color:#12388b; font-size:.8rem; font-weight:750; line-height:1.4; cursor:pointer; transition:background .2s ease, border-color .2s ease; }
+  .scripture-ref:hover { border-color:#12388b; background:#e8eefb; }
+  .scripture-ref:focus-visible, .scripture-dialog-close:focus-visible { outline:3px solid #a22b8c; outline-offset:3px; }
+  .scripture-dialog { width:min(92vw, 43rem); max-height:min(88vh, 50rem); margin:auto; overflow-y:auto; border:0; border-radius:1.3rem; padding:0; background:#fff; color:#17243d; box-shadow:0 2rem 5rem rgb(5 16 51 / .3); }
+  .scripture-dialog::backdrop { background:rgb(5 16 51 / .76); backdrop-filter:blur(4px); }
+  .scripture-dialog-inner { position:relative; border-top:5px solid #d10a20; padding:clamp(1.5rem, 5vw, 2.5rem); }
+  .scripture-dialog-close { position:absolute; top:1rem; right:1rem; display:grid; width:2.5rem; height:2.5rem; place-items:center; border:1px solid #dbe2f0; border-radius:50%; background:#fff; color:#12388b; font-size:1.5rem; line-height:1; cursor:pointer; }
+  .scripture-dialog-close:hover { background:#eef3ff; }
+  .scripture-dialog-eyebrow { margin:0; color:#a22b8c; font-size:.72rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+  .scripture-dialog h2 { margin:1rem 2rem .25rem 0; color:#12388b; font-family:Georgia,serif; font-size:clamp(2rem, 5vw, 3rem); font-weight:400; line-height:1.1; }
+  .scripture-dialog-version { margin:0; color:#63718a; font-size:.85rem; font-weight:700; }
+  .scripture-dialog-content { margin-top:1.7rem; line-height:1.7; }
+  :global(.scripture-verses) { display:grid; gap:1.1rem; margin:0; padding:0; list-style:none; }
+  :global(.scripture-verses li) { display:grid; grid-template-columns:3.3rem 1fr; gap:.65rem; align-items:start; }
+  :global(.scripture-verses p) { margin:0; color:#273955; font-family:Georgia,serif; font-size:1.06rem; line-height:1.65; }
+  :global(.scripture-verse-number) { padding-top:.22rem; color:#a22b8c; font-size:.78rem; font-weight:900; }
+  @media (max-width:40rem) { :global(.scripture-verses li) { grid-template-columns:2.6rem 1fr; } }
+</style>
