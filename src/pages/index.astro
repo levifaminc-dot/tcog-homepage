@@ -9,6 +9,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { eventDateBadge, eventDateLabel, isPastEvent, mergeEvents, sortUpcomingEvents } from '../data/events';
 import { getEvents, getNewsPosts } from '../lib/sanity';
+import { safeHttpHref } from '../lib/safeContentHref';
 
 const pathways = [
   { icon: Sparkles, step: '01', title: 'Meet Jesus', copy: 'Discover the hope, peace, and new life found in Jesus Christ.', link: 'Begin here', href: '/basic-bible-beliefs/' },
@@ -44,7 +45,7 @@ const events = sortUpcomingEvents(mergeEvents(await getEvents()).filter((event) 
       dateLabel: eventDateLabel(event),
       place: event.venue,
       venue: event.address ?? event.venue,
-      mapUrl: event.mapUrl,
+      mapUrl: safeHttpHref(event.mapUrl),
       description: event.summary,
     };
   });

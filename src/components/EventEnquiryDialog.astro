@@ -15,7 +15,6 @@ import { CalendarDays, Mail, Send } from '@lucide/astro';
       <button class="enquiry-close" type="button" aria-label="Close event enquiry form">×</button>
       <input id="event-enquiry-subject" type="hidden" name="_subject" value="New event enquiry from tcog.org.ng" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
       <input id="event-enquiry-name" type="hidden" name="Event" value="" />
       <input id="event-enquiry-date" type="hidden" name="Event date" value="" />
       <input id="event-enquiry-venue" type="hidden" name="Event venue" value="" />
@@ -53,6 +52,8 @@ import { CalendarDays, Mail, Send } from '@lucide/astro';
 </dialog>
 
 <script>
+  import { formSubmitSucceeded } from '../lib/formSubmit';
+
   const enquiryDialog = document.querySelector<HTMLDialogElement>('#event-enquiry-dialog');
   const enquiryForm = document.querySelector<HTMLFormElement>('#event-enquiry-form');
   const enquiryStatus = document.querySelector<HTMLElement>('#event-enquiry-status');
@@ -100,7 +101,8 @@ import { CalendarDays, Mail, Send } from '@lucide/astro';
         headers: { Accept: 'application/json' },
         body: new FormData(enquiryForm),
       });
-      if (!response.ok) throw new Error('Submission failed');
+      const result: unknown = await response.json();
+      if (!response.ok || !formSubmitSucceeded(result)) throw new Error('Submission failed');
       const selectedEvent = enquiryEventName?.value ?? 'the event';
       enquiryForm.reset();
       if (enquiryEventName) enquiryEventName.value = selectedEvent;

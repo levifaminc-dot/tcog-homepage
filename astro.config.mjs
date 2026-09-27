@@ -5,5 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tcog-homepage.vercel.app',
-  vite: { plugins: [tailwindcss()] },
+  build: { inlineStylesheets: 'never' },
+  vite: { plugins: [tailwindcss()], build: { assetsInlineLimit: 0 } },
 });

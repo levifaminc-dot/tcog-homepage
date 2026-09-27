@@ -1,8 +1,9 @@
 ---
 import type { MarkProps } from 'astro-portabletext/types';
+import { safeContentHref } from '../lib/safeContentHref';
 
 const { node } = Astro.props as MarkProps<{ _type: 'link'; href?: string }>;
-const href = node.markDef?.href ?? '#';
-const external = href.startsWith('http');
+const href = safeContentHref(node.markDef?.href);
+const external = href?.startsWith('http');
 ---
-<a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}><slot /></a>
+{href ? <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}><slot /></a> : <slot />}

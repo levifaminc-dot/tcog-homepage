@@ -7,6 +7,7 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { eventDateBadge, eventDateLabel, isPastEvent, mergeEvents, sortUpcomingEvents } from '../data/events';
 import { getEvents, sanityImageUrl } from '../lib/sanity';
+import { safeHttpHref } from '../lib/safeContentHref';
 
 const allEvents = mergeEvents(await getEvents());
 const upcomingEvents = sortUpcomingEvents(allEvents.filter((event) => !isPastEvent(event)));
@@ -38,6 +39,7 @@ const recurringCount = upcomingEvents.filter((event) => event.scheduleType === '
           {upcomingEvents.map((event, index) => {
             const badge = eventDateBadge(event);
             const image = sanityImageUrl(event.featuredImage, 900, 560);
+            const mapHref = safeHttpHref(event.mapUrl);
             return (
               <article class:list={['event-card', { 'lg:col-span-2 lg:grid-cols-[.86fr_1.14fr]': image && index === 0 }]}>
                 {image && (
@@ -61,7 +63,7 @@ const recurringCount = upcomingEvents.filter((event) => event.scheduleType === '
                     <div><dt><MapPin size={15} /> Where</dt><dd>{event.venue}{event.address && <span>{event.address}</span>}</dd></div>
                   </dl>
                   <div class="mt-7 flex flex-wrap gap-3">
-                    {event.mapUrl && <a class="btn btn-primary" href={event.mapUrl} target="_blank" rel="noreferrer"><MapPin size={16} /> Get directions <ArrowUpRight size={15} /></a>}
+                    {mapHref && <a class="btn btn-primary" href={mapHref} target="_blank" rel="noopener noreferrer"><MapPin size={16} /> Get directions <ArrowUpRight size={15} /></a>}
                     <button
                       class="btn btn-outline-dark cursor-pointer bg-transparent"
                       type="button"

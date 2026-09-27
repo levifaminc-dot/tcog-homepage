@@ -1,12 +1,14 @@
 ---
 import { ArrowUpRight, Bell, PartyPopper, TriangleAlert, X } from '@lucide/astro';
 import type { Announcement } from '../lib/sanity';
+import { safeContentHref } from '../lib/safeContentHref';
 
 interface Props { announcement: Announcement; }
 const { announcement } = Astro.props;
 const kind = announcement.kind ?? 'information';
 const Icon = kind === 'urgent' ? TriangleAlert : kind === 'celebration' ? PartyPopper : Bell;
 const memoryKey = `tcog-announcement:${announcement._id}:${announcement._updatedAt}`;
+const callToActionHref = safeContentHref(announcement.callToAction?.url, true);
 ---
 
 <dialog id="site-announcement" class:list={['announcement-dialog', `announcement-${kind}`]} aria-labelledby="announcement-title" aria-describedby="announcement-message" data-announcement-key={memoryKey} data-dismissible={announcement.dismissible !== false ? 'true' : 'false'}>
@@ -18,8 +20,8 @@ const memoryKey = `tcog-announcement:${announcement._id}:${announcement._updated
     <h2 id="announcement-title">{announcement.title}</h2>
     <p id="announcement-message">{announcement.message}</p>
     <div class="announcement-actions">
-      {announcement.callToAction?.label && announcement.callToAction?.url && (
-        <a class="btn btn-primary" href={announcement.callToAction.url} target={announcement.callToAction.openInNewTab ? '_blank' : undefined} rel={announcement.callToAction.openInNewTab ? 'noreferrer' : undefined}>
+      {announcement.callToAction?.label && callToActionHref && (
+        <a class="btn btn-primary" href={callToActionHref} target={announcement.callToAction.openInNewTab ? '_blank' : undefined} rel={announcement.callToAction.openInNewTab ? 'noopener noreferrer' : undefined}>
           {announcement.callToAction.label}<ArrowUpRight size={16} />
         </a>
       )}

@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test:security": "node --experimental-strip-types --test tests/*.test.mjs",
     "scriptures:generate": "node scripts/generate-belief-scriptures.mjs",
     "preview": "astro preview",
     "astro": "astro",

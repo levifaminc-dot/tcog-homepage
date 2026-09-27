@@ -15,7 +15,6 @@ import { HandHeart, Mail, Send } from '@lucide/astro';
       <button class="prayer-close" type="button" aria-label="Close prayer request form">×</button>
       <input type="hidden" name="_subject" value="New prayer request from tcog.org.ng" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
       <label class="prayer-honey" aria-hidden="true">Leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
 
       <div class="prayer-fields">
@@ -45,6 +44,8 @@ import { HandHeart, Mail, Send } from '@lucide/astro';
 </dialog>
 
 <script>
+  import { formSubmitSucceeded } from '../lib/formSubmit';
+
   const prayerDialog = document.querySelector<HTMLDialogElement>('#prayer-request-dialog');
   const prayerForm = document.querySelector<HTMLFormElement>('#prayer-request-form');
   const prayerStatus = document.querySelector<HTMLElement>('#prayer-form-status');
@@ -74,7 +75,8 @@ import { HandHeart, Mail, Send } from '@lucide/astro';
         headers: { Accept: 'application/json' },
         body: new FormData(prayerForm),
       });
-      if (!response.ok) throw new Error('Submission failed');
+      const result: unknown = await response.json();
+      if (!response.ok || !formSubmitSucceeded(result)) throw new Error('Submission failed');
       prayerForm.reset();
       if (prayerStatus) prayerStatus.textContent = 'Thank you. Your prayer request has been submitted to the prayer team.';
     } catch {
