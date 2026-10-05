@@ -40,9 +40,23 @@ export function mergeEvents(cmsEvents: ChurchEvent[]): SiteEvent[] {
   ];
 }
 
+/** End of the event in Nigeria time; an unspecified end lasts until midnight. */
+export function eventEndTime(event: SiteEvent): number | null {
+  if (event.scheduleType !== 'dated' || !event.startDate) return null;
+  const end = new Date(event.endDate ?? event.startDate);
+  if (Number.isNaN(end.getTime())) return null;
+  if (event.endDate && !event.allDay) return end.getTime();
+
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Africa/Lagos',
+  }).formatToParts(end);
+  const value = (part: 'year' | 'month' | 'day') => Number(parts.find((item) => item.type === part)?.value);
+  return Date.UTC(value('year'), value('month') - 1, value('day') + 1) - 60 * 60 * 1000;
+}
+
 export function isPastEvent(event: SiteEvent, now = new Date()) {
-  if (event.scheduleType !== 'dated' || !event.startDate) return false;
-  return new Date(event.endDate ?? event.startDate).getTime() < now.getTime();
+  const endTime = eventEndTime(event);
+  return endTime !== null && endTime <= now.getTime();
 }
 
 export function eventDateLabel(event: SiteEvent) {
